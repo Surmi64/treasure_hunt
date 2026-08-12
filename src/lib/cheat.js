@@ -2,6 +2,7 @@
 import { stations } from 'virtual:content';
 import { normalizeAnswer } from '../../shared/normalize.js';
 import { markSolved, reset } from './store.js';
+import { playDoorOpening } from '../ui/doorburst.js';
 
 /**
  * A way to walk the whole game without knowing seven answers, so the row can
@@ -18,6 +19,7 @@ import { markSolved, reset } from './store.js';
  *
  *     #/cheat       solve all seven, jump to the finish screen
  *     #/cheat/4     solve the first three, land on station 4's riddle
+ *     #/cheat/door  replay the door-opening animation on its own
  *     #/reset       wipe progress and start over from the language picker
  */
 
@@ -46,6 +48,14 @@ export function cheatRedirect(hash) {
     return '#/lang';
   }
   if (head !== 'cheat') return null;
+
+  if (arg === 'door') {
+    // the finish screen renders underneath while the overlay plays over it,
+    // which is exactly what the seventh answer produces
+    solveFirst(stations.length);
+    playDoorOpening();
+    return '#/done';
+  }
 
   const n = Number.parseInt(arg, 10);
   if (Number.isNaN(n)) {

@@ -7,6 +7,7 @@ import { addAttempt, isComplete, markSolved, showHint, state, trackOf } from '..
 import { icon } from '../ui/icons.js';
 import { stepsNav } from '../ui/steps.js';
 import { doorBadge } from '../ui/marks.js';
+import { playDoorOpening } from '../ui/doorburst.js';
 
 const HINT_AFTER_ATTEMPTS = 2;
 
@@ -247,6 +248,15 @@ export function taskScreen(navigate, index) {
       feedback.replaceChildren(revealNote());
       hintSlot.replaceChildren();
       announce(t('correct'));
+
+      // the answer that completes the run earns the door, not a page swap
+      if (isComplete()) {
+        setTimeout(async () => {
+          await playDoorOpening();
+          navigate('#/done');
+        }, 700);
+        return;
+      }
 
       // re-render so the pager and the next button pick up the new state
       setTimeout(() => navigate(`#/s/${index + 1}/q`, { force: true }), 900);

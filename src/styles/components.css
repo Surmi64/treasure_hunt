@@ -423,3 +423,201 @@
   border: 1px solid var(--line);
   background: var(--surface);
 }
+
+/* ==================== the door opening (finish animation) ==================== */
+
+/* Timeline, all from mount (keep TOTAL_MS in doorburst.js in step with it):
+     0–250     backdrop darkens
+     250–550   the door is lit from behind and shudders
+     500–1400  both wings swing outward, the right leaf a beat behind
+     1150–2050 the camera goes through the doorway, fading out as it passes
+     2000–2550 the mark comes up — it has to wait for the light wash to clear,
+               because gold on that glow has no contrast to read against
+     2550–2900 hold on the mark
+     2900–3250 everything fades and the finish screen takes over           */
+
+.doorburst {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-toast);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--bg-deep);
+  animation:
+    doorburst-in 300ms var(--ease-out) both,
+    doorburst-out 350ms var(--ease-in) 2900ms both;
+}
+
+/* the camera: everything inside shares one vanishing point */
+.doorburst__stage {
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  animation: doorburst-push 900ms cubic-bezier(0.6, 0, 0.85, 0.4) 1150ms both;
+}
+
+.doorburst__frame {
+  position: relative;
+  height: min(58vh, 22rem);
+  aspect-ratio: var(--door-ratio);
+  transform-style: preserve-3d;
+  animation: doorburst-shudder 300ms ease-in-out 250ms;
+}
+
+/* what is behind the door: a warm shaft of light in the doorway's own shape */
+.doorburst__opening {
+  position: absolute;
+  inset: 0;
+  border-radius: 50% 50% 0 0 / 29.4% 29.4% 0 0;
+  background:
+    radial-gradient(70% 45% at 50% 62%, var(--accent-bright), transparent 72%),
+    linear-gradient(180deg, var(--accent) 0%, var(--wine) 100%);
+  animation: doorburst-light 1000ms var(--ease-out) 350ms both;
+}
+
+.doorburst__wing {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+  color: var(--accent);
+  backface-visibility: hidden;
+}
+
+/* the art is frame-wide inside a half-frame window; each wing keeps its own half */
+.doorburst__art {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 200%;
+  max-width: none;
+}
+
+.doorburst__wing--l {
+  left: 0;
+  transform-origin: left center;
+  animation: doorburst-swing-l 900ms cubic-bezier(0.34, 1.2, 0.5, 1) 500ms both;
+}
+.doorburst__wing--l .doorburst__art {
+  left: 0;
+}
+
+.doorburst__wing--r {
+  right: 0;
+  transform-origin: right center;
+  /* a beat behind the other leaf: real double doors never move in lockstep */
+  animation: doorburst-swing-r 900ms cubic-bezier(0.34, 1.2, 0.5, 1) 570ms both;
+}
+.doorburst__wing--r .doorburst__art {
+  right: 0;
+}
+
+.doorburst__logo {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  padding: var(--s8);
+  color: var(--accent-bright);
+  /* its own pool of dark, so the mark still reads if the tail of the light
+     wash is still on screen when it comes up */
+  background: radial-gradient(closest-side, var(--bg-deep) 55%, transparent 100%);
+  animation: doorburst-mark 550ms var(--ease-out) 2000ms both;
+}
+
+.doorburst__logo-mark {
+  width: min(46vw, 13rem);
+  height: auto;
+  /* the near-black shadow first: it keeps the strokes legible even if the
+     tail of the wash is still behind them */
+  filter: drop-shadow(0 0 4px var(--bg-deep)) drop-shadow(0 0 30px var(--accent-dim));
+}
+
+@keyframes doorburst-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes doorburst-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* the latch giving way, just before the wings move */
+@keyframes doorburst-shudder {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes doorburst-light {
+  from {
+    opacity: 0;
+    filter: brightness(0.5);
+  }
+  to {
+    opacity: 1;
+    filter: brightness(1.35);
+  }
+}
+
+/* Hinged on the outer edge, and the sign is what makes the free edge come
+   towards the viewer rather than away — measured, not guessed: at -55deg the
+   left wing projects 375px tall against 352px closed, so its free edge is the
+   near one. Flipping the sign opens the door inward.
+
+   Stops short of 90deg on purpose. Past square the wing turns its blank back
+   to the camera and pops out of sight; at 70deg (71 with the overshoot) it
+   stays a visible slab until the camera carries it out of frame. */
+@keyframes doorburst-swing-l {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-70deg);
+  }
+}
+
+@keyframes doorburst-swing-r {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(70deg);
+  }
+}
+
+/* through the doorway: the frame rushes past the camera and out of shot */
+@keyframes doorburst-push {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(7);
+    opacity: 0;
+  }
+}
+
+@keyframes doorburst-mark {
+  from {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
