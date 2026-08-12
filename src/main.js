@@ -37,7 +37,9 @@ function route() {
   const raw = location.hash.replace(/^#\/?/, '');
   const [head, arg] = raw.split('/');
 
-  if (!state.lang) return { name: 'lang' };
+  // #/lang stays reachable after a language has been picked, so a visitor
+  // who tapped the wrong flag can go back and change it
+  if (head === 'lang' || !state.lang) return { name: 'lang' };
 
   switch (head) {
     case 'intro':

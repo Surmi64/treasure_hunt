@@ -196,8 +196,17 @@ console.log('polish intro');
 await bootWith({ lang: 'pl', solved: Array(7).fill(false) }, '#/intro');
 await shot('10-intro-pl', { full: true });
 
-const errors = await evaluate(`JSON.stringify(window.__errors ?? [])`);
-console.log('page errors:', errors);
+console.log('language switcher');
+await bootWith({ lang: 'hu', solved: Array(7).fill(false) }, '#/intro');
+await shot('11-intro-langchip', { full: true });
+await evaluate(`document.querySelector('.langchip').click()`);
+await sleep(500);
+await shot('12-lang-returning');
+
+console.log('switch to English and back to the intro');
+await evaluate(`document.querySelectorAll('.lang__btn')[1].click()`);
+await sleep(500);
+await shot('13-intro-after-switch', { full: true });
 
 ws.close();
 chrome.kill();
