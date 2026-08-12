@@ -1,6 +1,6 @@
 {
-  "_comment": "Felületi szövegek. A {n} és {total} helyére a program számokat helyettesít. A track* kulcsok a gyerek/felnőtt sáv választóját írják le.",
-  "_siteComment": "Nyelvfüggetlen beállítások. A mapsUrl a mi pincénk Google Maps-linkje — ha üresen hagyod, a záróképernyőn nem jelenik meg a térkép gomb.",
+  "_comment": "Interface strings. The program substitutes numbers for {n} and {total}. The track* keys describe the kids/adults track picker.",
+  "_siteComment": "Language-independent settings. mapsUrl is the Google Maps link to our own cellar - leave it empty and the finish screen simply shows no map button.",
   "site": {
     "mapsUrl": "https://maps.app.goo.gl/wrLp52pxd3Nn3egb8"
   },

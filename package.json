@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Offline-capable PWA treasure hunt for the Kőporosi Pincesor",
+  "description": "Offline-capable PWA treasure hunt for the Kőporos cellars, Hercegkút",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

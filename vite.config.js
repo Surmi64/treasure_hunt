@@ -25,7 +25,7 @@ export default defineConfig(({ command }) => ({
       manifest: {
         name: 'Kőporosi Pincesor — Kincsvadászat',
         short_name: 'Kincsvadászat',
-        description: 'Treasure hunt along the Kőporosi Pincesor',
+        description: 'Treasure hunt along the Kőporos cellars, Hercegkút',
         lang: 'hu',
         start_url: '/',
         scope: '/',
