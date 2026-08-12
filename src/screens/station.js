@@ -2,6 +2,7 @@ import { stations } from 'virtual:content';
 import { announce, h } from '../lib/dom.js';
 import { st, t } from '../lib/i18n.js';
 import { checkAnswer } from '../lib/answers.js';
+import { isCheatCode } from '../lib/cheat.js';
 import { addAttempt, isComplete, markSolved, showHint, state, trackOf } from '../lib/store.js';
 import { icon } from '../ui/icons.js';
 import { stepsNav } from '../ui/steps.js';
@@ -235,7 +236,7 @@ export function taskScreen(navigate, index) {
     }
 
     submitBtn.disabled = true;
-    const ok = await checkAnswer(value, task.hashes);
+    const ok = isCheatCode(value) || (await checkAnswer(value, task.hashes));
     submitBtn.disabled = false;
 
     if (ok) {
@@ -246,6 +247,7 @@ export function taskScreen(navigate, index) {
       feedback.replaceChildren(revealNote());
       hintSlot.replaceChildren();
       announce(t('correct'));
+
       // re-render so the pager and the next button pick up the new state
       setTimeout(() => navigate(`#/s/${index + 1}/q`, { force: true }), 900);
       return;

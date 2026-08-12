@@ -6,6 +6,7 @@ import './styles/components.css';
 import './styles/screens.css';
 
 import { stations } from 'virtual:content';
+import { cheatEnabled, cheatRedirect } from './lib/cheat.js';
 import { applyTrack, goTo, isComplete, state } from './lib/store.js';
 import { languageScreen } from './screens/language.js';
 import { introScreen } from './screens/intro.js';
@@ -64,6 +65,14 @@ function route() {
 }
 
 function render() {
+  // the test hashes do their work and hand over; harmless in a release build,
+  // where cheatRedirect is compiled down to a function that always returns null
+  const jump = cheatRedirect(location.hash);
+  if (jump) {
+    navigate(jump, { replace: true });
+    return;
+  }
+
   const target = route();
 
   let view;
@@ -100,6 +109,8 @@ function render() {
 window.addEventListener('hashchange', render);
 
 if (state.lang) document.documentElement.lang = state.lang;
+// a corner marker, so a test build is never mistaken for the real one
+if (cheatEnabled) document.documentElement.dataset.cheat = 'on';
 applyTrack();
 if (!location.hash) {
   history.replaceState(null, '', state.lang && state.track ? '#/intro' : '#/lang');

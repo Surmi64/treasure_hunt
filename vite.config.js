@@ -3,9 +3,19 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 import { contentPlugin } from './plugins/content.js';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   // set to '/treasure_hunt/' if you ever host it on a GitHub Pages subpath
   base: '/',
+
+  /**
+   * The test-only escape hatch in src/lib/cheat.js. On during `npm run dev`
+   * and `npm run build:test`; a plain `npm run build` compiles it to `false`,
+   * and the minifier then drops the code and the code word with it — the
+   * public bundle cannot leak what it does not contain.
+   */
+  define: {
+    __CHEAT__: JSON.stringify(command === 'serve' || process.env.CHEAT === '1'),
+  },
 
   plugins: [
     contentPlugin(),
@@ -49,4 +59,4 @@ export default defineConfig({
     cssTarget: 'safari14',
     assetsInlineLimit: 2048,
   },
-});
+}));

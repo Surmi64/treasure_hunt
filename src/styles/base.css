@@ -68,6 +68,24 @@ button {
   border: 0;
 }
 
+/* Only ever painted in a test build — see src/lib/cheat.js. */
+:root[data-cheat] body::after {
+  content: 'TEST';
+  position: fixed;
+  left: 6px;
+  bottom: calc(4px + var(--safe-bottom));
+  z-index: var(--z-toast);
+  padding: 2px 6px;
+  border-radius: var(--r-sm);
+  background: var(--err);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 /* --- ambience: a warm lamp glow plus fine grain, both purely decorative --- */
 
 .ambience {
