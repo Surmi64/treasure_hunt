@@ -101,23 +101,39 @@ node scripts/shots.mjs     # képernyőképek minden nézetről (fejlesztéshez)
 
 ## Az ajtóminta
 
-A napkorongos-sugaras pincesor-motívum nincs képként lementve: a
-`src/ui/doorpattern.js` rajzolja meg SVG-ben, számolt geometriával. Ezért
-ugyanaz az ábra jó a nyitóképernyő logójának, a záró pecsétnek, az
-állomásszám jelvényének és az app-ikonnak is, minden méretben élesen.
+A napkorongos pincesor-motívum a te rajzod: a forrás a
+`resources/door.svg` (Inkscape/AI export). Ezt **nem szerkesztjük kézzel** —
+a `scripts/clean-door.mjs` állítja elő belőle a `src/ui/door.svg`-t:
 
-Hangolható paraméterek: `rays` (sugarak száma), `hatch` (a domboldal
-sraffozásának sűrűsége), `sunY` / `sunR` (a napkorong helye és mérete),
-`stroke` (vonalvastagság). Kis méretben kevesebb sugár és ritkább
-sraffozás kell, különben összemosódik.
+- kidobja a beágyazott ICC színprofilt (ez a fájl 1 MB-jából ~1 MB)
+- kidobja az Inkscape szerkesztői metaadatait
+- a nyomdai sárgát `currentColor`-ra cseréli, így CSS-ből vezérelhető
+- a nyomdai feketét a pince-háttérre cseréli, így a vonalak *rések* lesznek
+  a panelben, nem ráfestett tinta
 
-A szín `currentColor`-ból jön, tehát CSS-ből vezérelhető — így lesz a
-megoldott állomás jelvénye zöld egyetlen `color:` váltással.
+Eredmény: 1066 KB → 21 KB, és a megoldott állomás jelvénye egyetlen
+`color:` váltással zöld lesz.
+
+Ha valaha újrarajzolod a rajzot, cseréld a `resources/door.svg`-t és futtasd:
+
+```bash
+node scripts/clean-door.mjs
+npm run icons
+```
+
+A szkript hibával leáll, ha a kimenet nem érvényes XML — ez egyszer már
+megfogott egy bennmaradt `<sodipodi:namedview>` elemet, ami miatt a böngésző
+a rajz helyett XML-hibaoldalt renderelt.
+
+A napkorong helye (`SUN` a `src/ui/door.js`-ben) a rajzból van kimérve —
+ide kerül az állomás sorszáma. Ha a rajz változik, ezt is igazítani kell.
+
 
 ## Felépítés
 
 ```
 content/          amit szerkesztesz: kérdések és felületi szövegek
+resources/        a nyers ajtó-rajz (Inkscape export), forrásként megőrizve
 plugins/          Vite plugin: a válaszokból build közben hash lesz
 shared/           a válasz-normalizálás, közös a buildben és a böngészőben
 src/lib/          állapot, i18n, válaszellenőrzés, DOM helper

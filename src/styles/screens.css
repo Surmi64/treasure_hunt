@@ -27,7 +27,9 @@
 
 .lang__mark {
   margin-inline: auto;
-  width: 84px;
+  width: 74px;
+  aspect-ratio: 189 / 340;
+  height: auto;
   color: var(--gold);
 }
 

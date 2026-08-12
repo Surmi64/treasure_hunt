@@ -1,21 +1,19 @@
 /**
- * Renders the favicon and the PWA icons from the same door pattern the app
- * draws at runtime, so the tab icon and the splash logo cannot drift apart.
+ * Renders the favicon and the PWA icons from src/ui/door.svg — the same
+ * artwork the app draws — so the tab icon and the splash logo cannot drift.
  *
  *   npm run icons
  *
  * Rasterises with headless Chromium rather than ImageMagick: without a
  * librsvg delegate, ImageMagick's built-in SVG renderer silently drops
- * stroked paths, which is the entire artwork here.
+ * stroked paths, which is most of this artwork.
  *
- * Only has to be re-run when the mark changes; the output is committed.
+ * Only has to be re-run when the artwork changes; the output is committed.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-import { doorPanel } from '../src/ui/doorpattern.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = resolve(root, 'public/icons');
@@ -24,43 +22,25 @@ mkdirSync(outDir, { recursive: true });
 const BG = '#100c0b';
 const GOLD = '#c9a24c';
 
-/**
- * The pattern has to get coarser as the icon gets smaller — 36 rays turn to
- * mush at 16px. `detail` scales ray count and hatch spacing together.
- */
-function door({ size, detail, scale = 1 }) {
-  const w = 512 * 0.47 * scale;
-  const h = w * 1.62;
-  const x = (512 - w) / 2;
-  const y = (512 - h) / 2;
+const door = readFileSync(resolve(root, 'src/ui/door.svg'), 'utf8')
+  .replaceAll('currentColor', GOLD)
+  .replace(/var\(--door-ink,\s*#100c0b\)/g, BG);
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="${size}" height="${size}">
-    <rect width="512" height="512" fill="${BG}"/>
-    <g transform="translate(${x} ${y})">
-      ${doorPanel({
-        w,
-        h,
-        sunY: 0.34,
-        sunR: 0.21,
-        rays: detail.rays,
-        hatch: detail.hatch,
-        stroke: detail.stroke,
-        color: GOLD,
-      })}
-    </g>
-  </svg>`;
+/** The door is 1:1.8, so it is the height that has to fit the square. */
+function page(size, inset) {
+  return `<!doctype html><meta charset="utf-8">
+    <style>
+      html,body{margin:0;padding:0;background:${BG}}
+      body{width:${size}px;height:${size}px;display:grid;place-items:center}
+      svg{height:${size * (1 - inset)}px;width:auto;display:block}
+    </style>${door}`;
 }
 
 const variants = [
-  { name: 'icon-192.png', size: 192, detail: { rays: 24, hatch: 0.13, stroke: 7 } },
-  { name: 'icon-512.png', size: 512, detail: { rays: 30, hatch: 0.1, stroke: 6 } },
-  // maskable icons get cropped to a circle by Android, so shrink the mark
-  {
-    name: 'icon-maskable-512.png',
-    size: 512,
-    scale: 0.7,
-    detail: { rays: 24, hatch: 0.13, stroke: 7 },
-  },
+  { name: 'icon-192.png', size: 192, inset: 0.12 },
+  { name: 'icon-512.png', size: 512, inset: 0.12 },
+  // maskable icons get cropped to a circle by Android, so pull the mark in
+  { name: 'icon-maskable-512.png', size: 512, inset: 0.34 },
 ];
 
 const browser = (() => {
@@ -81,12 +61,7 @@ const browser = (() => {
  */
 function rasterise(markup, size, outPath) {
   const tmp = resolve(outDir, '.icon-tmp.html');
-  writeFileSync(
-    tmp,
-    `<!doctype html><meta charset="utf-8">
-     <style>html,body{margin:0;padding:0;background:${BG}}
-     svg{display:block;width:${size}px;height:${size}px}</style>${markup}`
-  );
+  writeFileSync(tmp, markup);
   execFileSync(browser, [
     '--headless',
     '--disable-gpu',
@@ -99,13 +74,13 @@ function rasterise(markup, size, outPath) {
   rmSync(tmp);
 }
 
-for (const { name, size, detail, scale } of variants) {
-  rasterise(door({ size, detail, scale }), size, resolve(outDir, name));
+for (const { name, size, inset } of variants) {
+  rasterise(page(size, inset), size, resolve(outDir, name));
   console.log(`wrote public/icons/${name}`);
 }
 
 /**
- * The favicon is drawn by hand rather than from doorPanel. Browsers render it
+ * The favicon is a separate, simplified drawing. Browsers render it
  * at 16px, where rays and hatching collapse into a smudge; only the silhouette
  * survives. So: the arch, the sun, and eight stubby rays.
  */

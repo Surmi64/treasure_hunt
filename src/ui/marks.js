@@ -1,47 +1,52 @@
 import { svg } from '../lib/dom.js';
-import { doorPanel } from './doorpattern.js';
+import { DOOR_VIEWBOX, SUN, doorSvg } from './door.js';
 
 /**
  * Brand marks and flags, drawn inline so they scale, theme, and work offline.
- * The recurring shape is the cellar door: a round arch on a stone base.
+ * The recurring shape is the painted cellar door from resources/door.svg.
  */
 
-/** The painted cellar door itself — the splash and intro logo. */
+/** The door on its own — splash and intro logo. */
 export function logoMark(className = '') {
-  return svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 200" fill="none"
-    class="${className}" role="img" aria-label="">
-    ${doorPanel({ w: 120, h: 200, sunY: 0.34, sunR: 0.2, rays: 36, hatch: 0.085, stroke: 1.1 })}
-  </svg>`);
+  return doorSvg({ className });
 }
 
-/** Wax-seal badge for the finish screen: the same door inside a struck ring. */
+/** Wax-seal badge for the finish screen: the door inside a struck ring. */
 export function sealMark(className = '') {
-  return svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" fill="none"
+  const ring = svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" fill="none"
     class="${className}" role="img" aria-label="">
     <circle cx="70" cy="70" r="68" stroke="currentColor" stroke-width="1" opacity=".3"/>
     <circle cx="70" cy="70" r="61" stroke="currentColor" stroke-width="2.5"/>
     <circle cx="70" cy="70" r="54" stroke="currentColor" stroke-width="1" opacity=".45"
       stroke-dasharray="2 6"/>
-    <g transform="translate(46 32)">
-      ${doorPanel({ w: 48, h: 78, sunY: 0.34, sunR: 0.22, rays: 28, hatch: 0.11, stroke: 0.8 })}
-    </g>
   </svg>`);
+
+  // the door is 1:1.8, so its height is what has to fit inside the dashed ring
+  const height = 92;
+  const width = (height * DOOR_VIEWBOX.w) / DOOR_VIEWBOX.h;
+  const door = doorSvg();
+  door.setAttribute('width', String(width));
+  door.setAttribute('height', String(height));
+  door.setAttribute('x', String(70 - width / 2));
+  door.setAttribute('y', String(70 - height / 2));
+  ring.append(door);
+
+  return ring;
 }
 
 /**
- * Station number badge: the door with the number sitting inside the sun disc,
- * so the pattern reads even at 68px without fighting the digit.
+ * Station number badge: the door with the number set into its sun, inked in
+ * the same colour as the painted lines so it reads as part of the artwork.
  */
 export function doorBadge(label, { solved = false } = {}) {
-  const w = 68;
-  const h = 86;
-  return svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" fill="none"
-    class="doorbadge${solved ? ' doorbadge--solved' : ''}" aria-hidden="true">
-    ${doorPanel({ w, h, sunY: 0.38, sunR: 0.29, rays: 24, hatch: 0.1, stroke: 0.9 })}
-    <text x="${w / 2}" y="${h * 0.38}" text-anchor="middle" dominant-baseline="central"
-      font-family="Inter Variable, system-ui, sans-serif" font-size="17" font-weight="650"
-      fill="currentColor">${label}</text>
-  </svg>`);
+  const number = `<text x="${SUN.x}" y="${SUN.y}" text-anchor="middle" dominant-baseline="central"
+    font-family="Inter Variable, system-ui, sans-serif" font-size="56" font-weight="700"
+    fill="var(--door-ink, #100c0b)">${label}</text>`;
+
+  return doorSvg({
+    className: `doorbadge${solved ? ' doorbadge--solved' : ''}`,
+    extra: number,
+  });
 }
 
 const FLAGS = {

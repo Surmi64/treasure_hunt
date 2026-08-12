@@ -65,11 +65,13 @@
   opacity: 0.7;
 }
 
-/* the signature shape: the painted cellar door, drawn in ui/doorpattern.js.
-   `currentColor` drives every line, so the solved state is one colour swap. */
+/* the signature shape: the painted cellar door from resources/door.svg.
+   The panel is `currentColor`, so a solved station is one property change. */
 .doorbadge {
-  width: 68px;
-  height: 86px;
+  width: 54px;
+  /* the artwork is 189:340 — let the height follow so it never squashes */
+  aspect-ratio: 189 / 340;
+  height: auto;
   flex: none;
   color: var(--gold);
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.55));
