@@ -7,6 +7,7 @@ import { addAttempt, isComplete, markSolved, showHint, state, trackOf } from '..
 import { icon } from '../ui/icons.js';
 import { stepsNav } from '../ui/steps.js';
 import { doorBadge } from '../ui/marks.js';
+import { MAP_ENABLED } from '../lib/flow.js';
 import { playDoorOpening } from '../ui/doorburst.js';
 
 const HINT_AFTER_ATTEMPTS = 2;
@@ -45,11 +46,14 @@ function chrome(navigate, index, step) {
         icon('arrowLeft')
       ),
       h('span.topbar__title', t('siteName')),
-      h(
-        'button.iconbtn',
-        { type: 'button', 'aria-label': t('map'), onclick: () => navigate('#/map') },
-        icon('map')
-      )
+      MAP_ENABLED
+        ? h(
+            'button.iconbtn',
+            { type: 'button', 'aria-label': t('map'), onclick: () => navigate('#/map') },
+            icon('map')
+          )
+        : // a spacer, not nothing: the title is flex:1 and would sit off-centre
+          h('span', { style: 'width:44px' })
     ),
 
     stepsNav(navigate, index),

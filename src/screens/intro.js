@@ -26,7 +26,17 @@ export function introScreen(navigate) {
     h(
       'div',
       h('p.lead', t('introLead')),
-      h('p.prose', { style: 'margin-top: var(--s4)' }, t('introBody'))
+      h('p.prose', { style: 'margin-top: var(--s4)' }, t('introBody')),
+
+      // what to expect on arrival: the cellars are working storage, not
+      // exhibits, and most doors will be shut. Better said here than
+      // discovered as a disappointment halfway along the row.
+      h(
+        'div.note.note--hint',
+        { style: 'margin-top: var(--s4)' },
+        icon('lamp'),
+        h('span', t('introVisiting'))
+      )
     ),
 
     h(

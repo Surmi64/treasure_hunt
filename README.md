@@ -55,9 +55,16 @@ its own answer, in all three languages — the kids track is not a simplified
 version of the adults one, it is written separately.
 
 The current content comes from **hercegkutipincek.com** (`/koporosi-pincesor`
-and `/gomboshegyi-pincesor`). The arc is deliberate: the village first
-(stations 1–2), then the cellar row itself (3–7). Station 1 is **identical** in
-both tracks — that one is meant to be read together by a family.
+and `/gomboshegyi-pincesor`). The arc is deliberate: arrival and the village
+first (stations 1–3), then the cellar row itself (4–7).
+
+Stations 1 and 2 are **identical** in both tracks — those are meant to be read
+together by a family. Station 1 is an anagram of the village name and needs
+nothing on site, so the game can be started in the car park.
+
+Stations are navigable in any order, so no station's story or question may name
+another station's answer. There is no automated check for this; grep before you
+add a story.
 
 Every station carries a `_verify` field. The program does not use it; it is a
 reminder of what has to be checked on location before this goes live. Once you
@@ -78,6 +85,10 @@ Within a track (`tracks.kids`, `tracks.adults`):
 | `input` | `"number"` = numeric keypad pops up, `"text"` = normal keyboard |
 | `image` | optional, overrides the station photo for this track |
 | `hu` / `en` / `pl` | `title`, `story`, `question`, `hint`, `reveal` |
+
+A `question` may contain line breaks; they survive to the page
+(`white-space: pre-line`), which is how station 1 puts its jumbled letters on
+their own line.
 
 The `story` comes **first**, before the question — it is what makes visitors
 learn the place, so do not skimp on it. The riddle is one tap away and can be
@@ -106,8 +117,13 @@ Button labels, the intro screen, the finish screen. The program substitutes
 numbers for `{n}` and `{total}`.
 
 `site.mapsUrl` is the Google Maps link to our own cellar. While it is empty the
-finish screen shows no map button — the text still works, only the button is
-missing.
+finish screen shows no map button at all — the text still works, only the
+button is missing.
+
+When it is set, the link stays **behind a tap**: the finish screen first points
+at the mark above the text and invites the visitor to spot it along the row,
+and only an "I cannot find it" button reveals the pin. Looking for the mark is
+the last little hunt, and handing over the map immediately removes it.
 
 In English and Polish the word "row" is deliberately left out of the name:
 `Kőporos Cellars` and `Piwnice Kőporos`.
@@ -160,6 +176,30 @@ anyway.
 npm run icons              # regenerate favicon + PWA icons (needs Chromium)
 node scripts/shots.mjs     # screenshots of every view (for development)
 ```
+
+## Starting the game
+
+The game opens on the language picker. Tapping a flag only **selects** it — a
+separate button starts the game, so the first tap is never also a commitment
+and a mis-tap costs nothing.
+
+The language is applied to the store the moment it is picked, not when the
+button is pressed. That is deliberate: it lets the button label itself switch
+into the chosen language, which is the clearest confirmation that the tap
+registered.
+
+After that comes the track picker, then the intro.
+
+## The overview map
+
+`src/screens/map.js` and the `#/map` route are complete and working, but **not
+reachable**: the station dots are placeholder coordinates, so the map would
+only mislead. `MAP_ENABLED` in `src/lib/flow.js` is the single switch — flip it
+to `true` and both the topbar button and the route come back.
+
+Nothing was deleted, so re-enabling is one line once the real coordinates are
+measured. The `map`, `mapTitle` and `mapLegend` strings stay in `ui.json` for
+the same reason.
 
 ## The two tracks
 

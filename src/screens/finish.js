@@ -12,6 +12,28 @@ import { resetAndRestart } from '../lib/flow.js';
  * doorway rather than a new page.
  */
 export function finishScreen(navigate) {
+  const mapSlot = h('div.finish__maps');
+
+  function showMap() {
+    mapSlot.replaceChildren(
+      h(
+        'a.btn.btn--primary.btn--block',
+        { href: site.mapsUrl, target: '_blank', rel: 'noopener' },
+        icon('map', 'btn__icon'),
+        t('finishMapCta')
+      )
+    );
+  }
+
+  mapSlot.replaceChildren(
+    h(
+      'button.btn.btn--ghost.btn--block',
+      { type: 'button', onclick: showMap },
+      icon('map', 'btn__icon'),
+      t('finishRevealMap')
+    )
+  );
+
   return h(
     'section.view.finish',
     h(
@@ -27,13 +49,9 @@ export function finishScreen(navigate) {
       'div.card',
       h('p.prose', t('finishBody')),
 
-      site.mapsUrl &&
-        h(
-          'a.btn.btn--primary.btn--block.finish__maps',
-          { href: site.mapsUrl, target: '_blank', rel: 'noopener' },
-          icon('map', 'btn__icon'),
-          t('finishMapCta')
-        ),
+      // the map stays behind a tap: looking for the mark along the row is the
+      // last little hunt, and handing over the pin immediately removes it
+      site.mapsUrl && mapSlot,
 
       h('p.field__label', { style: 'margin-top: var(--s5)' }, t('codeLabel')),
       h('p', h('span.finish__code', state.code ?? '——'))

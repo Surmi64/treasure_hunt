@@ -199,6 +199,10 @@
   line-height: 1.35;
   color: var(--ink);
   text-wrap: pretty;
+  /* honours line breaks written into the question in stations.json — station 1
+     puts its jumbled letters on their own line — while still wrapping normally
+     and collapsing runs of spaces */
+  white-space: pre-line;
 }
 
 .station__form {

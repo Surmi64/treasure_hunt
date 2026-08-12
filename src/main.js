@@ -7,6 +7,7 @@ import './styles/screens.css';
 
 import { stations } from 'virtual:content';
 import { cheatEnabled, cheatRedirect } from './lib/cheat.js';
+import { MAP_ENABLED } from './lib/flow.js';
 import { applyTrack, goTo, isComplete, state } from './lib/store.js';
 import { languageScreen } from './screens/language.js';
 import { introScreen } from './screens/intro.js';
@@ -51,7 +52,8 @@ function route() {
     case 'intro':
       return { name: 'intro' };
     case 'map':
-      return { name: 'map' };
+      // the screen still works; it is just not part of the game right now
+      return MAP_ENABLED ? { name: 'map' } : { name: 'intro' };
     case 'done':
       return isComplete() ? { name: 'done' } : { name: 'station', index: 0 };
     case 's': {
