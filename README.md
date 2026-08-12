@@ -104,7 +104,7 @@ sees `"a3f9…"` instead of `1825`.
 
 ⚠️ **That does not mean the answers cannot be read out.** The `reveal` strings
 ship as plain text, and they typically repeat the answer ("Exactly:
-Trautsondorf") — in the current content all 42 of them do. Open the JS file and
+Trautsondorf") — in the current content every one of them does. Open the JS file and
 you get every solution in order. For a static PWA there is no real fix: there
 is no server to withhold the text until the answer is right. So the hash guards
 against an idle glance, not against someone who is looking. If that bothers

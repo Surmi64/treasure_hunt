@@ -163,7 +163,7 @@
     },
     {
       "id": "st3",
-      "_verify": "Adults: 543 hold of cleared land. Documented on hercegkutipincek.com; check whether an information board on site states it, otherwise the question has nowhere to be read from.",
+      "_verify": "Nothing on site — both tracks are answerable from the story or by asking a local.",
       "map": {
         "x": 37.5,
         "y": 77.4
@@ -200,29 +200,35 @@
         },
         "adults": {
           "answers": [
-            "543"
+            "sváb",
+            "svábok",
+            "swabian",
+            "swabians",
+            "schwaben",
+            "szwab",
+            "szwabi"
           ],
-          "input": "number",
+          "input": "text",
           "hu": {
-            "title": "Erdőből szántó",
-            "story": "A svábok 1750 körül érkeztek a Schwarzwald vidékéről, és nem kész falut kaptak, hanem erdőt. Fát vágtak, gyökeret irtottak, követ hordtak — és a letelepedés utáni fél évszázadban tekintélyes szántóterületet nyertek el az erdőtől.",
-            "question": "Hány hold szántóföldet hódítottak el az erdőtől a letelepedés utáni fél évszázadban?",
-            "hint": "Ötszáz fölött, de hatszáz alatt. Az utolsó két számjegy is páratlan szám.",
-            "reveal": "543 hold. Ennyit jelentett két emberöltő kézi munkája — és erre a földre került rá később a szőlő."
+            "title": "Ahogy itt nevezik őket",
+            "story": "A telepesek 1750 körül érkeztek, Németország délnyugati sarkából, a Schwarzwald vidékéről. Magyarországon azonban a korszak minden német ajkú betelepülőjét egyetlen néven emlegették, függetlenül attól, hogy valójában honnan jött — és ez a név ragadt rájuk itt is, máig.",
+            "question": "Hogyan nevezik az itteni telepesek leszármazottait? Egyetlen szó, és nem az, hogy „német”.",
+            "hint": "S-sel kezdődik, és egy németországi tájegység nevéből ered — de nem abból, ahonnan valójában jöttek.",
+            "reveal": "Svábok. A név Svábföldről ered, pedig ezek a családok a Schwarzwaldból jöttek: a magyar nyelv minden korabeli német telepest svábnak hívott. A nyelvüket és a dalaikat máig őrzik itt."
           },
           "en": {
-            "title": "Forest into farmland",
-            "story": "The Swabians arrived around 1750 from the Schwarzwald, and what they were given was not a village but a forest. They felled, grubbed out roots and carried stone — and within fifty years of settling they had won a considerable stretch of arable land from the trees.",
-            "question": "How many holds of arable land did they clear from the forest in the first fifty years?",
-            "hint": "Over five hundred, under six hundred. A hold is an old Hungarian land measure.",
-            "reveal": "543 holds. That is what two generations of hand labour amounted to — and it is this land the vines were later planted on."
+            "title": "What they are called here",
+            "story": "The settlers arrived around 1750 from the south-western corner of Germany, from the Schwarzwald. In Hungary, though, every German-speaking settler of that era was called by one and the same name, whatever corner they had actually come from — and that name has stuck here to this day.",
+            "question": "What are the descendants of the settlers here called? One word, and it is not „German”.",
+            "hint": "It starts with S, and it comes from the name of a German region — but not the one they actually came from.",
+            "reveal": "Swabians — sváb in Hungarian. The name comes from Swabia, though these families came from the Schwarzwald: Hungarian called every German settler of the period a Swabian. Their language and their songs are still kept alive here."
           },
           "pl": {
-            "title": "Z lasu w pole",
-            "story": "Szwabowie przybyli około 1750 roku ze Schwarzwaldu i zastali nie gotową wieś, lecz las. Ścinali drzewa, karczowali korzenie, znosili kamienie — i w ciągu pięćdziesięciu lat od osiedlenia wydarli lasowi pokaźny obszar pól uprawnych.",
-            "question": "Ile holdów ziemi uprawnej wykarczowali z lasu w pierwszym półwieczu?",
-            "hint": "Ponad pięćset, poniżej sześciuset. Hold to dawna węgierska miara powierzchni.",
-            "reveal": "543 holdy. Tyle dała praca rąk dwóch pokoleń — i właśnie na tej ziemi posadzono później winorośl."
+            "title": "Jak się ich tu nazywa",
+            "story": "Osadnicy przybyli około 1750 roku z południowo-zachodniego krańca Niemiec, ze Schwarzwaldu. Na Węgrzech jednak wszystkich niemieckojęzycznych osadników tamtej epoki nazywano jednym mianem, niezależnie od tego, skąd naprawdę przyszli — i ta nazwa przylgnęła tu do nich do dziś.",
+            "question": "Jak nazywa się potomków tutejszych osadników? Jedno słowo, i nie jest to „Niemcy”.",
+            "hint": "Zaczyna się na S i pochodzi od nazwy niemieckiej krainy — ale nie tej, z której naprawdę przybyli.",
+            "reveal": "Szwabi — po węgiersku sváb. Nazwa pochodzi od Szwabii, choć te rodziny przyszły ze Schwarzwaldu: węgierski nazywał Szwabem każdego ówczesnego niemieckiego osadnika. Ich język i pieśni są tu żywe do dziś."
           }
         }
       }
@@ -317,21 +323,21 @@
           "hu": {
             "title": "Az évszám a kapu fölött",
             "story": "Aki pincét vájt, büszke volt rá — és a nevét vagy az évszámot belevéste a kapu fölötti kőbe. Ezek a számok kétszáz éve ott vannak, esőben, fagyban, háborúban is. A pincesor legrégebbi vésett évszáma még mindig kiolvasható.",
-            "question": "Járd végig a sort, és keresd meg a legrégebbi évszámot a pincekapuk fölött. Melyik év az?",
+            "question": "Járd végig a sort, és keresd meg a legrégebbi évszámot a pincekapuk fölött. Melyik év az? Amíg keresed, meg is számolhatod, hány pince van a soron!",
             "hint": "1800 után, de 1830 előtt. Emeld fel a fejed: a szám a kőkeret tetején van, nem az ajtón.",
             "reveal": "1825! Amikor ezt bevésték, még nem volt se villany, se autó — a pince viszont már készen állt, és azóta is áll."
           },
           "en": {
             "title": "The year above the door",
             "story": "Anyone who dug a cellar was proud of it — and carved his name or the year into the stone above the doorway. Those numbers have been there for two hundred years, through rain, frost and war. The oldest carved year on this row can still be read.",
-            "question": "Walk the row and find the oldest year carved above a cellar door. Which year is it?",
+            "question": "Walk the row and find the oldest year carved above a cellar door. Which year is it? While you look, you can count the cellars as you go!",
             "hint": "After 1800 but before 1830. Look up: the number is on the top of the stone frame, not on the door.",
             "reveal": "1825! When that was cut there was no electricity and no cars — but the cellar was already finished, and it is still standing."
           },
           "pl": {
             "title": "Rok nad drzwiami",
             "story": "Każdy, kto wykuł piwnicę, był z niej dumny — i wyrzeźbił swoje nazwisko albo rok w kamieniu nad wejściem. Te liczby są tam od dwustu lat, mimo deszczu, mrozu i wojny. Najstarszy wykuty rok na tej uliczce wciąż da się odczytać.",
-            "question": "Przejdź całą uliczkę i znajdź najstarszy rok wykuty nad drzwiami piwnicy. Który to rok?",
+            "question": "Przejdź całą uliczkę i znajdź najstarszy rok wykuty nad drzwiami piwnicy. Który to rok? Przy okazji możesz policzyć piwnice po drodze!",
             "hint": "Po 1800, ale przed 1830. Podnieś głowę: liczba jest na szczycie kamiennej ramy, nie na drzwiach.",
             "reveal": "1825! Gdy to wykuwano, nie było ani prądu, ani samochodów — a piwnica już stała i stoi do dziś."
           }
@@ -344,21 +350,21 @@
           "hu": {
             "title": "A legkorábbi vésett évszám",
             "story": "A kőporosi pincesor fiatalabb a gomboshegyinél: az 1782–85-ös katonai felmérés még nem jelöli, a harmadik felmérés viszont — 1869 és 1887 között — már igen. A kapuzatokba vésett évszámok ennél pontosabban beszélnek: a legkorábbi jóval megelőzi a térképeket.",
-            "question": "Keresd meg a pincesor legkorábbi vésett évszámát a kapuzatokon. Melyik év az?",
+            "question": "Keresd meg a pincesor legkorábbi vésett évszámát a kapuzatokon. Melyik év az? Amíg keresed, érdemes megszámolnod, hány pince áll a soron — később jól jöhet.",
             "hint": "A reformkor előtti évtized. 18-cal kezdődik, és a század első negyedének a vége felé jár.",
             "reveal": "1825. Negyvennégy évvel azelőtt, hogy a pincesor egyáltalán felkerült volna egy katonai térképre — a kő pontosabban emlékezik, mint a hivatal."
           },
           "en": {
             "title": "The earliest carved year",
             "story": "The Kőporos row is younger than the one on Gomboshegy: the military survey of 1782–85 does not show it yet, while the third survey, between 1869 and 1887, does. The years carved into the portals speak more precisely than that — the earliest of them long predates the maps.",
-            "question": "Find the earliest year carved on the portals of this row. Which year is it?",
+            "question": "Find the earliest year carved on the portals of this row. Which year is it? While you are at it, count the cellars as you pass them — it may come in handy later.",
             "hint": "It begins with 18 and falls towards the end of the century's first quarter.",
             "reveal": "1825. Forty-four years before the row appeared on a military map at all — the stone remembers more accurately than the registry."
           },
           "pl": {
             "title": "Najwcześniejszy wykuty rok",
             "story": "Uliczka Kőporos jest młodsza od tej na Gomboshegy: zdjęcie wojskowe z lat 1782–85 jeszcze jej nie pokazuje, a trzecie, z lat 1869–1887, już tak. Lata wykute w portalach mówią jednak dokładniej — najwcześniejszy z nich znacznie wyprzedza mapy.",
-            "question": "Znajdź najwcześniejszy rok wykuty w portalach tej uliczki. Który to rok?",
+            "question": "Znajdź najwcześniejszy rok wykuty w portalach tej uliczki. Który to rok? Przy okazji policz mijane piwnice — może się jeszcze przydać.",
             "hint": "Zaczyna się na 18 i przypada pod koniec pierwszej ćwierci stulecia.",
             "reveal": "1825. Czterdzieści cztery lata przed tym, nim uliczka w ogóle trafiła na mapę wojskową — kamień pamięta dokładniej niż urząd."
           }

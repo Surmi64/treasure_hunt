@@ -1,7 +1,6 @@
 import { site } from 'virtual:content';
 import { h } from '../lib/dom.js';
 import { t } from '../lib/i18n.js';
-import { state } from '../lib/store.js';
 import { icon } from '../ui/icons.js';
 import { hajnalhozoMark } from '../ui/brand.js';
 import { resetAndRestart } from '../lib/flow.js';
@@ -51,13 +50,10 @@ export function finishScreen(navigate) {
 
       // the map stays behind a tap: looking for the mark along the row is the
       // last little hunt, and handing over the pin immediately removes it
-      site.mapsUrl && mapSlot,
-
-      h('p.field__label', { style: 'margin-top: var(--s5)' }, t('codeLabel')),
-      h('p', h('span.finish__code', state.code ?? '——'))
+      site.mapsUrl && mapSlot
     ),
 
-    // the consolation is the point of the whole game, so it gets its own line
+    // the practical part: what to do when the cellar turns out to be shut
     h('p.prose.finish__keep', t('finishClosed')),
 
     h('p.muted', t('finishFooter')),

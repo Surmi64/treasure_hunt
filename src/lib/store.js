@@ -16,7 +16,6 @@ function emptyState() {
     solved: stations.map(() => false),
     attempts: stations.map(() => 0),
     hinted: stations.map(() => false),
-    code: null,
     startedAt: null,
   };
 }
@@ -99,7 +98,8 @@ export function goTo(index) {
 export function markSolved(index) {
   state.solved[index] = true;
   if (!state.startedAt) state.startedAt = Date.now();
-  if (isComplete() && !state.code) state.code = makeCode();
+  // the code is no longer shown anywhere — the finish screen dropped it because
+  // nothing was ever done with it. Kept generating it would be dead work.
   commit();
 }
 
@@ -134,16 +134,4 @@ export function firstUnsolved() {
 export function reset() {
   Object.assign(state, emptyState(), { lang: state.lang, track: state.track });
   commit();
-}
-
-/**
- * A short, human-readable code so the host can tell at a glance that the
- * screen being shown is a genuine finish screen from today. Not a security
- * measure — the reward is free anyway.
- */
-function makeCode() {
-  const alphabet = 'ACDEFGHJKLMNPQRTUVWXY349';
-  const pick = () => alphabet[Math.floor(Math.random() * alphabet.length)];
-  const day = String(new Date().getDate()).padStart(2, '0');
-  return `${pick()}${pick()}${day}${pick()}`;
 }
