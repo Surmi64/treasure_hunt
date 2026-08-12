@@ -18,7 +18,7 @@
 
 .lang__btn--active {
   border-color: var(--gold);
-  background: rgba(201, 162, 76, 0.1);
+  background: var(--accent-dim);
 }
 
 .lang__btn--active .lang__go {
@@ -70,7 +70,7 @@
 
 .lang__btn:hover {
   border-color: var(--line-strong);
-  background: rgba(240, 230, 216, 0.07);
+  background: var(--surface-2);
 }
 
 .lang__btn:active {
@@ -83,7 +83,7 @@
   height: 24px;
   border-radius: 3px;
   overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 1px var(--line-strong);
 }
 
 .lang__name {
@@ -150,7 +150,7 @@
   height: 15px;
   border-radius: 2px;
   overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 1px var(--line-strong);
 }
 
 .intro__title {
@@ -238,7 +238,7 @@
   margin-top: var(--s4);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  background: linear-gradient(160deg, #1c1512, #0d0a09);
+  background: linear-gradient(160deg, var(--map-hill), var(--map-void));
   overflow: hidden;
 }
 
@@ -286,7 +286,7 @@
   padding: var(--s3) var(--s5);
   border: 1px dashed var(--line-strong);
   border-radius: var(--r-md);
-  background: rgba(201, 162, 76, 0.08);
+  background: var(--accent-dim);
   /* body font: the host reads this code aloud, so the digits must be lining
      and unambiguous rather than Cormorant's old-style figures */
   font-family: var(--font-body);
@@ -316,7 +316,7 @@
   display: grid;
   place-items: center;
   padding: var(--gutter);
-  background: rgba(6, 4, 4, 0.62);
+  background: var(--scrim);
   backdrop-filter: blur(6px);
   animation: fade var(--dur) var(--ease-out);
 }
@@ -343,4 +343,166 @@
 @keyframes fade {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* ====================== track picker ====================== */
+
+.track {
+  justify-content: center;
+  gap: var(--s6);
+  padding-block: calc(var(--s7) + var(--safe-top)) calc(var(--s6) + var(--safe-bottom));
+  animation: fadeUp var(--dur-slow) var(--ease-out);
+}
+
+.track--returning {
+  justify-content: flex-start;
+  gap: var(--s5);
+  padding-top: 0;
+}
+
+.track__head {
+  text-align: center;
+}
+
+.track__title {
+  font-size: var(--step-4);
+}
+
+.track__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.track__card {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  width: 100%;
+  padding: var(--s4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface-raised);
+  color: var(--ink);
+  text-align: left;
+  transition:
+    border-color var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-out);
+}
+
+.track__card:hover {
+  border-color: var(--line-strong);
+}
+
+.track__card:active {
+  opacity: 0.85;
+}
+
+.track__card--active {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* a swatch of the theme each card leads to, so the choice is visible up front
+   rather than a surprise on the next screen */
+.track__swatch {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-strong);
+}
+
+.track__card--kids .track__swatch {
+  background: linear-gradient(140deg, #f7efe1 55%, #d2691e 55%);
+}
+
+.track__card--adults .track__swatch {
+  background: linear-gradient(140deg, #100c0b 55%, #c9a24c 55%);
+}
+
+.track__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+
+.track__name {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  font-size: var(--step-1);
+  font-weight: 600;
+}
+
+.track__age {
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.track__what {
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.track__go {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+}
+
+.track__note {
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.langchip__swatch {
+  width: 15px;
+  height: 15px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-strong);
+  background: linear-gradient(140deg, var(--bg) 55%, var(--accent) 55%);
+}
+
+/* ====================== story / task tabs ====================== */
+
+.substeps {
+  display: flex;
+  gap: var(--s1);
+  padding: 4px;
+  margin-bottom: var(--s5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--surface-raised);
+}
+
+.substep {
+  flex: 1;
+  min-height: 40px;
+  border-radius: var(--r-pill);
+  font-size: var(--step--1);
+  font-weight: 550;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+
+.substep--current {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.station__story {
+  font-size: var(--step-1);
+  line-height: 1.7;
 }

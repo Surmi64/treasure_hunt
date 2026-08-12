@@ -1,14 +1,16 @@
 import './styles/fonts.css';
 import './styles/tokens.css';
+import './styles/themes.css';
 import './styles/base.css';
 import './styles/components.css';
 import './styles/screens.css';
 
 import { stations } from 'virtual:content';
-import { goTo, isComplete, state } from './lib/store.js';
+import { applyTrack, goTo, isComplete, state } from './lib/store.js';
 import { languageScreen } from './screens/language.js';
 import { introScreen } from './screens/intro.js';
-import { stationScreen } from './screens/station.js';
+import { storyScreen, taskScreen } from './screens/station.js';
+import { trackScreen } from './screens/track.js';
 import { mapScreen } from './screens/map.js';
 import { finishScreen } from './screens/finish.js';
 
@@ -18,7 +20,9 @@ const app = document.getElementById('app');
  * Hash routing keeps every screen deep-linkable and makes the phone's back
  * button behave the way visitors expect.
  *
- *   #/lang  #/intro  #/s/1 … #/s/7  #/map  #/done
+ *   #/lang  #/track  #/intro  #/s/1 … #/s/7  #/s/N/q  #/map  #/done
+ *
+ * A station is two steps: #/s/3 is its story, #/s/3/q its riddle.
  */
 function navigate(hash, { force = false, replace = false } = {}) {
   if (location.hash === hash && !force) {
@@ -35,11 +39,12 @@ function navigate(hash, { force = false, replace = false } = {}) {
 
 function route() {
   const raw = location.hash.replace(/^#\/?/, '');
-  const [head, arg] = raw.split('/');
+  const [head, arg, sub] = raw.split('/');
 
-  // #/lang stays reachable after a language has been picked, so a visitor
-  // who tapped the wrong flag can go back and change it
+  // both pickers stay reachable afterwards, so a visitor who tapped the wrong
+  // flag — or the wrong age — can go back and change it
   if (head === 'lang' || !state.lang) return { name: 'lang' };
+  if (head === 'track' || !state.track) return { name: 'track' };
 
   switch (head) {
     case 'intro':
@@ -51,7 +56,7 @@ function route() {
     case 's': {
       const n = Number.parseInt(arg, 10);
       if (Number.isNaN(n) || n < 1 || n > stations.length) return { name: 'intro' };
-      return { name: 'station', index: n - 1 };
+      return { name: sub === 'q' ? 'task' : 'story', index: n - 1 };
     }
     default:
       return { name: 'intro' };
@@ -69,9 +74,16 @@ function render() {
     case 'intro':
       view = introScreen(navigate);
       break;
-    case 'station':
+    case 'track':
+      view = trackScreen(navigate);
+      break;
+    case 'story':
       goTo(target.index);
-      view = stationScreen(navigate, target.index);
+      view = storyScreen(navigate, target.index);
+      break;
+    case 'task':
+      goTo(target.index);
+      view = taskScreen(navigate, target.index);
       break;
     case 'map':
       view = mapScreen(navigate);
@@ -88,5 +100,8 @@ function render() {
 window.addEventListener('hashchange', render);
 
 if (state.lang) document.documentElement.lang = state.lang;
-if (!location.hash) history.replaceState(null, '', state.lang ? '#/intro' : '#/lang');
+applyTrack();
+if (!location.hash) {
+  history.replaceState(null, '', state.lang && state.track ? '#/intro' : '#/lang');
+}
 render();

@@ -11,6 +11,7 @@ const listeners = new Set();
 function emptyState() {
   return {
     lang: null,
+    track: null,
     current: 0,
     solved: stations.map(() => false),
     attempts: stations.map(() => 0),
@@ -28,7 +29,7 @@ function load() {
     const base = emptyState();
     // guard against a stale save from an older content version
     if (!Array.isArray(saved.solved) || saved.solved.length !== stations.length) {
-      return { ...base, lang: saved.lang ?? null };
+      return { ...base, lang: saved.lang ?? null, track: saved.track ?? null };
     }
     return { ...base, ...saved };
   } catch {
@@ -60,6 +61,34 @@ export function setLang(lang) {
   state.lang = lang;
   document.documentElement.lang = lang;
   commit();
+}
+
+/**
+ * 'kids' or 'adults'. Drives both the wording of every riddle and the theme,
+ * via a data attribute the stylesheet keys off.
+ */
+export function setTrack(track) {
+  state.track = track;
+  applyTrack();
+  commit();
+}
+
+export function applyTrack() {
+  const track = state.track ?? 'adults';
+  document.documentElement.dataset.track = track;
+  // the browser paints its own chrome from this, so it has to follow the theme
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    meta.setAttribute(
+      'content',
+      getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#100c0b'
+    );
+  }
+}
+
+/** The active track's half of a station. */
+export function trackOf(station) {
+  return station.tracks[state.track ?? 'adults'];
 }
 
 export function goTo(index) {
@@ -103,7 +132,7 @@ export function firstUnsolved() {
 }
 
 export function reset() {
-  Object.assign(state, emptyState(), { lang: state.lang });
+  Object.assign(state, emptyState(), { lang: state.lang, track: state.track });
   commit();
 }
 

@@ -1,5 +1,5 @@
 import { ui } from 'virtual:content';
-import { state } from './store.js';
+import { state, trackOf } from './store.js';
 
 /** UI string lookup with {placeholder} interpolation. */
 export function t(key, vars) {
@@ -13,8 +13,9 @@ export function t(key, vars) {
   return out;
 }
 
-/** Station text in the active language. */
+/** Station text for the active language *and* the active track. */
 export function st(station, key) {
   const lang = state.lang ?? 'hu';
-  return station.text[lang]?.[key] ?? station.text.hu?.[key] ?? '';
+  const text = trackOf(station).text;
+  return text[lang]?.[key] ?? text.hu?.[key] ?? '';
 }

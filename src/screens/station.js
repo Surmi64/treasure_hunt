@@ -2,15 +2,149 @@ import { stations } from 'virtual:content';
 import { announce, h } from '../lib/dom.js';
 import { st, t } from '../lib/i18n.js';
 import { checkAnswer } from '../lib/answers.js';
-import { addAttempt, isComplete, markSolved, showHint, state } from '../lib/store.js';
+import { addAttempt, isComplete, markSolved, showHint, state, trackOf } from '../lib/store.js';
 import { icon } from '../ui/icons.js';
 import { stepsNav } from '../ui/steps.js';
 import { doorBadge } from '../ui/marks.js';
 
 const HINT_AFTER_ATTEMPTS = 2;
 
-export function stationScreen(navigate, index) {
+/**
+ * Every station is two steps: the story of the place, then the riddle.
+ *
+ * The story comes first so visitors learn where they are standing before they
+ * are asked anything — that is the point of the whole game. It is never a
+ * gate, though: the riddle is one tap away and reachable directly by URL.
+ */
+
+/* ------------------------------ shared chrome ------------------------------ */
+
+function chrome(navigate, index, step) {
   const station = stations[index];
+
+  const tab = (name, hash, label) =>
+    h(
+      'button.substep',
+      {
+        type: 'button',
+        class: step === name ? 'substep--current' : '',
+        'aria-current': step === name ? 'step' : null,
+        onclick: () => navigate(hash),
+      },
+      label
+    );
+
+  return [
+    h(
+      'header.topbar',
+      h(
+        'button.iconbtn',
+        { type: 'button', 'aria-label': t('prev'), onclick: () => navigate('#/intro') },
+        icon('arrowLeft')
+      ),
+      h('span.topbar__title', t('siteName')),
+      h(
+        'button.iconbtn',
+        { type: 'button', 'aria-label': t('map'), onclick: () => navigate('#/map') },
+        icon('map')
+      )
+    ),
+
+    stepsNav(navigate, index),
+
+    h(
+      'div.station__head',
+      doorBadge(String(index + 1), { solved: state.solved[index] }),
+      h(
+        'div.station__titles',
+        h('p.eyebrow', t('stationLabel', { n: index + 1 })),
+        h('h1.display.station__title', st(station, 'title'))
+      )
+    ),
+
+    h(
+      'nav.substeps',
+      { 'aria-label': t('stationLabel', { n: index + 1 }) },
+      tab('story', `#/s/${index + 1}`, t('storyStep')),
+      tab('task', `#/s/${index + 1}/q`, t('taskStep'))
+    ),
+  ];
+}
+
+function stationNav(navigate, index, extra) {
+  return h(
+    'nav.station__nav',
+    h(
+      'button.btn.btn--ghost',
+      {
+        type: 'button',
+        disabled: index === 0,
+        onclick: () => navigate(`#/s/${index}`),
+      },
+      icon('arrowLeft', 'btn__icon'),
+      t('prev')
+    ),
+    extra
+  );
+}
+
+/* -------------------------------- step one -------------------------------- */
+
+export function storyScreen(navigate, index) {
+  const station = stations[index];
+  const image = trackOf(station).image;
+
+  return h(
+    'section.view.station',
+    chrome(navigate, index, 'story'),
+
+    h(
+      'div.station__body',
+      image &&
+        h('img.photo', {
+          src: `photos/${image}`,
+          alt: st(station, 'title'),
+          loading: 'lazy',
+          width: 800,
+          height: 600,
+        }),
+
+      h('p.prose.station__story', st(station, 'story')),
+
+      h('div.rule', h('span.rule__gem')),
+
+      h('p.muted', { style: 'text-align:center' }, t('readFirst')),
+
+      h(
+        'button.btn.btn--primary.btn--block',
+        { type: 'button', onclick: () => navigate(`#/s/${index + 1}/q`) },
+        t('toTask'),
+        icon('arrowRight', 'btn__icon')
+      )
+    ),
+
+    stationNav(
+      navigate,
+      index,
+      h(
+        'button.btn.btn--secondary',
+        {
+          type: 'button',
+          onclick: () =>
+            navigate(index === stations.length - 1 ? '#/s/1' : `#/s/${index + 2}`),
+        },
+        t('next'),
+        icon('arrowRight', 'btn__icon')
+      )
+    )
+  );
+}
+
+/* -------------------------------- step two -------------------------------- */
+
+export function taskScreen(navigate, index) {
+  const station = stations[index];
+  const task = trackOf(station);
   const isLast = index === stations.length - 1;
   const solved = state.solved[index];
 
@@ -19,17 +153,15 @@ export function stationScreen(navigate, index) {
 
   const input = h('input.field__input', {
     id: 'answer',
-    type: station.input === 'number' ? 'text' : 'text',
-    inputmode: station.input === 'number' ? 'numeric' : 'text',
+    type: 'text',
+    inputmode: task.input === 'number' ? 'numeric' : 'text',
     autocomplete: 'off',
     autocapitalize: 'off',
     autocorrect: 'off',
     spellcheck: false,
     enterkeyhint: 'go',
     placeholder:
-      station.input === 'number' ? t('answerPlaceholderNumber') : t('answerPlaceholderText'),
-    disabled: solved,
-    dataset: solved ? { state: 'correct' } : {},
+      task.input === 'number' ? t('answerPlaceholderNumber') : t('answerPlaceholderText'),
     // clear the error the moment the visitor starts fixing it
     oninput: () => {
       if (input.dataset.state === 'wrong') {
@@ -41,34 +173,26 @@ export function stationScreen(navigate, index) {
 
   const submitBtn = h(
     'button.btn.btn--primary.btn--block',
-    { type: 'submit', disabled: solved },
+    { type: 'submit' },
     icon('check', 'btn__icon'),
     t('check')
   );
 
-  const nextBtn = h(
-    'button.btn',
-    {
-      type: 'button',
-      class: solved ? 'btn--primary' : 'btn--secondary',
-      onclick: () => advance(),
-    },
-    isLast && isComplete() ? t('finishTitle') : t('next'),
-    icon('arrowRight', 'btn__icon')
-  );
-
-  function advance() {
-    if (isLast) {
-      if (isComplete()) navigate('#/done');
-      else navigate('#/s/1');
-      return;
-    }
-    navigate(`#/s/${index + 2}`);
+  function revealNote() {
+    return h(
+      'div.note.note--ok',
+      icon('check'),
+      h('span', h('b', `${t('correct')} `), st(station, 'reveal'))
+    );
   }
 
   function renderHint() {
     hintSlot.replaceChildren(
-      h('div.note.note--hint', icon('lamp'), h('span', h('b', `${t('hintLabel')}: `), st(station, 'hint')))
+      h(
+        'div.note.note--hint',
+        icon('lamp'),
+        h('span', h('b', `${t('hintLabel')}: `), st(station, 'hint'))
+      )
     );
   }
 
@@ -92,21 +216,12 @@ export function stationScreen(navigate, index) {
   }
 
   if (solved) {
-    // once the riddle is done there is nothing left to type or to hint at,
-    // so the whole form collapses down to the reveal
+    // nothing left to type or to hint at; the form collapses to the reveal
     feedback.replaceChildren(revealNote());
   } else if (state.hinted[index]) {
     renderHint();
   } else {
     renderHintButton();
-  }
-
-  function revealNote() {
-    return h(
-      'div.note.note--ok',
-      icon('check'),
-      h('span', h('b', `${t('correct')} `), st(station, 'reveal'))
-    );
   }
 
   async function onSubmit(event) {
@@ -120,7 +235,7 @@ export function stationScreen(navigate, index) {
     }
 
     submitBtn.disabled = true;
-    const ok = await checkAnswer(value, station.hashes);
+    const ok = await checkAnswer(value, task.hashes);
     submitBtn.disabled = false;
 
     if (ok) {
@@ -132,64 +247,30 @@ export function stationScreen(navigate, index) {
       hintSlot.replaceChildren();
       announce(t('correct'));
       // re-render so the pager and the next button pick up the new state
-      setTimeout(() => navigate(location.hash || `#/s/${index + 1}`, { force: true }), 900);
+      setTimeout(() => navigate(`#/s/${index + 1}/q`, { force: true }), 900);
       return;
     }
 
     addAttempt(index);
     input.dataset.state = 'wrong';
-    const many = (state.attempts[index] ?? 0) >= HINT_AFTER_ATTEMPTS;
-    const message = many ? t('wrongAgain') : t('wrong');
+    const message = (state.attempts[index] ?? 0) >= HINT_AFTER_ATTEMPTS ? t('wrongAgain') : t('wrong');
     feedback.replaceChildren(h('div.note.note--err', icon('alert'), message));
     announce(message);
     renderHintButton();
     input.select();
   }
 
+  const advance = () => {
+    if (!isLast) return navigate(`#/s/${index + 2}`);
+    navigate(isComplete() ? '#/done' : '#/s/1');
+  };
+
   return h(
     'section.view.station',
-    h(
-      'header.topbar',
-      h(
-        'button.iconbtn',
-        { type: 'button', 'aria-label': t('prev'), onclick: () => navigate('#/intro') },
-        icon('arrowLeft')
-      ),
-      h('span.topbar__title', t('siteName')),
-      h(
-        'button.iconbtn',
-        { type: 'button', 'aria-label': t('map'), onclick: () => navigate('#/map') },
-        icon('map')
-      )
-    ),
-
-    stepsNav(navigate, index),
+    chrome(navigate, index, 'task'),
 
     h(
       'div.station__body',
-      h(
-        'div.station__head',
-        doorBadge(String(index + 1), { solved }),
-        h(
-          'div.station__titles',
-          h('p.eyebrow', t('stationLabel', { n: index + 1 })),
-          h('h1.display.station__title', st(station, 'title'))
-        )
-      ),
-
-      station.image &&
-        h('img.photo', {
-          src: `photos/${station.image}`,
-          alt: st(station, 'title'),
-          loading: 'lazy',
-          width: 800,
-          height: 600,
-        }),
-
-      h('p.prose', st(station, 'story')),
-
-      h('div.rule', h('span.rule__gem')),
-
       h('p.station__question', st(station, 'question')),
 
       h(
@@ -200,22 +281,29 @@ export function stationScreen(navigate, index) {
         feedback,
         hintSlot,
         !solved && submitBtn
+      ),
+
+      h(
+        'button.btn.btn--ghost.btn--block',
+        { type: 'button', onclick: () => navigate(`#/s/${index + 1}`) },
+        icon('arrowLeft', 'btn__icon'),
+        t('backToStory')
       )
     ),
 
-    h(
-      'nav.station__nav',
+    stationNav(
+      navigate,
+      index,
       h(
-        'button.btn.btn--ghost',
+        'button.btn',
         {
           type: 'button',
-          disabled: index === 0,
-          onclick: () => navigate(`#/s/${index}`),
+          class: solved ? 'btn--primary' : 'btn--secondary',
+          onclick: advance,
         },
-        icon('arrowLeft', 'btn__icon'),
-        t('prev')
-      ),
-      nextBtn
+        isLast && isComplete() ? t('finishTitle') : t('next'),
+        icon('arrowRight', 'btn__icon')
+      )
     )
   );
 }

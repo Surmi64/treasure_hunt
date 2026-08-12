@@ -5,7 +5,7 @@ import { firstUnsolved, hasProgress, solvedCount } from '../lib/store.js';
 import { icon } from '../ui/icons.js';
 import { logoMark } from '../ui/marks.js';
 import { confirmDialog } from '../ui/dialog.js';
-import { langButton } from '../ui/langbutton.js';
+import { langButton, trackButton } from '../ui/langbutton.js';
 import { resetAndRestart } from '../lib/flow.js';
 
 export function introScreen(navigate) {
@@ -13,7 +13,7 @@ export function introScreen(navigate) {
 
   return h(
     'section.view.intro',
-    h('div.intro__bar', langButton(navigate)),
+    h('div.intro__bar', trackButton(navigate), langButton(navigate)),
     h(
       'header.intro__head',
       logoMark('lang__mark'),

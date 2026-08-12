@@ -1,0 +1,118 @@
+/* ---------------------------------------------------------------
+   Two complete palettes, picked by <html data-track="…">.
+
+   Only colour tokens live here — every geometry token stays shared in
+   tokens.css, so the two themes can never drift apart structurally.
+
+   adults: "cellar dark". Candle-lit stone, wine, brass.
+   kids:   "daylight". Limewashed parchment, warm orange, vine green.
+           Light rather than dark on purpose: it reads as friendlier, and
+           a bright screen is easier for a child to follow in full sun.
+   --------------------------------------------------------------- */
+
+:root,
+:root[data-track='adults'] {
+  --bg: #100c0b;
+  --bg-deep: #0a0708;
+  --surface: #1a1310;
+  --surface-2: #241a16;
+  --surface-raised: rgba(240, 230, 216, 0.045);
+
+  --ink: #f2e9dc;
+  --ink-soft: #cbbaa6;
+  --ink-muted: #94826f;
+
+  --accent: #c9a24c;
+  --accent-bright: #e8cd8b;
+  --accent-dim: rgba(201, 162, 76, 0.28);
+  --on-accent: #2a1c07;
+
+  --wine: #7c1f33;
+  --wine-glow: rgba(160, 40, 62, 0.45);
+
+  --ok: #7fae6a;
+  --ok-bg: rgba(127, 174, 106, 0.12);
+  --ok-line: rgba(127, 174, 106, 0.45);
+  --on-ok: #10240a;
+  --err: #d2604f;
+  --err-bg: rgba(210, 96, 79, 0.12);
+  --err-line: rgba(210, 96, 79, 0.3);
+
+  --line: rgba(232, 205, 139, 0.14);
+  --line-strong: rgba(232, 205, 139, 0.3);
+
+  /* the door artwork: panel is currentColor, the cut-out lines are this */
+  --door-ink: #100c0b;
+
+  --glow: radial-gradient(60% 55% at 50% 0%, rgba(201, 162, 76, 0.16), transparent 70%),
+    radial-gradient(80% 60% at 20% 10%, rgba(124, 31, 51, 0.22), transparent 70%);
+  --grain-opacity: 0.05;
+  --grain-blend: overlay;
+
+  --scrim: rgba(6, 4, 4, 0.62);
+  --map-hill: #241a16;
+  --map-void: #0d0a09;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-2: 0 8px 24px -8px rgba(0, 0, 0, 0.7);
+  --shadow-3: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+  --badge-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+}
+
+:root[data-track='kids'] {
+  --bg: #f7efe1;
+  --bg-deep: #efe3cf;
+  --surface: #fffaf1;
+  --surface-2: #f3e6d2;
+  --surface-raised: rgba(90, 56, 20, 0.05);
+
+  --ink: #33220f;
+  --ink-soft: #5d4526;
+  --ink-muted: #8a7050;
+
+  --accent: #d2691e;
+  --accent-bright: #ef8836;
+  --accent-dim: rgba(210, 105, 30, 0.24);
+  --on-accent: #ffffff;
+
+  --wine: #9c2a3f;
+  --wine-glow: rgba(210, 105, 30, 0.3);
+
+  --ok: #3f7d3a;
+  --ok-bg: rgba(63, 125, 58, 0.12);
+  --ok-line: rgba(63, 125, 58, 0.4);
+  --on-ok: #ffffff;
+  --err: #c0392b;
+  --err-bg: rgba(192, 57, 43, 0.1);
+  --err-line: rgba(192, 57, 43, 0.3);
+
+  --line: rgba(90, 56, 20, 0.16);
+  --line-strong: rgba(90, 56, 20, 0.34);
+
+  --door-ink: #f7efe1;
+
+  --glow: radial-gradient(60% 55% at 50% 0%, rgba(239, 136, 54, 0.22), transparent 70%),
+    radial-gradient(80% 60% at 20% 10%, rgba(120, 170, 80, 0.18), transparent 70%);
+  /* grain has to darken, not lighten, on a pale ground */
+  --grain-opacity: 0.035;
+  --grain-blend: multiply;
+
+  --scrim: rgba(51, 34, 15, 0.45);
+  --map-hill: #e9d9be;
+  --map-void: #fbf5ea;
+
+  --shadow-1: 0 1px 2px rgba(90, 56, 20, 0.12);
+  --shadow-2: 0 8px 24px -10px rgba(90, 56, 20, 0.28);
+  --shadow-3: 0 24px 60px -20px rgba(90, 56, 20, 0.4);
+  --badge-shadow: 0 6px 18px rgba(90, 56, 20, 0.22);
+}
+
+/* Children get a slightly larger base size and rounder shapes. Type scale and
+   radii are the only non-colour tokens that differ. */
+:root[data-track='kids'] {
+  --step-0: 1.0625rem;
+  --step-1: 1.1875rem;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+}

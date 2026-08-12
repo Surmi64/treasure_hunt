@@ -2,213 +2,472 @@
   "_comment": [
     "EZT A FÁJLT KELL SZERKESZTENED a valódi kérdésekhez.",
     "",
+    "Minden állomásnak két sávja van: 'kids' (gyerekeknek) és 'adults' (16 évtől).",
+    "Mindkét sávnak saját története, kérdése és válasza van, mindhárom nyelven.",
+    "",
+    "map      : a pont helye a térképen, 0-100 közötti x/y százalék (sávfüggetlen)",
+    "image    : opcionális, fájlnév a public/photos/ mappából (pl. 'p1.webp').",
+    "           Sávonként is felülírható: tegyél 'image' mezőt a sáv blokkjába.",
+    "",
+    "Sávon belül:",
     "answers  : elfogadott válaszok listája. Az ellenőrzés ékezet-, kis/nagybetű-,",
     "           szóköz- és írásjel-érzéketlen, tehát 'Rákóczi' == 'rakoczi.'.",
     "           A build SHA-256 hash-t készít belőlük, így a nyers válasz",
     "           SOHA nem kerül bele a kiszállított JS-be.",
     "input    : 'number' (numerikus billentyűzet) vagy 'text'",
-    "map      : a pont helye a térképen, 0-100 közötti x/y százalék",
-    "image    : opcionális, fájlnév a public/photos/ mappából (pl. 'p1.webp')",
-    "hu/en/pl : title (rövid állomásnév), story (2-4 mondat történet),",
-    "           question (a feladat), hint (segítség 2 hibás tipp után),",
-    "           reveal (amit a helyes válasz után mutatunk)"
+    "hu/en/pl : title    - rövid állomásnév",
+    "           story    - 2-4 mondat, ez jelenik meg elsőként, a feladat előtt",
+    "           question - a feladat",
+    "           hint     - segítség 2 hibás tipp után",
+    "           reveal   - amit a helyes válasz után mutatunk"
   ],
-
   "stations": [
     {
       "id": "st1",
-      "answers": ["1748"],
-      "input": "number",
-      "map": { "x": 10.1, "y": 93.7 },
+      "map": {
+        "x": 10.1,
+        "y": 93.7
+      },
       "image": null,
-      "hu": {
-        "title": "A legrégebbi pince",
-        "story": "A pincesor legidősebb tagja még a török kor utáni újratelepítés idejéből származik. A kőkeretes ajtó fölé a gazda büszkén véste az építés évét — azóta is ott áll.",
-        "question": "Keresd meg a pincesor legrégebbi pincéjét. Milyen évszám olvasható a bejárat kőkeretén?",
-        "hint": "A pincesor nyugati végén, a kanyar előtt. Nézz fel a kőkeret felső részére.",
-        "reveal": "Pontosan. Ez a pince több mint 270 éve őrzi ugyanazt a hűvös 12 fokot."
-      },
-      "en": {
-        "title": "The oldest cellar",
-        "story": "The eldest of the row dates back to the resettlement that followed the Ottoman era. The owner proudly carved the year of construction above the stone-framed door — and there it still stands.",
-        "question": "Find the oldest cellar of the row. What year is carved into the stone frame of its entrance?",
-        "hint": "At the western end of the row, just before the bend. Look up at the top of the stone frame.",
-        "reveal": "Exactly. This cellar has been holding the same cool 12 °C for over 270 years."
-      },
-      "pl": {
-        "title": "Najstarsza piwnica",
-        "story": "Najstarsza z całego rzędu pochodzi z czasów ponownego zasiedlenia po epoce osmańskiej. Gospodarz dumnie wyrył rok budowy nad kamienną framugą drzwi — i stoi tam do dziś.",
-        "question": "Znajdź najstarszą piwnicę w rzędzie. Jaki rok jest wyryty na kamiennej framudze wejścia?",
-        "hint": "Na zachodnim krańcu rzędu, tuż przed zakrętem. Spójrz na górną część kamiennej framugi.",
-        "reveal": "Dokładnie tak. Ta piwnica utrzymuje te same chłodne 12 °C od ponad 270 lat."
+      "tracks": {
+        "kids": {
+          "answers": [
+            "1748"
+          ],
+          "input": "number",
+          "hu": {
+            "title": "A legöregebb pince",
+            "story": "Ez a pince olyan régi, hogy még a dédapák dédapja is gyerek volt, amikor kivájták a hegyoldalba. A gazda, aki építette, olyan büszke volt rá, hogy bevéste az évszámot a kőbe a bejárat fölé. Ott van ma is.",
+            "question": "Keresd meg a pincesor legöregebb pincéjét, és nézz fel a bejárat fölé. Milyen évszám van a kőbe vésve?",
+            "hint": "A pincesor nyugati végén van, a kanyar előtt. Emeld fel a fejed, és nézd meg a kőkeret tetejét!",
+            "reveal": "Eltaláltad! Ez a pince több mint 270 éve áll, és odabent nyáron is hűvös van, mint a hűtőben."
+          },
+          "en": {
+            "title": "The oldest cellar",
+            "story": "This cellar is so old that even your great-great-grandparents' grandparents were children when it was dug into the hillside. The man who built it was so proud that he carved the year into the stone above the door. It is still there.",
+            "question": "Find the oldest cellar of the row and look above its door. What year is carved into the stone?",
+            "hint": "It is at the western end of the row, just before the bend. Look up at the top of the stone frame!",
+            "reveal": "You got it! This cellar has stood for over 270 years, and inside it stays as cool as a fridge, even in summer."
+          },
+          "pl": {
+            "title": "Najstarsza piwnica",
+            "story": "Ta piwnica jest tak stara, że nawet dziadkowie twoich pradziadków byli dziećmi, gdy wykuwano ją w zboczu. Gospodarz, który ją zbudował, był tak dumny, że wyrył rok nad drzwiami. Jest tam do dziś.",
+            "question": "Znajdź najstarszą piwnicę w rzędzie i spójrz nad jej drzwi. Jaki rok jest wyryty w kamieniu?",
+            "hint": "Jest na zachodnim krańcu rzędu, tuż przed zakrętem. Podnieś głowę i popatrz na górę kamiennej framugi!",
+            "reveal": "Zgadza się! Ta piwnica stoi od ponad 270 lat, a w środku jest chłodno jak w lodówce, nawet latem."
+          }
+        },
+        "adults": {
+          "answers": [
+            "1748"
+          ],
+          "input": "number",
+          "hu": {
+            "title": "A legrégebbi pince",
+            "story": "A pincesor legidősebb tagja a török kor utáni újratelepítés idejéből származik, amikor a környék lakossága szinte teljesen kicserélődött. A kőkeretes ajtó fölé a gazda büszkén véste az építés évét — azóta is ott áll, és azóta is ugyanazt a 12 fokot tartja.",
+            "question": "Keresd meg a pincesor legrégebbi pincéjét. Milyen évszám olvasható a bejárat kőkeretén?",
+            "hint": "A pincesor nyugati végén, a kanyar előtt. Nézz fel a kőkeret felső részére.",
+            "reveal": "Pontosan. Ez a pince több mint 270 éve őrzi ugyanazt a hűvös 12 fokot — ez az, ami a bort évtizedekig eltartja."
+          },
+          "en": {
+            "title": "The oldest cellar",
+            "story": "The eldest of the row dates from the resettlement that followed the Ottoman era, when almost the entire population of the region was replaced. The owner proudly carved the year of construction above the stone-framed door — it still stands, and still holds the same 12 °C.",
+            "question": "Find the oldest cellar of the row. What year is carved into the stone frame of its entrance?",
+            "hint": "At the western end of the row, just before the bend. Look up at the top of the stone frame.",
+            "reveal": "Exactly. This cellar has held the same cool 12 °C for over 270 years — the very thing that lets wine keep for decades."
+          },
+          "pl": {
+            "title": "Najstarsza piwnica",
+            "story": "Najstarsza z całego rzędu pochodzi z czasów ponownego zasiedlenia po epoce osmańskiej, gdy ludność okolicy niemal całkowicie się wymieniła. Gospodarz dumnie wyrył rok budowy nad kamienną framugą — stoi tak do dziś i wciąż utrzymuje te same 12 °C.",
+            "question": "Znajdź najstarszą piwnicę w rzędzie. Jaki rok jest wyryty na kamiennej framudze wejścia?",
+            "hint": "Na zachodnim krańcu rzędu, tuż przed zakrętem. Spójrz na górną część kamiennej framugi.",
+            "reveal": "Dokładnie. Ta piwnica utrzymuje te same chłodne 12 °C od ponad 270 lat — właśnie dzięki temu wino wytrzymuje dziesięciolecia."
+          }
+        }
       }
     },
     {
       "id": "st2",
-      "answers": ["PLACEHOLDER-2"],
-      "input": "text",
-      "map": { "x": 24.8, "y": 87.2 },
+      "map": {
+        "x": 24.8,
+        "y": 87.2
+      },
       "image": null,
-      "hu": {
-        "title": "2. állomás címe",
-        "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-        "question": "Ide jön a kérdés.",
-        "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-        "reveal": "Ide jön a helyes válasz utáni kis extra információ."
-      },
-      "en": {
-        "title": "Station 2 title",
-        "story": "Two to four sentences of local history go here.",
-        "question": "The question goes here.",
-        "hint": "The hint, shown after two wrong guesses.",
-        "reveal": "A little extra fact revealed after the correct answer."
-      },
-      "pl": {
-        "title": "Tytuł stacji 2",
-        "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-        "question": "Tutaj pytanie.",
-        "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-        "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+      "tracks": {
+        "kids": {
+          "answers": [
+            "PLACEHOLDER-2-kids"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "2. állomás címe (gyerek sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 2 title (kids track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 2 (dzieci)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        },
+        "adults": {
+          "answers": [
+            "PLACEHOLDER-2-adults"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "2. állomás címe (felnőtt sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 2 title (adults track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 2 (dorośli)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        }
       }
     },
     {
       "id": "st3",
-      "answers": ["PLACEHOLDER-3"],
-      "input": "number",
-      "map": { "x": 37.5, "y": 77.4 },
+      "map": {
+        "x": 37.5,
+        "y": 77.4
+      },
       "image": null,
-      "hu": {
-        "title": "3. állomás címe",
-        "story": "Ide jön 2-4 mondat a helyszín történetéből.",
-        "question": "Ide jön a kérdés.",
-        "hint": "Ide jön a segítség.",
-        "reveal": "Ide jön az extra információ."
-      },
-      "en": {
-        "title": "Station 3 title",
-        "story": "Two to four sentences of local history go here.",
-        "question": "The question goes here.",
-        "hint": "The hint goes here.",
-        "reveal": "The extra fact goes here."
-      },
-      "pl": {
-        "title": "Tytuł stacji 3",
-        "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-        "question": "Tutaj pytanie.",
-        "hint": "Tutaj podpowiedź.",
-        "reveal": "Tutaj dodatkowa ciekawostka."
+      "tracks": {
+        "kids": {
+          "answers": [
+            "PLACEHOLDER-3-kids"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "3. állomás címe (gyerek sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 3 title (kids track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 3 (dzieci)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        },
+        "adults": {
+          "answers": [
+            "PLACEHOLDER-3-adults"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "3. állomás címe (felnőtt sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 3 title (adults track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 3 (dorośli)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        }
       }
     },
     {
       "id": "st4",
-      "answers": ["PLACEHOLDER-4"],
-      "input": "text",
-      "map": { "x": 49.6, "y": 65.3 },
+      "map": {
+        "x": 49.6,
+        "y": 65.3
+      },
       "image": null,
-      "hu": {
-        "title": "4. állomás címe",
-        "story": "Ide jön 2-4 mondat a helyszín történetéből.",
-        "question": "Ide jön a kérdés.",
-        "hint": "Ide jön a segítség.",
-        "reveal": "Ide jön az extra információ."
-      },
-      "en": {
-        "title": "Station 4 title",
-        "story": "Two to four sentences of local history go here.",
-        "question": "The question goes here.",
-        "hint": "The hint goes here.",
-        "reveal": "The extra fact goes here."
-      },
-      "pl": {
-        "title": "Tytuł stacji 4",
-        "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-        "question": "Tutaj pytanie.",
-        "hint": "Tutaj podpowiedź.",
-        "reveal": "Tutaj dodatkowa ciekawostka."
+      "tracks": {
+        "kids": {
+          "answers": [
+            "PLACEHOLDER-4-kids"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "4. állomás címe (gyerek sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 4 title (kids track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 4 (dzieci)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        },
+        "adults": {
+          "answers": [
+            "PLACEHOLDER-4-adults"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "4. állomás címe (felnőtt sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 4 title (adults track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 4 (dorośli)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        }
       }
     },
     {
       "id": "st5",
-      "answers": ["PLACEHOLDER-5"],
-      "input": "number",
-      "map": { "x": 61.7, "y": 52.4 },
+      "map": {
+        "x": 61.7,
+        "y": 52.4
+      },
       "image": null,
-      "hu": {
-        "title": "5. állomás címe",
-        "story": "Ide jön 2-4 mondat a helyszín történetéből.",
-        "question": "Ide jön a kérdés.",
-        "hint": "Ide jön a segítség.",
-        "reveal": "Ide jön az extra információ."
-      },
-      "en": {
-        "title": "Station 5 title",
-        "story": "Two to four sentences of local history go here.",
-        "question": "The question goes here.",
-        "hint": "The hint goes here.",
-        "reveal": "The extra fact goes here."
-      },
-      "pl": {
-        "title": "Tytuł stacji 5",
-        "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-        "question": "Tutaj pytanie.",
-        "hint": "Tutaj podpowiedź.",
-        "reveal": "Tutaj dodatkowa ciekawostka."
+      "tracks": {
+        "kids": {
+          "answers": [
+            "PLACEHOLDER-5-kids"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "5. állomás címe (gyerek sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 5 title (kids track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 5 (dzieci)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        },
+        "adults": {
+          "answers": [
+            "PLACEHOLDER-5-adults"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "5. állomás címe (felnőtt sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 5 title (adults track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 5 (dorośli)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        }
       }
     },
     {
       "id": "st6",
-      "answers": ["PLACEHOLDER-6"],
-      "input": "text",
-      "map": { "x": 76.2, "y": 38.1 },
+      "map": {
+        "x": 76.2,
+        "y": 38.1
+      },
       "image": null,
-      "hu": {
-        "title": "6. állomás címe",
-        "story": "Ide jön 2-4 mondat a helyszín történetéből.",
-        "question": "Ide jön a kérdés.",
-        "hint": "Ide jön a segítség.",
-        "reveal": "Ide jön az extra információ."
-      },
-      "en": {
-        "title": "Station 6 title",
-        "story": "Two to four sentences of local history go here.",
-        "question": "The question goes here.",
-        "hint": "The hint goes here.",
-        "reveal": "The extra fact goes here."
-      },
-      "pl": {
-        "title": "Tytuł stacji 6",
-        "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-        "question": "Tutaj pytanie.",
-        "hint": "Tutaj podpowiedź.",
-        "reveal": "Tutaj dodatkowa ciekawostka."
+      "tracks": {
+        "kids": {
+          "answers": [
+            "PLACEHOLDER-6-kids"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "6. állomás címe (gyerek sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 6 title (kids track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 6 (dzieci)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        },
+        "adults": {
+          "answers": [
+            "PLACEHOLDER-6-adults"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "6. állomás címe (felnőtt sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 6 title (adults track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 6 (dorośli)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        }
       }
     },
     {
       "id": "st7",
-      "answers": ["PLACEHOLDER-7"],
-      "input": "text",
-      "map": { "x": 92.0, "y": 26.0 },
+      "map": {
+        "x": 92.0,
+        "y": 26.0
+      },
       "image": null,
-      "hu": {
-        "title": "7. állomás — a mi pincénk",
-        "story": "Az utolsó állomás a sor keleti végén áll. Innen már látszik a cél.",
-        "question": "Ide jön az utolsó kérdés, aminek a válaszát a mi pincénk homlokzatán találják meg.",
-        "hint": "Ide jön a segítség.",
-        "reveal": "Megvan a kincs. Kopogj be — a jutalom odabent vár."
-      },
-      "en": {
-        "title": "Station 7 — our cellar",
-        "story": "The final station stands at the eastern end of the row. From here you can already see the goal.",
-        "question": "The final question goes here — its answer is found on the facade of our cellar.",
-        "hint": "The hint goes here.",
-        "reveal": "You found the treasure. Knock on the door — your reward is waiting inside."
-      },
-      "pl": {
-        "title": "Stacja 7 — nasza piwnica",
-        "story": "Ostatnia stacja stoi na wschodnim krańcu rzędu. Stąd już widać cel.",
-        "question": "Tutaj ostatnie pytanie — odpowiedź znajdziesz na fasadzie naszej piwnicy.",
-        "hint": "Tutaj podpowiedź.",
-        "reveal": "Znalazłeś skarb. Zapukaj — nagroda czeka w środku."
+      "tracks": {
+        "kids": {
+          "answers": [
+            "PLACEHOLDER-7-kids"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "7. állomás címe (gyerek sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 7 title (kids track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 7 (dzieci)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        },
+        "adults": {
+          "answers": [
+            "PLACEHOLDER-7-adults"
+          ],
+          "input": "text",
+          "hu": {
+            "title": "7. állomás címe (felnőtt sáv)",
+            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
+            "question": "Ide jön a kérdés.",
+            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
+            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+          },
+          "en": {
+            "title": "Station 7 title (adults track)",
+            "story": "Two to four sentences of local history go here.",
+            "question": "The question goes here.",
+            "hint": "The hint, shown after two wrong guesses.",
+            "reveal": "A little extra fact revealed after the correct answer."
+          },
+          "pl": {
+            "title": "Tytuł stacji 7 (dorośli)",
+            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
+            "question": "Tutaj pytanie.",
+            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
+            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+          }
+        }
       }
     }
   ]

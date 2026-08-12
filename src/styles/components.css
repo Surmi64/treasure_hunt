@@ -74,7 +74,7 @@
   height: auto;
   flex: none;
   color: var(--gold);
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(var(--badge-shadow));
 }
 
 .doorbadge--solved {
@@ -114,12 +114,12 @@
 }
 
 .btn--primary {
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
-  color: #2a1c07;
+  background: linear-gradient(180deg, var(--accent-bright), var(--accent));
+  color: var(--on-accent);
   font-weight: 650;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.3) inset,
-    0 10px 30px -12px rgba(201, 162, 76, 0.7);
+    0 10px 30px -12px var(--accent-dim);
 }
 
 .btn--secondary {
@@ -242,18 +242,18 @@
 
 .step--solved {
   color: var(--ok);
-  border-color: rgba(127, 174, 106, 0.45);
+  border-color: var(--ok-line);
   background: var(--ok-bg);
 }
 
 .step--current {
-  color: #2a1c07;
+  color: var(--on-accent);
   background: var(--gold-bright);
   border-color: var(--gold-bright);
 }
 
 .step--solved.step--current {
-  color: #10240a;
+  color: var(--on-ok);
   background: var(--ok);
   border-color: var(--ok);
 }
@@ -293,7 +293,7 @@
   padding: 0 var(--s4);
   border: 1px solid var(--line-strong);
   border-radius: var(--r-md);
-  background: rgba(10, 7, 8, 0.6);
+  background: var(--surface);
   color: var(--ink);
   /* 16px+ keeps iOS from zooming the viewport on focus */
   font-size: var(--step-1);
@@ -364,19 +364,19 @@
 .note--ok {
   color: var(--ok);
   background: var(--ok-bg);
-  border-color: rgba(127, 174, 106, 0.3);
+  border-color: var(--ok-line);
 }
 
 .note--err {
   color: var(--err);
   background: var(--err-bg);
-  border-color: rgba(210, 96, 79, 0.3);
+  border-color: var(--err-line);
 }
 
 .note--hint {
-  color: var(--gold-bright);
-  background: rgba(201, 162, 76, 0.1);
-  border-color: var(--gold-dim);
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-color: var(--line-strong);
 }
 
 @keyframes rise {

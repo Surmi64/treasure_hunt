@@ -8,6 +8,7 @@ const VIRTUAL_ID = 'virtual:content';
 const RESOLVED_ID = '\0' + VIRTUAL_ID;
 
 const LANGS = ['hu', 'en', 'pl'];
+const TRACKS = ['kids', 'adults'];
 
 function sha256(value) {
   return createHash('sha256').update(value, 'utf8').digest('hex');
@@ -48,36 +49,50 @@ export function contentPlugin() {
       watched = [ui.path, stations.path];
 
       const built = stations.data.stations.map((station, index) => {
-        if (!Array.isArray(station.answers) || station.answers.length === 0) {
-          this.error(`Station "${station.id}" has no answers.`);
-        }
+        const tracks = {};
 
-        const hashes = station.answers.map((answer) => {
-          const normalized = normalizeAnswer(answer);
-          if (!normalized) {
-            this.error(
-              `Station "${station.id}": answer ${JSON.stringify(answer)} is empty after normalisation.`
-            );
+        for (const track of TRACKS) {
+          const source = station.tracks?.[track];
+          if (!source) {
+            this.error(`Station "${station.id}" is missing the "${track}" track.`);
           }
-          return sha256(normalized);
-        });
+          if (!Array.isArray(source.answers) || source.answers.length === 0) {
+            this.error(`Station "${station.id}" (${track}) has no answers.`);
+          }
 
-        const text = {};
-        for (const lang of LANGS) {
-          if (!station[lang]) {
-            this.error(`Station "${station.id}" is missing the "${lang}" block.`);
+          const hashes = source.answers.map((answer) => {
+            const normalized = normalizeAnswer(answer);
+            if (!normalized) {
+              this.error(
+                `Station "${station.id}" (${track}): answer ${JSON.stringify(answer)} ` +
+                  'is empty after normalisation.'
+              );
+            }
+            return sha256(normalized);
+          });
+
+          const text = {};
+          for (const lang of LANGS) {
+            if (!source[lang]) {
+              this.error(`Station "${station.id}" (${track}) is missing the "${lang}" block.`);
+            }
+            text[lang] = source[lang];
           }
-          text[lang] = station[lang];
+
+          tracks[track] = {
+            input: source.input === 'number' ? 'number' : 'text',
+            // a track may override the shared photo
+            image: source.image ?? station.image ?? null,
+            hashes,
+            text,
+          };
         }
 
         return {
           id: station.id,
           index,
-          input: station.input === 'number' ? 'number' : 'text',
           map: station.map ?? { x: 50, y: 50 },
-          image: station.image ?? null,
-          hashes,
-          text,
+          tracks,
         };
       });
 
@@ -88,6 +103,7 @@ export function contentPlugin() {
       }
 
       return `export const LANGS = ${JSON.stringify(LANGS)};
+export const TRACKS = ${JSON.stringify(TRACKS)};
 export const ui = ${JSON.stringify(ustrings)};
 export const stations = ${JSON.stringify(built)};
 `;

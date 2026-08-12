@@ -3,7 +3,9 @@
 Webes kincsvadászat mobilra. Nincs telepítés, nincs regisztráció, nem gyűjt
 semmilyen adatot, és offline is működik, ha a pincesoron elfogy a térerő.
 
-- 7 állomás, mindegyiknél egy kérdés és egy beviteli mező
+- 7 állomás, mindegyiknél előbb egy rövid történet, utána a feladat
+- két sáv: gyerekeknek (6–15) és felnőtteknek (16-tól), külön szöveggel és
+  külön kinézettel
 - magyar / angol / lengyel, a nyitóképernyőn választható
 - a kérdések között szabadon lehet lépkedni, a haladás a telefonon marad
 - akárhányszor újrajátszható
@@ -25,18 +27,30 @@ mentés után a `npm run dev` magától újratölt.
 
 ### `content/stations.json` — a hét feladvány
 
-Minden állomásnál:
+Minden állomásnak **két sávja** van: `kids` és `adults`. Mindkettőnek saját
+szövege és saját válasza van, mindhárom nyelven — a gyerek sáv nem a felnőtt
+egyszerűsített változata, hanem külön megírandó.
+
+Állomás szintjén (sávfüggetlen):
+
+| mező | mit jelent |
+|---|---|
+| `map` | a pont helye a térképen, 0–100 közötti `x`/`y` **százalék** |
+| `image` | opcionális fotó fájlneve a `public/photos/` mappából, pl. `"p1.webp"` |
+
+Sávon belül (`tracks.kids`, `tracks.adults`):
 
 | mező | mit jelent |
 |---|---|
 | `answers` | elfogadott válaszok listája. Több is lehet: `["1748", "ezerhétszáznegyvennyolc"]` |
 | `input` | `"number"` = numerikus billentyűzet ugrik fel, `"text"` = normál |
-| `map` | a pont helye a térképen, 0–100 közötti `x`/`y` **százalék** |
-| `image` | opcionális fotó fájlneve a `public/photos/` mappából, pl. `"p1.webp"` |
+| `image` | opcionális, felülírja az állomás fotóját ebben a sávban |
 | `hu` / `en` / `pl` | `title`, `story`, `question`, `hint`, `reveal` |
 
-A `story` az, amitől megismerik a helyet — ne spórolj vele. A `hint` két
-hibás tipp után jelenik meg. A `reveal` a helyes válasz utáni jutalomsor.
+A `story` jelenik meg **elsőként**, még a kérdés előtt — ez az, amitől
+megismerik a helyet, ne spórolj vele. A feladat egy koppintásra van tőle, és
+átugorható: nem akadály, csak sorrend. A `hint` két hibás tipp után jelenik
+meg. A `reveal` a helyes válasz utáni jutalomsor.
 
 **A válaszok ellenőrzése toleráns.** Ékezet, kis/nagybetű, szóköz és
 írásjel nem számít: `Rákóczi-pince.` == `rakoczi pince`. Ezt a
@@ -98,6 +112,30 @@ kód kell, három zászlóval — a nyelvet úgyis a nyitóképernyőn választj
 npm run icons              # favicon + PWA ikonok újragenerálása (Chromium kell hozzá)
 node scripts/shots.mjs     # képernyőképek minden nézetről (fejlesztéshez)
 ```
+
+## A két sáv
+
+A nyelv után a látogató kiválasztja, kinek szól a játék. Ez egyszerre
+állítja a feladatok nehézségét és a teljes kinézetet:
+
+| | gyerekeknek | felnőtteknek |
+|---|---|---|
+| kor | 6–15 | 16-tól |
+| téma | világos pergamen, narancs akcentus | sötét pince, arany akcentus |
+| betűméret | valamivel nagyobb, kerekebb formák | alap |
+
+A választáskor a kártya kiírja a korhatárt és azt is, hogy mi tér el —
+a látogatónak nem kell találgatnia.
+
+Technikailag egyetlen attribútumon múlik: `<html data-track="kids|adults">`.
+A `src/styles/themes.css` mindkét sávhoz teljes színkészletet ad, a
+`tokens.css` pedig csak a közös geometriát (térköz, forma, animáció), így a
+két téma szerkezetileg nem tud elcsúszni egymástól. **Ha új színt vezetsz be,
+a `themes.css`-ben tedd, mindkét sávra** — beégetett hexa érték a
+komponensekben az egyik témán biztosan rosszul fog kinézni.
+
+A sáv a nyelvhez hasonlóan a telefonon marad (`localStorage`), nem küldjük
+sehová. Bármikor váltható a nyitóoldal chipjéről, és a haladás megmarad.
 
 ## Az ajtóminta
 

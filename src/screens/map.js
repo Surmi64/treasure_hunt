@@ -51,8 +51,8 @@ function cellarGlyph(t) {
   const cy = point.y + ny * offset;
   const angle = (Math.atan2(ny, nx) * 180) / Math.PI + 90;
   return `<g transform="translate(${cx.toFixed(1)} ${cy.toFixed(1)}) rotate(${angle.toFixed(1)})">
-    <path d="M-2.6 3 V-0.4 a2.6 2.6 0 0 1 5.2 0 V3 Z" fill="rgba(232,205,139,.16)"
-      stroke="rgba(232,205,139,.3)" stroke-width=".5"/>
+    <path d="M-2.6 3 V-0.4 a2.6 2.6 0 0 1 5.2 0 V3 Z" fill="var(--accent-dim)"
+      stroke="var(--line-strong)" stroke-width=".5"/>
   </g>`;
 }
 
@@ -74,15 +74,20 @@ export function mapScreen(navigate) {
       const cy = (station.map.y / 100) * H;
       const solved = state.solved[index];
       const isNext = index === nextIndex && !solved;
-      const fill = solved ? '#7fae6a' : isNext ? '#e8cd8b' : 'rgba(201,162,76,.35)';
-      const stroke = solved ? '#7fae6a' : '#c9a24c';
+      const fill = solved
+        ? 'var(--ok)'
+        : isNext
+          ? 'var(--accent-bright)'
+          : 'var(--accent-dim)';
+      const stroke = solved ? 'var(--ok)' : 'var(--accent)';
 
       return `<g>
-        ${isNext ? `<circle class="pin__halo" cx="${cx}" cy="${cy}" r="9" fill="#e8cd8b"/>` : ''}
+        ${isNext ? `<circle class="pin__halo" cx="${cx}" cy="${cy}" r="9" fill="var(--accent-bright)"/>` : ''}
         <circle cx="${cx}" cy="${cy}" r="9" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>
         <text x="${cx}" y="${cy + 3.6}" text-anchor="middle"
           font-family="Inter Variable, system-ui, sans-serif" font-size="10" font-weight="600"
-          fill="${solved || isNext ? '#12100c' : '#e8cd8b'}">${index + 1}</text>
+          fill="${solved ? 'var(--on-ok)' : isNext ? 'var(--on-accent)' : 'var(--accent)'}"
+          >${index + 1}</text>
       </g>`;
     })
     .join('');
@@ -91,14 +96,14 @@ export function mapScreen(navigate) {
     class="mapview__svg" role="img" aria-label="${t('mapTitle')}">
     <defs>
       <linearGradient id="hill" x1="0" y1="1" x2="0.3" y2="0">
-        <stop offset="0" stop-color="#241a16" stop-opacity=".9"/>
-        <stop offset="1" stop-color="#100c0b" stop-opacity="0"/>
+        <stop offset="0" stop-color="var(--map-hill)" stop-opacity=".9"/>
+        <stop offset="1" stop-color="var(--bg)" stop-opacity="0"/>
       </linearGradient>
     </defs>
     <path d="M0 300 L0 200 C 120 190 200 60 400 20 L400 300 Z" fill="url(#hill)"/>
-    <path d="${roadPath()}" stroke="rgba(232,205,139,.22)" stroke-width="9"
+    <path d="${roadPath()}" stroke="var(--line-strong)" stroke-width="9"
       stroke-linecap="round" fill="none"/>
-    <path d="${roadPath()}" stroke="rgba(232,205,139,.35)" stroke-width="1"
+    <path d="${roadPath()}" stroke="var(--accent)" stroke-width="1"
       stroke-dasharray="4 7" stroke-linecap="round" fill="none"/>
     ${cellars}
     ${pins}

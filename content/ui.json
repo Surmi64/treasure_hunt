@@ -1,6 +1,5 @@
 {
-  "_comment": "Felületi szövegek. A {n} és {total} helyére a program számokat helyettesít.",
-
+  "_comment": "Felületi szövegek. A {n} és {total} helyére a program számokat helyettesít. A track* kulcsok a gyerek/felnőtt sáv választóját írják le.",
   "hu": {
     "langName": "Magyar",
     "siteName": "Kőporosi Pincesor",
@@ -8,7 +7,6 @@
     "gameSubtitle": "Kincsvadászat 7 állomáson",
     "chooseLanguage": "Válassz nyelvet",
     "chooseLanguageSub": "Choose a language · Wybierz język",
-
     "introLead": "Nyolcvan pince, egy domboldal, és egy titok, amit három évszázad óta őriz a kő.",
     "introBody": "Járd végig a sort, fejtsd meg a hét feladványt, és a végén megtalálod a kincset. Nem kell regisztrálni, nem kérünk semmilyen adatot, és a játék offline is működik, ha elfogy a térerő.",
     "metaDuration": "kb. 40 perc",
@@ -19,7 +17,6 @@
     "restart": "Újrakezdés",
     "restartConfirm": "Biztosan elölről kezded? Az eddigi haladásod elveszik.",
     "cancel": "Mégsem",
-
     "stationLabel": "{n}. állomás",
     "progress": "{n} / {total}",
     "answerLabel": "A válaszod",
@@ -37,22 +34,33 @@
     "solved": "megoldva",
     "map": "Térkép",
     "mapTitle": "A pincesor",
-    "mapLegend": "Az arany pontok a feladványok helyszínei. A világító pont a következő állomásod.",
+    "mapLegend": "A jelölt pontok a feladványok helyszínei. A világító pont a következő állomásod.",
     "close": "Bezárás",
     "backToStation": "Vissza a feladathoz",
-
     "finishTitle": "Megvan a kincs",
     "finishLead": "Mind a hét feladványt megfejtetted",
     "finishBody": "Gyere be a pincénkbe, mutasd meg ezt a képernyőt, és koccintunk rá. A jutalmad egy pohár friss szőlőlé vagy egy kóstoló a saját borunkból — a ház vendége vagy.",
     "codeLabel": "Mutasd ezt a kódot",
     "finishFooter": "Köszönjük, hogy időt szántál a pincesorra.",
     "playAgain": "Újra végigjátszom",
-
     "offlineReady": "A játék offline is működik.",
     "installHint": "Tedd ki a kezdőképernyőre",
-    "install": "Telepítés"
+    "install": "Telepítés",
+    "chooseTrack": "Kinek szól?",
+    "chooseTrackSub": "Ettől függ a feladatok nehézsége és a játék kinézete.",
+    "trackKids": "Gyerekeknek",
+    "trackKidsAge": "6–15 év",
+    "trackKidsWhat": "Könnyebb feladatok, rövidebb történetek, világos, színes felület.",
+    "trackAdults": "Felnőtteknek",
+    "trackAdultsAge": "16 évtől",
+    "trackAdultsWhat": "Nehezebb feladatok, részletesebb történetek, sötét felület.",
+    "trackNote": "Bármikor válthatsz. Nem tárolunk rólad semmit — ez csak a telefonodon marad.",
+    "storyStep": "Történet",
+    "taskStep": "Feladat",
+    "toTask": "Jöhet a feladat",
+    "backToStory": "Vissza a történethez",
+    "readFirst": "Olvasd el, aztán jöhet a feladat."
   },
-
   "en": {
     "langName": "English",
     "siteName": "Kőporos Cellar Row",
@@ -60,7 +68,6 @@
     "gameSubtitle": "A treasure hunt in seven stations",
     "chooseLanguage": "Choose a language",
     "chooseLanguageSub": "Válassz nyelvet · Wybierz język",
-
     "introLead": "Eighty cellars, one hillside, and a secret the stone has kept for three centuries.",
     "introBody": "Walk the row, solve the seven riddles, and you will find the treasure at the end. No sign-up, no data collected, and the game keeps working offline if you lose signal.",
     "metaDuration": "about 40 min",
@@ -71,7 +78,6 @@
     "restart": "Start over",
     "restartConfirm": "Start from the beginning? Your progress will be lost.",
     "cancel": "Cancel",
-
     "stationLabel": "Station {n}",
     "progress": "{n} / {total}",
     "answerLabel": "Your answer",
@@ -89,22 +95,33 @@
     "solved": "solved",
     "map": "Map",
     "mapTitle": "The cellar row",
-    "mapLegend": "The golden dots mark the riddles. The glowing one is your next station.",
+    "mapLegend": "The marked dots are the riddle locations. The glowing one is your next station.",
     "close": "Close",
     "backToStation": "Back to the riddle",
-
     "finishTitle": "You found the treasure",
     "finishLead": "All seven riddles solved",
     "finishBody": "Come into our cellar, show this screen, and let us raise a glass to it. Your reward is a glass of fresh grape juice or a taste of our own wine — on the house.",
     "codeLabel": "Show this code",
     "finishFooter": "Thank you for giving the cellar row your time.",
     "playAgain": "Play again",
-
     "offlineReady": "This game works offline.",
     "installHint": "Add it to your home screen",
-    "install": "Install"
+    "install": "Install",
+    "chooseTrack": "Who is playing?",
+    "chooseTrackSub": "This sets how hard the riddles are and how the game looks.",
+    "trackKids": "For children",
+    "trackKidsAge": "ages 6–15",
+    "trackKidsWhat": "Easier riddles, shorter stories, a bright and colourful screen.",
+    "trackAdults": "For adults",
+    "trackAdultsAge": "16 and over",
+    "trackAdultsWhat": "Harder riddles, fuller stories, a dark screen.",
+    "trackNote": "You can switch any time. We store nothing about you — this stays on your phone.",
+    "storyStep": "Story",
+    "taskStep": "Riddle",
+    "toTask": "On to the riddle",
+    "backToStory": "Back to the story",
+    "readFirst": "Read this first, then the riddle follows."
   },
-
   "pl": {
     "langName": "Polski",
     "siteName": "Piwnice Kőporos",
@@ -112,7 +129,6 @@
     "gameSubtitle": "Poszukiwanie skarbu na siedmiu stacjach",
     "chooseLanguage": "Wybierz język",
     "chooseLanguageSub": "Válassz nyelvet · Choose a language",
-
     "introLead": "Osiemdziesiąt piwnic, jedno zbocze i sekret, który kamień strzeże od trzech stuleci.",
     "introBody": "Przejdź wzdłuż rzędu, rozwiąż siedem zagadek, a na końcu znajdziesz skarb. Bez rejestracji, bez zbierania danych — gra działa też offline, gdy zabraknie zasięgu.",
     "metaDuration": "około 40 min",
@@ -123,7 +139,6 @@
     "restart": "Zacznij od nowa",
     "restartConfirm": "Zacząć od początku? Twój postęp zostanie utracony.",
     "cancel": "Anuluj",
-
     "stationLabel": "Stacja {n}",
     "progress": "{n} / {total}",
     "answerLabel": "Twoja odpowiedź",
@@ -141,19 +156,31 @@
     "solved": "rozwiązane",
     "map": "Mapa",
     "mapTitle": "Rząd piwnic",
-    "mapLegend": "Złote punkty to miejsca zagadek. Świecący punkt to Twoja następna stacja.",
+    "mapLegend": "Zaznaczone punkty to miejsca zagadek. Świecący punkt to Twoja następna stacja.",
     "close": "Zamknij",
     "backToStation": "Wróć do zagadki",
-
     "finishTitle": "Skarb znaleziony",
     "finishLead": "Wszystkie siedem zagadek rozwiązane",
     "finishBody": "Wejdź do naszej piwnicy, pokaż ten ekran i wznieśmy razem toast. Twoją nagrodą jest szklanka świeżego soku winogronowego albo degustacja naszego wina — na koszt gospodarza.",
     "codeLabel": "Pokaż ten kod",
     "finishFooter": "Dziękujemy, że poświęciłeś czas naszym piwnicom.",
     "playAgain": "Zagraj jeszcze raz",
-
     "offlineReady": "Gra działa również offline.",
     "installHint": "Dodaj do ekranu głównego",
-    "install": "Zainstaluj"
+    "install": "Zainstaluj",
+    "chooseTrack": "Kto gra?",
+    "chooseTrackSub": "Od tego zależy trudność zagadek i wygląd gry.",
+    "trackKids": "Dla dzieci",
+    "trackKidsAge": "6–15 lat",
+    "trackKidsWhat": "Łatwiejsze zagadki, krótsze historie, jasny i kolorowy ekran.",
+    "trackAdults": "Dla dorosłych",
+    "trackAdultsAge": "od 16 lat",
+    "trackAdultsWhat": "Trudniejsze zagadki, pełniejsze historie, ciemny ekran.",
+    "trackNote": "Możesz zmienić w każdej chwili. Nic o tobie nie przechowujemy — to zostaje w twoim telefonie.",
+    "storyStep": "Historia",
+    "taskStep": "Zagadka",
+    "toTask": "Przejdź do zagadki",
+    "backToStory": "Wróć do historii",
+    "readFirst": "Najpierw przeczytaj, potem zagadka."
   }
 }

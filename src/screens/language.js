@@ -57,7 +57,9 @@ export function languageScreen(navigate) {
               'aria-current': active ? 'true' : null,
               onclick: () => {
                 setLang(lang);
-                navigate('#/intro');
+                // first run continues to the age picker; a returning visitor
+                // only wanted to change the language
+                navigate(state.track ? '#/intro' : '#/track');
               },
             },
             h('span.lang__flag', flag(lang)),

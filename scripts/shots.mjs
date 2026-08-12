@@ -124,14 +124,23 @@ await send('Page.reload', { ignoreCache: true });
 await sleep(1800);
 await shot('01-language');
 
-console.log('intro (hu)');
+console.log('track picker');
 await evaluate(`document.querySelectorAll('.lang__btn')[0].click()`);
 await sleep(600);
-await shot('02-intro-hu');
+await shot('02-track');
 
-console.log('station 1');
+console.log('intro (hu, adults)');
+await evaluate(`document.querySelectorAll('.track__card')[1].click()`);
+await sleep(700);
+await shot('02b-intro-hu');
+
+console.log('station 1 — story');
 await go('#/s/1');
-await shot('03-station');
+await shot('03-story');
+
+console.log('station 1 — task');
+await go('#/s/1/q');
+await shot('03b-task');
 
 console.log('station 1 — wrong answer twice');
 await evaluate(`(() => {
@@ -185,23 +194,35 @@ async function bootWith(patch, hash) {
 }
 
 console.log('finish');
-await bootWith({ lang: 'hu', solved: Array(7).fill(true), code: 'KW12F' }, '#/done');
+await bootWith({ lang: 'hu', track: 'adults', solved: Array(7).fill(true), code: 'KW12F' }, '#/done');
 await shot('08-finish', { full: true });
 
 console.log('english station');
-await bootWith({ lang: 'en', solved: Array(7).fill(false) }, '#/s/1');
+await bootWith({ lang: 'en', track: 'adults', solved: Array(7).fill(false) }, '#/s/1/q');
 await shot('09-station-en');
 
 console.log('polish intro');
-await bootWith({ lang: 'pl', solved: Array(7).fill(false) }, '#/intro');
+await bootWith({ lang: 'pl', track: 'adults', solved: Array(7).fill(false) }, '#/intro');
 await shot('10-intro-pl', { full: true });
 
 console.log('language switcher');
-await bootWith({ lang: 'hu', solved: Array(7).fill(false) }, '#/intro');
+await bootWith({ lang: 'hu', track: 'adults', solved: Array(7).fill(false) }, '#/intro');
 await shot('11-intro-langchip', { full: true });
 await evaluate(`document.querySelector('.langchip').click()`);
 await sleep(500);
 await shot('12-lang-returning');
+
+console.log('kids track');
+await bootWith({ lang: 'hu', track: 'kids', solved: Array(7).fill(false), hinted: Array(7).fill(false) }, '#/intro');
+await shot('20-kids-intro', { full: true });
+await go('#/s/1');
+await shot('21-kids-story', { full: true });
+await go('#/s/1/q');
+await shot('22-kids-task', { full: true });
+await go('#/map');
+await shot('23-kids-map');
+await bootWith({ lang: 'hu', track: 'kids', solved: Array(7).fill(true), code: 'KW12F' }, '#/done');
+await shot('24-kids-finish', { full: true });
 
 console.log('switch to English and back to the intro');
 await evaluate(`document.querySelectorAll('.lang__btn')[1].click()`);

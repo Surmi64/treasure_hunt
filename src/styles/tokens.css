@@ -6,36 +6,13 @@
    --------------------------------------------------------------- */
 
 :root {
-  /* surfaces */
-  --bg: #100c0b;
-  --bg-deep: #0a0708;
-  --surface: #1a1310;
-  --surface-2: #241a16;
-  --surface-raised: rgba(240, 230, 216, 0.045);
+  /* Colour lives in themes.css, keyed by <html data-track>. Everything here
+     is shared by both themes so they cannot drift structurally. */
 
-  /* ink */
-  --ink: #f2e9dc;
-  --ink-soft: #cbbaa6;
-  --ink-muted: #94826f;
-
-  /* brand */
-  --wine: #7c1f33;
-  --wine-deep: #4d1220;
-  --wine-glow: rgba(160, 40, 62, 0.45);
-
-  --gold: #c9a24c;
-  --gold-bright: #e8cd8b;
-  --gold-dim: rgba(201, 162, 76, 0.28);
-
-  /* semantic */
-  --ok: #7fae6a;
-  --ok-bg: rgba(127, 174, 106, 0.12);
-  --warn: #d98b3e;
-  --err: #d2604f;
-  --err-bg: rgba(210, 96, 79, 0.12);
-
-  --line: rgba(232, 205, 139, 0.14);
-  --line-strong: rgba(232, 205, 139, 0.3);
+  /* legacy aliases: the components were written against --gold */
+  --gold: var(--accent);
+  --gold-bright: var(--accent-bright);
+  --gold-dim: var(--accent-dim);
 
   /* type */
   --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', Georgia, serif;
@@ -65,9 +42,6 @@
   --r-lg: 20px;
   --r-pill: 999px;
 
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-2: 0 8px 24px -8px rgba(0, 0, 0, 0.7);
-  --shadow-3: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
 
   /* motion */
   --dur-fast: 140ms;
