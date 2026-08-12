@@ -268,16 +268,32 @@
   animation: fadeUp var(--dur-slow) var(--ease-out);
 }
 
-.finish__seal {
+/* The Hajnalhozó mark, carried over from the door animation. No entrance of
+   its own on purpose: the animation has just set it down in the middle of the
+   screen, and anything that spins or pops here reads as a second arrival. */
+.finish__mark {
   margin-inline: auto;
   width: 132px;
   color: var(--gold);
-  animation: sealIn 700ms var(--ease-out) backwards;
 }
 
 .finish__title {
   font-size: var(--step-4);
   margin-top: var(--s4);
+}
+
+.finish__maps {
+  margin-top: var(--s5);
+}
+
+/* the line that has to land even when the cellar turns out to be shut */
+.finish__keep {
+  max-width: 30rem;
+  margin-inline: auto;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-style: italic;
+  color: var(--ink-soft);
 }
 
 .finish__code {
@@ -295,11 +311,6 @@
   letter-spacing: 0.22em;
   font-variant-numeric: tabular-nums lining-nums;
   color: var(--gold-bright);
-}
-
-@keyframes sealIn {
-  from { opacity: 0; scale: 0.8; rotate: -8deg; }
-  to { opacity: 1; scale: 1; rotate: 0deg; }
 }
 
 @keyframes fadeUp {

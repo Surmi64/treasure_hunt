@@ -95,6 +95,8 @@
   font-weight: 550;
   letter-spacing: 0.01em;
   white-space: nowrap;
+  /* the finish screen's map button is an <a>, and it must not come out underlined */
+  text-decoration: none;
   transition:
     background-color var(--dur) var(--ease-out),
     border-color var(--dur) var(--ease-out),

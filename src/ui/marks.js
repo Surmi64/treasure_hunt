@@ -11,7 +11,11 @@ export function logoMark(className = '') {
   return doorSvg({ className });
 }
 
-/** Wax-seal badge for the finish screen: the door inside a struck ring. */
+/**
+ * Wax-seal badge: the door inside a struck ring. Unused since the finish
+ * screen went over to the Hajnalhozó mark — kept because it is the obvious
+ * thing to reach for if a certificate or a printable ever needs a stamp.
+ */
 export function sealMark(className = '') {
   const ring = svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" fill="none"
     class="${className}" role="img" aria-label="">

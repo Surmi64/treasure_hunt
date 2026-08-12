@@ -102,8 +102,13 @@ export function contentPlugin() {
         ustrings[lang] = ui.data[lang];
       }
 
+      // language-independent settings; the finish screen hides its map button
+      // when mapsUrl is left empty
+      const site = { mapsUrl: '', ...(ui.data.site ?? {}) };
+
       return `export const LANGS = ${JSON.stringify(LANGS)};
 export const TRACKS = ${JSON.stringify(TRACKS)};
+export const site = ${JSON.stringify(site)};
 export const ui = ${JSON.stringify(ustrings)};
 export const stations = ${JSON.stringify(built)};
 `;
