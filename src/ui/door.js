@@ -1,5 +1,7 @@
 import doorSource from './door.svg?raw';
 
+export { DOOR_VIEWBOX } from './door.meta.js';
+
 /**
  * The painted cellar door, straight from the artwork in resources/door.svg
  * (cleaned up by scripts/clean-door.mjs). Inlined into the bundle rather than
@@ -10,9 +12,11 @@ import doorSource from './door.svg?raw';
  * cut out of the panel — the way the door is actually painted.
  */
 
-/** Sun centre and radius, measured off the artwork, in viewBox units. */
+/**
+ * Sun centre and radius, measured off the artwork, in the artwork's own user
+ * units. Independent of the viewBox, so refitting the frame does not move it.
+ */
 export const SUN = { x: 94.5, y: 170, r: 41 };
-export const DOOR_VIEWBOX = { w: 188.976, h: 340.157 };
 
 let instance = 0;
 

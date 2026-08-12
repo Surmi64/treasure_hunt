@@ -69,8 +69,8 @@
    The panel is `currentColor`, so a solved station is one property change. */
 .doorbadge {
   width: 54px;
-  /* the artwork is 189:340 — let the height follow so it never squashes */
-  aspect-ratio: 189 / 340;
+  /* height follows the SVG's own viewBox ratio — never hardcode it here, the
+     frame is refitted to the artwork by scripts/clean-door.mjs */
   height: auto;
   flex: none;
   color: var(--gold);
