@@ -1,0 +1,89 @@
+/* ---------------------------------------------------------------
+   Design tokens — "cellar dark": candle-lit stone, wine, brass.
+   Dark-only by intent: the game is played outdoors in daylight on a
+   phone, and a dark UI with a bright gold accent stays readable in
+   sun while feeling like the inside of a cellar.
+   --------------------------------------------------------------- */
+
+:root {
+  /* surfaces */
+  --bg: #100c0b;
+  --bg-deep: #0a0708;
+  --surface: #1a1310;
+  --surface-2: #241a16;
+  --surface-raised: rgba(240, 230, 216, 0.045);
+
+  /* ink */
+  --ink: #f2e9dc;
+  --ink-soft: #cbbaa6;
+  --ink-muted: #94826f;
+
+  /* brand */
+  --wine: #7c1f33;
+  --wine-deep: #4d1220;
+  --wine-glow: rgba(160, 40, 62, 0.45);
+
+  --gold: #c9a24c;
+  --gold-bright: #e8cd8b;
+  --gold-dim: rgba(201, 162, 76, 0.28);
+
+  /* semantic */
+  --ok: #7fae6a;
+  --ok-bg: rgba(127, 174, 106, 0.12);
+  --warn: #d98b3e;
+  --err: #d2604f;
+  --err-bg: rgba(210, 96, 79, 0.12);
+
+  --line: rgba(232, 205, 139, 0.14);
+  --line-strong: rgba(232, 205, 139, 0.3);
+
+  /* type */
+  --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.125rem;
+  --step-2: 1.375rem;
+  --step-3: 1.75rem;
+  --step-4: 2.25rem;
+  --step-5: 3rem;
+
+  /* space — 4px rhythm */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --s8: 4rem;
+
+  /* shape */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-2: 0 8px 24px -8px rgba(0, 0, 0, 0.7);
+  --shadow-3: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+
+  /* motion */
+  --dur-fast: 140ms;
+  --dur: 220ms;
+  --dur-slow: 380ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+
+  /* layout */
+  --measure: 34rem;
+  --gutter: clamp(1rem, 5vw, 1.75rem);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  --z-base: 0;
+  --z-sticky: 20;
+  --z-overlay: 40;
+  --z-toast: 60;
+}

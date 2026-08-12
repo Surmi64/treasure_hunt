@@ -1,0 +1,287 @@
+/* ====================== language picker ====================== */
+
+.lang {
+  justify-content: center;
+  gap: var(--s7);
+  padding-block: calc(var(--s7) + var(--safe-top)) calc(var(--s6) + var(--safe-bottom));
+  text-align: center;
+  animation: fadeUp var(--dur-slow) var(--ease-out);
+}
+
+.lang__mark {
+  margin-inline: auto;
+  width: 84px;
+  color: var(--gold);
+}
+
+.lang__title {
+  font-size: var(--step-5);
+  margin-top: var(--s4);
+}
+
+.lang__sub {
+  margin-top: var(--s2);
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.lang__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.lang__btn {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  width: 100%;
+  min-height: 64px;
+  padding: 0 var(--s4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface-raised);
+  color: var(--ink);
+  text-align: left;
+  transition:
+    border-color var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-out);
+}
+
+.lang__btn:hover {
+  border-color: var(--line-strong);
+  background: rgba(240, 230, 216, 0.07);
+}
+
+.lang__btn:active {
+  opacity: 0.8;
+}
+
+.lang__flag {
+  flex: none;
+  width: 34px;
+  height: 24px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.lang__name {
+  flex: 1;
+  font-size: var(--step-1);
+  font-weight: 550;
+}
+
+.lang__go {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+
+/* ====================== intro ====================== */
+
+.intro {
+  justify-content: center;
+  gap: var(--s6);
+  padding-block: calc(var(--s6) + var(--safe-top)) calc(var(--s6) + var(--safe-bottom));
+  animation: fadeUp var(--dur-slow) var(--ease-out);
+}
+
+.intro__head {
+  text-align: center;
+}
+
+.intro__title {
+  font-size: var(--step-4);
+  margin-top: var(--s2);
+}
+
+.intro__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+/* ====================== station ====================== */
+
+.station {
+  padding-bottom: calc(var(--s6) + var(--safe-bottom));
+}
+
+.station__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  padding-block: var(--s2) var(--s5);
+}
+
+.station__titles {
+  min-width: 0;
+}
+
+.station__title {
+  font-size: var(--step-3);
+  margin-top: var(--s1);
+}
+
+.station__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s5);
+  animation: fadeUp var(--dur) var(--ease-out);
+}
+
+.station__question {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.35;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.station__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+/* the feedback and hint slots are always in the DOM so their content can be
+   swapped without relayout — collapse them while they hold nothing */
+.station__form > div:empty {
+  display: none;
+}
+
+.station__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding-top: var(--s5);
+  margin-top: var(--s2);
+  border-top: 1px solid var(--line);
+}
+
+.station__nav .btn {
+  min-height: 48px;
+}
+
+/* ====================== map ====================== */
+
+.mapview {
+  padding-bottom: calc(var(--s6) + var(--safe-bottom));
+  animation: fadeUp var(--dur) var(--ease-out);
+}
+
+.mapview__frame {
+  margin-top: var(--s4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: linear-gradient(160deg, #1c1512, #0d0a09);
+  overflow: hidden;
+}
+
+.mapview__svg {
+  width: 100%;
+  height: auto;
+}
+
+.pin__halo {
+  animation: pulse 2.4s var(--ease-out) infinite;
+  transform-origin: center;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.55; scale: 0.7; }
+  70% { opacity: 0; scale: 1.9; }
+  100% { opacity: 0; scale: 1.9; }
+}
+
+/* ====================== finish ====================== */
+
+.finish {
+  justify-content: center;
+  gap: var(--s6);
+  padding-block: calc(var(--s7) + var(--safe-top)) calc(var(--s6) + var(--safe-bottom));
+  text-align: center;
+  animation: fadeUp var(--dur-slow) var(--ease-out);
+}
+
+.finish__seal {
+  margin-inline: auto;
+  width: 132px;
+  color: var(--gold);
+  animation: sealIn 700ms var(--ease-out) backwards;
+}
+
+.finish__title {
+  font-size: var(--step-4);
+  margin-top: var(--s4);
+}
+
+.finish__code {
+  display: inline-block;
+  margin-top: var(--s3);
+  padding: var(--s3) var(--s5);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-md);
+  background: rgba(201, 162, 76, 0.08);
+  /* body font: the host reads this code aloud, so the digits must be lining
+     and unambiguous rather than Cormorant's old-style figures */
+  font-family: var(--font-body);
+  font-size: var(--step-2);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--gold-bright);
+}
+
+@keyframes sealIn {
+  from { opacity: 0; scale: 0.8; rotate: -8deg; }
+  to { opacity: 1; scale: 1; rotate: 0deg; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; translate: 0 12px; }
+  to { opacity: 1; translate: 0; }
+}
+
+/* ====================== dialog ====================== */
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: rgba(6, 4, 4, 0.62);
+  backdrop-filter: blur(6px);
+  animation: fade var(--dur) var(--ease-out);
+}
+
+.dialog__panel {
+  width: 100%;
+  max-width: 22rem;
+  padding: var(--s5);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+  text-align: center;
+  animation: rise var(--dur) var(--ease-out);
+}
+
+.dialog__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  margin-top: var(--s5);
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
