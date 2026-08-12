@@ -1,185 +1,272 @@
-# A Pincesor Kincse — Kőporosi Pincesor
+# The Treasure of the Cellars — Kőporos Cellars, Hercegkút
 
-Webes kincsvadászat mobilra. Nincs telepítés, nincs regisztráció, nem gyűjt
-semmilyen adatot, és offline is működik, ha a pincesoron elfogy a térerő.
+A web treasure hunt for phones. Nothing to install, no sign-up, no data
+collected, and it keeps working offline when the signal runs out among the
+cellars.
 
-- 7 állomás, mindegyiknél előbb egy rövid történet, utána a feladat
-- két sáv: gyerekeknek (6–15) és felnőtteknek (16-tól), külön szöveggel és
-  külön kinézettel
-- magyar / angol / lengyel, a nyitóképernyőn választható
-- a kérdések között szabadon lehet lépkedni, a haladás a telefonon marad
-- akárhányszor újrajátszható
-- a végén egy kód, amit a pincénkben mutatnak meg
+- 7 stations, each with a short story first and the riddle after it
+- two tracks: kids (6–15) and adults (16+), with separate text and a separate
+  look
+- Hungarian / English / Polish, chosen on the opening screen
+- you can move freely between the riddles; progress stays on the phone
+- replayable as often as you like
+- a code at the end, to be shown at our cellar
 
-## Fejlesztés
+## Development
 
 ```bash
 npm install
 npm run dev        # http://localhost:5173
-npm run build      # -> dist/
-npm run preview    # a buildelt változat kipróbálása
+npm run build      # -> dist/  (for release: no test mode)
+npm run build:test # -> dist/  (with test mode, see below)
+npm run preview    # try out the built version
 ```
 
-## Amit szerkesztened kell
+### Test mode
 
-Két fájl, mindkettő a `content/` mappában. Nem kell hozzájuk JS-t írni,
-mentés után a `npm run dev` magától újratölt.
+So that walking the whole game does not require knowing seven answers by
+heart, there is a back door — `src/lib/cheat.js`:
 
-### `content/stations.json` — a hét feladvány
+| input | what it does |
+| --- | --- |
+| `szezám tárulj` in the answer field | marks that station correct |
+| `#/cheat` | solves all seven, jumps to the finish screen |
+| `#/cheat/4` | solves the first three, stops on station 4's riddle |
+| `#/cheat/door` | plays the door-opening animation on its own |
+| `#/reset` | wipes progress, back to the language picker |
 
-Minden állomásnak **két sávja** van: `kids` és `adults`. Mindkettőnek saját
-szövege és saját válasza van, mindhárom nyelven — a gyerek sáv nem a felnőtt
-egyszerűsített változata, hanem külön megírandó.
+In test mode a red `TEST` marker sits in the bottom-left corner, so a test
+build can never go live unnoticed.
 
-Állomás szintjén (sávfüggetlen):
+It is on during `npm run dev` and `npm run build:test`. With a plain
+`npm run build` the `__CHEAT__` compile-time constant becomes `false`, the
+minifier drops the code and the code word with it — the public bundle does not
+contain it. Turn this into a runtime flag and the code word ships to visitors.
 
-| mező | mit jelent |
+## What you need to edit
+
+Two files, both in `content/`. No JavaScript required; `npm run dev` reloads by
+itself when you save.
+
+### `content/stations.json` — the seven riddles
+
+Every station has **two tracks**: `kids` and `adults`. Each has its own text and
+its own answer, in all three languages — the kids track is not a simplified
+version of the adults one, it is written separately.
+
+The current content comes from **hercegkutipincek.com** (`/koporosi-pincesor`
+and `/gomboshegyi-pincesor`). The arc is deliberate: the village first
+(stations 1–2), then the cellar row itself (3–7). Station 1 is **identical** in
+both tracks — that one is meant to be read together by a family.
+
+Every station carries a `_verify` field. The program does not use it; it is a
+reminder of what has to be checked on location before this goes live. Once you
+have walked the row, feel free to delete it.
+
+At station level (track-independent):
+
+| field | what it means |
 |---|---|
-| `map` | a pont helye a térképen, 0–100 közötti `x`/`y` **százalék** |
-| `image` | opcionális fotó fájlneve a `public/photos/` mappából, pl. `"p1.webp"` |
+| `map` | position of the dot on the map, `x`/`y` as a **percentage** from 0–100 |
+| `image` | optional photo filename from `public/photos/`, e.g. `"p1.webp"` |
 
-Sávon belül (`tracks.kids`, `tracks.adults`):
+Within a track (`tracks.kids`, `tracks.adults`):
 
-| mező | mit jelent |
+| field | what it means |
 |---|---|
-| `answers` | elfogadott válaszok listája. Több is lehet: `["1748", "ezerhétszáznegyvennyolc"]` |
-| `input` | `"number"` = numerikus billentyűzet ugrik fel, `"text"` = normál |
-| `image` | opcionális, felülírja az állomás fotóját ebben a sávban |
+| `answers` | list of accepted answers. There can be several: `["1825", "eighteen twenty five"]` |
+| `input` | `"number"` = numeric keypad pops up, `"text"` = normal keyboard |
+| `image` | optional, overrides the station photo for this track |
 | `hu` / `en` / `pl` | `title`, `story`, `question`, `hint`, `reveal` |
 
-A `story` jelenik meg **elsőként**, még a kérdés előtt — ez az, amitől
-megismerik a helyet, ne spórolj vele. A feladat egy koppintásra van tőle, és
-átugorható: nem akadály, csak sorrend. A `hint` két hibás tipp után jelenik
-meg. A `reveal` a helyes válasz utáni jutalomsor.
+The `story` comes **first**, before the question — it is what makes visitors
+learn the place, so do not skimp on it. The riddle is one tap away and can be
+skipped: it is a sequence, not a gate. The `hint` appears after two wrong
+guesses. The `reveal` is the payoff line after a correct answer.
 
-**A válaszok ellenőrzése toleráns.** Ékezet, kis/nagybetű, szóköz és
-írásjel nem számít: `Rákóczi-pince.` == `rakoczi pince`. Ezt a
-`shared/normalize.js` intézi.
+**Answer checking is forgiving.** Accents, case, spaces and punctuation do not
+matter: `Rákóczi-pince.` == `rakoczi pince`. `shared/normalize.js` handles it.
 
-**A nyers válaszok nem kerülnek bele a kiszállított kódba.** Build közben
-(`plugins/content.js`) SHA-256 hash lesz belőlük, tehát ha valaki
-megnézi a JS-t, `"a3f9…"`-et lát `1748` helyett.
+**The `answers` field does not reach the shipped code.** At build time
+(`plugins/content.js`) it becomes a SHA-256 hash, so anyone looking at the JS
+sees `"a3f9…"` instead of `1825`.
 
-### `content/ui.json` — a felület szövegei
+⚠️ **That does not mean the answers cannot be read out.** The `reveal` strings
+ship as plain text, and they typically repeat the answer ("Exactly:
+Trautsondorf") — in the current content all 42 of them do. Open the JS file and
+you get every solution in order. For a static PWA there is no real fix: there
+is no server to withhold the text until the answer is right. So the hash guards
+against an idle glance, not against someone who is looking. If that bothers
+you, the literal answer has to come out of the `reveal` strings — but the
+satisfaction of being confirmed goes with it.
 
-Gombfeliratok, a nyitóoldal szövege, a záróképernyő. A `{n}` és `{total}`
-helyére a program számokat helyettesít.
+### `content/ui.json` — the interface strings
 
-## Fotók
+Button labels, the intro screen, the finish screen. The program substitutes
+numbers for `{n}` and `{total}`.
 
-Tedd őket a `public/photos/` mappába, és írd be a fájlnevet az adott
-állomás `image` mezőjébe.
+`site.mapsUrl` is the Google Maps link to our own cellar. While it is empty the
+finish screen shows no map button — the text still works, only the button is
+missing.
 
-Fontos: **optimalizáld őket.** A parkolóban álló látogató 3 másodperc
-alatt akarja látni a nyitóoldalt. Cél: WebP, max 1200 px széles, 150 KB alatt.
+In English and Polish the word "row" is deliberately left out of the name:
+`Kőporos Cellars` and `Piwnice Kőporos`.
+
+## Photos
+
+Put them in `public/photos/` and write the filename into that station's `image`
+field.
+
+Important: **optimise them.** A visitor standing in the car park wants to see
+the intro screen within 3 seconds. Target: WebP, 1200 px wide at most, under
+150 KB.
 
 ```bash
-magick eredeti.jpg -resize 1200x -quality 78 public/photos/p1.webp
+magick original.jpg -resize 1200x -quality 78 public/photos/p1.webp
 ```
 
-## Kiadás
+## Release
 
-A `dist/` egy teljesen statikus mappa — nincs szerver, nincs adatbázis.
+`dist/` is a completely static folder — no server, no database.
 
-**Cloudflare Pages** (ingyenes, ajánlott):
-1. push GitHubra
-2. Cloudflare Pages → Connect to Git → ez a repo
+**Cloudflare Pages** (free, recommended):
+1. push to GitHub
+2. Cloudflare Pages → Connect to Git → this repo
 3. Build command: `npm run build`, Build output: `dist`
-4. Custom domain, pl. `kincs.koporosipincesor.hu`
+4. custom domain, e.g. `kincs.koporosipincesor.hu`
 
-Ugyanígy megy Netlify-jal vagy Vercellel. GitHub Pages esetén a
-`vite.config.js`-ben a `base`-t át kell írni `'/treasure_hunt/'`-ra.
+Netlify and Vercel work the same way. For GitHub Pages, `base` in
+`vite.config.js` has to be changed to `'/treasure_hunt/'`.
 
-## Offline működés
+## Working offline
 
-A `vite-plugin-pwa` service workert generál, ami az első betöltéskor
-letölti az egész játékot (kb. 340 KB, nagyrészt betűtípus). Utána
-térerő nélkül is működik, és „Hozzáadás a kezdőképernyőhöz"-zel
-alkalmazásként is kirakható.
+`vite-plugin-pwa` generates a service worker that downloads the whole game on
+first load (about 340 KB, mostly fonts). After that it works without a signal,
+and "Add to Home Screen" turns it into an app.
 
-Fontos: **HTTPS kell hozzá.** Sima `http://` alatt a service worker és a
-válaszellenőrzéshez használt `crypto.subtle` sem indul el (utóbbira van
-tartalék megoldás, előbbire nincs).
+Important: **it needs HTTPS.** Over plain `http://` neither the service worker
+nor `crypto.subtle`, used for answer checking, will start (there is a fallback
+for the latter, none for the former).
 
-## Belépési pont
+## Entry point
 
-A látogatók QR-kódról érkeznek. A plakátra a rövid URL és egy nagy QR
-kód kell, három zászlóval — a nyelvet úgyis a nyitóképernyőn választják.
+Visitors arrive from a QR code. The poster needs the short URL and one large QR
+code, with three flags on it — the language is picked on the opening screen
+anyway.
 
-## Karbantartó parancsok
+## Maintenance commands
 
 ```bash
-npm run icons              # favicon + PWA ikonok újragenerálása (Chromium kell hozzá)
-node scripts/shots.mjs     # képernyőképek minden nézetről (fejlesztéshez)
+npm run icons              # regenerate favicon + PWA icons (needs Chromium)
+node scripts/shots.mjs     # screenshots of every view (for development)
 ```
 
-## A két sáv
+## The two tracks
 
-A nyelv után a látogató kiválasztja, kinek szól a játék. Ez egyszerre
-állítja a feladatok nehézségét és a teljes kinézetet:
+After the language, the visitor picks who the game is for. That one choice sets
+both the difficulty of the riddles and the entire look:
 
-| | gyerekeknek | felnőtteknek |
+| | kids | adults |
 |---|---|---|
-| kor | 6–15 | 16-tól |
-| téma | világos pergamen, narancs akcentus | sötét pince, arany akcentus |
-| betűméret | valamivel nagyobb, kerekebb formák | alap |
+| age | 6–15 | 16+ |
+| theme | light parchment, orange accent | dark cellar, gold accent |
+| type size | slightly larger, rounder shapes | base |
 
-A választáskor a kártya kiírja a korhatárt és azt is, hogy mi tér el —
-a látogatónak nem kell találgatnia.
+The card states the age range and what actually differs, so the visitor does
+not have to guess.
 
-Technikailag egyetlen attribútumon múlik: `<html data-track="kids|adults">`.
-A `src/styles/themes.css` mindkét sávhoz teljes színkészletet ad, a
-`tokens.css` pedig csak a közös geometriát (térköz, forma, animáció), így a
-két téma szerkezetileg nem tud elcsúszni egymástól. **Ha új színt vezetsz be,
-a `themes.css`-ben tedd, mindkét sávra** — beégetett hexa érték a
-komponensekben az egyik témán biztosan rosszul fog kinézni.
+Technically it hangs on a single attribute: `<html data-track="kids|adults">`.
+`src/styles/themes.css` gives both tracks a complete colour set, while
+`tokens.css` holds only the shared geometry (spacing, shape, motion), so the two
+themes cannot drift apart structurally. **If you introduce a new colour, do it
+in `themes.css`, for both tracks** — a hardcoded hex value in a component is
+guaranteed to look wrong on one of the themes.
 
-A sáv a nyelvhez hasonlóan a telefonon marad (`localStorage`), nem küldjük
-sehová. Bármikor váltható a nyitóoldal chipjéről, és a haladás megmarad.
+Like the language, the track stays on the phone (`localStorage`) and is never
+sent anywhere. It can be switched from the chip on the intro screen at any
+time, and progress survives.
 
-## Az ajtóminta
+## The kids background
 
-A napkorongos pincesor-motívum a te rajzod: a forrás a
-`resources/door.svg` (Inkscape/AI export). Ezt **nem szerkesztjük kézzel** —
-a `scripts/clean-door.mjs` állítja elő belőle a `src/ui/door.svg`-t:
+On the kids track the whole app sits on a sheet of aged parchment with a faint
+treasure map drawn on it: coastline, a route in dashes, an X and a compass
+rose. The markup is in `index.html` inside `.ambience`, the styling in
+`base.css`.
 
-- kidobja a beágyazott ICC színprofilt (ez a fájl 1 MB-jából ~1 MB)
-- kidobja az Inkscape szerkesztői metaadatait
-- a nyomdai sárgát `currentColor`-ra cseréli, így CSS-ből vezérelhető
-- a nyomdai feketét a pince-háttérre cseréli, így a vonalak *rések* lesznek
-  a panelben, nem ráfestett tinta
+It is kept deliberately faint (`opacity: 0.1`). Text sits directly on it on
+most screens, so it has to stay a texture rather than a picture — anything
+stronger starts competing to be read. The adults track does not get it: it is
+`display: none` outside `[data-track='kids']`.
 
-Eredmény: 1066 KB → 21 KB, és a megoldott állomás jelvénye egyetlen
-`color:` váltással zöld lesz.
+## The door artwork
 
-Ha valaha újrarajzolod a rajzot, cseréld a `resources/door.svg`-t és futtasd:
+The sun-disc cellar motif is your own drawing: the source is
+`resources/door.svg` (an Inkscape/AI export). We **never edit it by hand** —
+`scripts/clean-door.mjs` produces `src/ui/door.svg` from it:
+
+- drops the embedded ICC colour profile (about 1 MB of the file's 1 MB)
+- drops Inkscape's editor metadata
+- swaps the print yellow for `currentColor`, so CSS can drive it
+- swaps the print black for the cellar background, so the lines become *gaps*
+  in the panel rather than ink painted on it
+
+Result: 1066 KB → 21 KB, and a solved station's badge turns green with a single
+`color:` change.
+
+If you ever redraw the artwork, replace `resources/door.svg` and run:
 
 ```bash
 node scripts/clean-door.mjs
 npm run icons
 ```
 
-A szkript hibával leáll, ha a kimenet nem érvényes XML — ez egyszer már
-megfogott egy bennmaradt `<sodipodi:namedview>` elemet, ami miatt a böngésző
-a rajz helyett XML-hibaoldalt renderelt.
+The script fails hard if the output is not valid XML — that has already caught
+a leftover `<sodipodi:namedview>` element, which made the browser render an XML
+error page instead of the drawing.
 
-A napkorong helye (`SUN` a `src/ui/door.js`-ben) a rajzból van kimérve —
-ide kerül az állomás sorszáma. Ha a rajz változik, ezt is igazítani kell.
+The position of the sun disc (`SUN` in `src/ui/door.js`) is measured off the
+artwork — the station number goes there. If the drawing changes, this has to be
+adjusted too.
 
+## The finish animation
 
-## Felépítés
+After the seventh correct answer the door swings open, the camera goes through
+it, and the Hajnalhozó mark is what lies behind. `src/ui/doorburst.js` plus the
+`.doorburst` block at the end of `components.css`. `#/cheat/door` plays it on
+its own.
+
+The two wings are **the same door artwork twice**, each shown through a
+half-width `overflow: hidden` window — so the two halves always line up exactly,
+and redrawing the door cannot make them drift apart.
+
+The mark is currently a **placeholder**: two letters (`HH`) in a ring, in
+`src/ui/brand.js`. When the real logo exists, only that one SVG needs replacing
+— `doorburst.js` never asks for letters, it asks for "the mark".
+
+Two things not to break in it:
+
+- the **sign** of the wings' `rotateY` decides whether the door opens outward or
+  inward; the current one (left negative, right positive) opens outward
+- the swing **stops at 70 degrees**. Past 90 the wing turns its blank back to
+  the camera and disappears (`backface-visibility: hidden`), and around 84 it is
+  already down to a 10-pixel sliver
+
+The timing is documented in a comment in `components.css`; if you change it,
+move `TOTAL_MS` in `doorburst.js` with it. Under `prefers-reduced-motion` the
+whole thing is skipped, and a tap anywhere skips it.
+
+## Layout
 
 ```
-content/          amit szerkesztesz: kérdések és felületi szövegek
-resources/        a nyers ajtó-rajz (Inkscape export), forrásként megőrizve
-plugins/          Vite plugin: a válaszokból build közben hash lesz
-shared/           a válasz-normalizálás, közös a buildben és a böngészőben
-src/lib/          állapot, i18n, válaszellenőrzés, DOM helper
-src/screens/      nyelvválasztó, intro, állomás, térkép, záróképernyő
-src/styles/       design tokenek és stílusok
-src/ui/           ikonok, jelvények, zászlók, lépésjelző, dialógus
-public/photos/    ide jönnek a fotók
+content/          what you edit: riddles and interface strings
+resources/        the raw door drawing (Inkscape export), kept as the source
+plugins/          Vite plugin: answers become hashes at build time
+shared/           answer normalisation, shared by the build and the browser
+src/lib/          state, i18n, answer checking, DOM helper
+src/screens/      language picker, intro, station, map, finish screen
+src/styles/       design tokens and styles
+src/ui/           icons, badges, flags, step indicator, dialog
+public/photos/    photos go here
 ```
 
-Se React, se build-varázslat: sima ES modulok és CSS. A teljes JS 31 KB
-(12 KB gzip).
+No React, no build magic: plain ES modules and CSS.
