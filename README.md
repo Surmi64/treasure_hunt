@@ -95,9 +95,24 @@ kód kell, három zászlóval — a nyelvet úgyis a nyitóképernyőn választj
 ## Karbantartó parancsok
 
 ```bash
-npm run icons              # PWA ikonok újragenerálása (ImageMagick kell hozzá)
+npm run icons              # favicon + PWA ikonok újragenerálása (Chromium kell hozzá)
 node scripts/shots.mjs     # képernyőképek minden nézetről (fejlesztéshez)
 ```
+
+## Az ajtóminta
+
+A napkorongos-sugaras pincesor-motívum nincs képként lementve: a
+`src/ui/doorpattern.js` rajzolja meg SVG-ben, számolt geometriával. Ezért
+ugyanaz az ábra jó a nyitóképernyő logójának, a záró pecsétnek, az
+állomásszám jelvényének és az app-ikonnak is, minden méretben élesen.
+
+Hangolható paraméterek: `rays` (sugarak száma), `hatch` (a domboldal
+sraffozásának sűrűsége), `sunY` / `sunR` (a napkorong helye és mérete),
+`stroke` (vonalvastagság). Kis méretben kevesebb sugár és ritkább
+sraffozás kell, különben összemosódik.
+
+A szín `currentColor`-ból jön, tehát CSS-ből vezérelhető — így lesz a
+megoldott állomás jelvénye zöld egyetlen `color:` váltással.
 
 ## Felépítés
 

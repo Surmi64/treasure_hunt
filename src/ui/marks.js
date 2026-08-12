@@ -1,34 +1,46 @@
 import { svg } from '../lib/dom.js';
+import { doorPanel } from './doorpattern.js';
 
 /**
  * Brand marks and flags, drawn inline so they scale, theme, and work offline.
  * The recurring shape is the cellar door: a round arch on a stone base.
  */
 
+/** The painted cellar door itself — the splash and intro logo. */
 export function logoMark(className = '') {
-  return svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 120" fill="none"
+  return svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 200" fill="none"
     class="${className}" role="img" aria-label="">
-    <path d="M8 118V50a40 40 0 0 1 80 0v68" stroke="currentColor" stroke-width="2.5" opacity=".55"/>
-    <path d="M20 118V50a28 28 0 0 1 56 0v68" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
-    <path d="M48 118V50" stroke="currentColor" stroke-width="1.2" opacity=".25"/>
-    <path d="M48 22v14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M48 4 54 16 48 22 42 16Z" fill="currentColor"/>
-    <circle cx="48" cy="74" r="13" stroke="currentColor" stroke-width="2"/>
-    <path d="M48 61v26M35 74h26" stroke="currentColor" stroke-width="1" opacity=".5"/>
+    ${doorPanel({ w: 120, h: 200, sunY: 0.34, sunR: 0.2, rays: 36, hatch: 0.085, stroke: 1.1 })}
   </svg>`);
 }
 
-/** Wax-seal style badge for the finish screen. */
+/** Wax-seal badge for the finish screen: the same door inside a struck ring. */
 export function sealMark(className = '') {
-  return svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none"
+  return svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" fill="none"
     class="${className}" role="img" aria-label="">
-    <circle cx="60" cy="60" r="52" stroke="currentColor" stroke-width="1" opacity=".3"/>
-    <circle cx="60" cy="60" r="45" stroke="currentColor" stroke-width="2.5"/>
-    <circle cx="60" cy="60" r="38" stroke="currentColor" stroke-width="1" opacity=".45" stroke-dasharray="2 6"/>
-    <path d="M40 96V58a20 20 0 0 1 40 0v38" stroke="currentColor" stroke-width="2.5"/>
-    <path d="M60 44v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M60 30 66 41 60 47 54 41Z" fill="currentColor"/>
-    <path d="M52 74h16M60 66v16" stroke="currentColor" stroke-width="1.4" opacity=".6"/>
+    <circle cx="70" cy="70" r="68" stroke="currentColor" stroke-width="1" opacity=".3"/>
+    <circle cx="70" cy="70" r="61" stroke="currentColor" stroke-width="2.5"/>
+    <circle cx="70" cy="70" r="54" stroke="currentColor" stroke-width="1" opacity=".45"
+      stroke-dasharray="2 6"/>
+    <g transform="translate(46 32)">
+      ${doorPanel({ w: 48, h: 78, sunY: 0.34, sunR: 0.22, rays: 28, hatch: 0.11, stroke: 0.8 })}
+    </g>
+  </svg>`);
+}
+
+/**
+ * Station number badge: the door with the number sitting inside the sun disc,
+ * so the pattern reads even at 68px without fighting the digit.
+ */
+export function doorBadge(label, { solved = false } = {}) {
+  const w = 68;
+  const h = 86;
+  return svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" fill="none"
+    class="doorbadge${solved ? ' doorbadge--solved' : ''}" aria-hidden="true">
+    ${doorPanel({ w, h, sunY: 0.38, sunR: 0.29, rays: 24, hatch: 0.1, stroke: 0.9 })}
+    <text x="${w / 2}" y="${h * 0.38}" text-anchor="middle" dominant-baseline="central"
+      font-family="Inter Variable, system-ui, sans-serif" font-size="17" font-weight="650"
+      fill="currentColor">${label}</text>
   </svg>`);
 }
 

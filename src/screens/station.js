@@ -5,6 +5,7 @@ import { checkAnswer } from '../lib/answers.js';
 import { addAttempt, isComplete, markSolved, showHint, state } from '../lib/store.js';
 import { icon } from '../ui/icons.js';
 import { stepsNav } from '../ui/steps.js';
+import { doorBadge } from '../ui/marks.js';
 
 const HINT_AFTER_ATTEMPTS = 2;
 
@@ -168,11 +169,7 @@ export function stationScreen(navigate, index) {
       'div.station__body',
       h(
         'div.station__head',
-        h(
-          'div.arch',
-          { class: solved ? 'arch--solved' : '' },
-          h('span.arch__num', String(index + 1))
-        ),
+        doorBadge(String(index + 1), { solved }),
         h(
           'div.station__titles',
           h('p.eyebrow', t('stationLabel', { n: index + 1 })),

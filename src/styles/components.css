@@ -65,40 +65,17 @@
   opacity: 0.7;
 }
 
-/* the signature shape: a cellar-door arch */
-.arch {
-  --arch-w: 56px;
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: var(--arch-w);
-  height: calc(var(--arch-w) * 1.25);
-  border: 1px solid var(--line-strong);
-  border-radius: calc(var(--arch-w) / 2) calc(var(--arch-w) / 2) 6px 6px;
-  background: linear-gradient(180deg, rgba(201, 162, 76, 0.14), rgba(124, 31, 51, 0.1));
+/* the signature shape: the painted cellar door, drawn in ui/doorpattern.js.
+   `currentColor` drives every line, so the solved state is one colour swap. */
+.doorbadge {
+  width: 68px;
+  height: 86px;
   flex: none;
+  color: var(--gold);
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.55));
 }
 
-.arch--lg {
-  --arch-w: 96px;
-}
-
-.arch__num {
-  /* body font on purpose: Cormorant's "1" reads as an "I" at this size */
-  font-family: var(--font-body);
-  font-size: var(--step-2);
-  font-weight: 600;
-  color: var(--gold-bright);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.arch--solved {
-  border-color: rgba(127, 174, 106, 0.5);
-  background: linear-gradient(180deg, rgba(127, 174, 106, 0.18), rgba(127, 174, 106, 0.05));
-}
-
-.arch--solved .arch__num {
+.doorbadge--solved {
   color: var(--ok);
 }
 
