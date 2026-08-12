@@ -2,6 +2,13 @@
   "_comment": [
     "EZT A FÁJLT KELL SZERKESZTENED a valódi kérdésekhez.",
     "",
+    "A tartalom forrása: hercegkutipincek.com (/koporosi-pincesor, /gomboshegyi-pincesor).",
+    "Az ív: előbb a falu (1-2. állomás), utána maga a pincesor (3-7.).",
+    "Az 1. állomás a két sávban szándékosan azonos - azt a családok együtt olvassák.",
+    "",
+    "A _verify mező a helyszínen ellenőrizendő dolgokat sorolja. A program nem",
+    "használja, csak neked szól - nyugodtan törölheted, ha megjártad a sort.",
+    "",
     "Minden állomásnak két sávja van: 'kids' (gyerekeknek) és 'adults' (16 évtől).",
     "Mindkét sávnak saját története, kérdése és válasza van, mindhárom nyelven.",
     "",
@@ -24,6 +31,7 @@
   "stations": [
     {
       "id": "st1",
+      "_verify": "No on-site object needed — the answer follows from the story.",
       "map": {
         "x": 10.1,
         "y": 93.7
@@ -32,62 +40,65 @@
       "tracks": {
         "kids": {
           "answers": [
-            "1748"
+            "Trautsondorf",
+            "Trautson dorf"
           ],
-          "input": "number",
+          "input": "text",
           "hu": {
-            "title": "A legöregebb pince",
-            "story": "Ez a pince olyan régi, hogy még a dédapák dédapja is gyerek volt, amikor kivájták a hegyoldalba. A gazda, aki építette, olyan büszke volt rá, hogy bevéste az évszámot a kőbe a bejárat fölé. Ott van ma is.",
-            "question": "Keresd meg a pincesor legöregebb pincéjét, és nézz fel a bejárat fölé. Milyen évszám van a kőbe vésve?",
-            "hint": "A pincesor nyugati végén van, a kanyar előtt. Emeld fel a fejed, és nézd meg a kőkeret tetejét!",
-            "reveal": "Eltaláltad! Ez a pince több mint 270 éve áll, és odabent nyáron is hűvös van, mint a hűtőben."
+            "title": "A herceg faluja",
+            "story": "Ez a falu nem mindig Hercegkút volt. 1711-ben egy osztrák főúr, Trautson herceg vásárolta meg ezt a földet a kincstártól, és német családokat hívott ide, hogy irtsák az erdőt és telepítsenek szőlőt. A telepesek a saját nyelvükön adtak nevet az új falunak: fogták a herceg nevét, és hozzátették a német „falu” szót.",
+            "question": "Hogy hívták a falut a herceg idejében?",
+            "hint": "Németül a falu az „dorf”. Írd a herceg neve után, egybe.",
+            "reveal": "Pontosan: Trautsondorf. Minden régi térképen így szerepelt, és a falu csak 1904-ben vette fel a Hercegkút nevet."
           },
           "en": {
-            "title": "The oldest cellar",
-            "story": "This cellar is so old that even your great-great-grandparents' grandparents were children when it was dug into the hillside. The man who built it was so proud that he carved the year into the stone above the door. It is still there.",
-            "question": "Find the oldest cellar of the row and look above its door. What year is carved into the stone?",
-            "hint": "It is at the western end of the row, just before the bend. Look up at the top of the stone frame!",
-            "reveal": "You got it! This cellar has stood for over 270 years, and inside it stays as cool as a fridge, even in summer."
+            "title": "The duke's village",
+            "story": "This village was not always called Hercegkút. In 1711 an Austrian nobleman, Duke Trautson, bought this land from the royal treasury and invited German families to clear the forest and plant vines. The settlers named their new village in their own language: they took the duke's name and added the German word for „village”.",
+            "question": "What was the village called in the duke's day?",
+            "hint": "The German for village is „dorf”. Put it straight after the duke's name.",
+            "reveal": "Exactly: Trautsondorf. That is the name on every old map, and the village only became Hercegkút in 1904."
           },
           "pl": {
-            "title": "Najstarsza piwnica",
-            "story": "Ta piwnica jest tak stara, że nawet dziadkowie twoich pradziadków byli dziećmi, gdy wykuwano ją w zboczu. Gospodarz, który ją zbudował, był tak dumny, że wyrył rok nad drzwiami. Jest tam do dziś.",
-            "question": "Znajdź najstarszą piwnicę w rzędzie i spójrz nad jej drzwi. Jaki rok jest wyryty w kamieniu?",
-            "hint": "Jest na zachodnim krańcu rzędu, tuż przed zakrętem. Podnieś głowę i popatrz na górę kamiennej framugi!",
-            "reveal": "Zgadza się! Ta piwnica stoi od ponad 270 lat, a w środku jest chłodno jak w lodówce, nawet latem."
+            "title": "Wieś księcia",
+            "story": "Ta wieś nie zawsze nazywała się Hercegkút. W 1711 roku austriacki możnowładca, książę Trautson, kupił tę ziemię od skarbu państwa i sprowadził niemieckie rodziny, by karczowały las i sadziły winorośl. Osadnicy nazwali nową wieś w swoim języku: wzięli nazwisko księcia i dodali niemieckie słowo oznaczające „wieś”.",
+            "question": "Jak nazywała się wieś za czasów księcia?",
+            "hint": "Po niemiecku wieś to „dorf”. Dopisz je zaraz po nazwisku księcia.",
+            "reveal": "Dokładnie: Trautsondorf. Tak figuruje na każdej starej mapie, a nazwę Hercegkút wieś przyjęła dopiero w 1904 roku."
           }
         },
         "adults": {
           "answers": [
-            "1748"
+            "Trautsondorf",
+            "Trautson dorf"
           ],
-          "input": "number",
+          "input": "text",
           "hu": {
-            "title": "A legrégebbi pince",
-            "story": "A pincesor legidősebb tagja a török kor utáni újratelepítés idejéből származik, amikor a környék lakossága szinte teljesen kicserélődött. A kőkeretes ajtó fölé a gazda büszkén véste az építés évét — azóta is ott áll, és azóta is ugyanazt a 12 fokot tartja.",
-            "question": "Keresd meg a pincesor legrégebbi pincéjét. Milyen évszám olvasható a bejárat kőkeretén?",
-            "hint": "A pincesor nyugati végén, a kanyar előtt. Nézz fel a kőkeret felső részére.",
-            "reveal": "Pontosan. Ez a pince több mint 270 éve őrzi ugyanazt a hűvös 12 fokot — ez az, ami a bort évtizedekig eltartja."
+            "title": "A herceg faluja",
+            "story": "Ez a falu nem mindig Hercegkút volt. 1711-ben egy osztrák főúr, Trautson herceg vásárolta meg ezt a földet a kincstártól, és német családokat hívott ide, hogy irtsák az erdőt és telepítsenek szőlőt. A telepesek a saját nyelvükön adtak nevet az új falunak: fogták a herceg nevét, és hozzátették a német „falu” szót.",
+            "question": "Hogy hívták a falut a herceg idejében?",
+            "hint": "Németül a falu az „dorf”. Írd a herceg neve után, egybe.",
+            "reveal": "Pontosan: Trautsondorf. Minden régi térképen így szerepelt, és a falu csak 1904-ben vette fel a Hercegkút nevet."
           },
           "en": {
-            "title": "The oldest cellar",
-            "story": "The eldest of the row dates from the resettlement that followed the Ottoman era, when almost the entire population of the region was replaced. The owner proudly carved the year of construction above the stone-framed door — it still stands, and still holds the same 12 °C.",
-            "question": "Find the oldest cellar of the row. What year is carved into the stone frame of its entrance?",
-            "hint": "At the western end of the row, just before the bend. Look up at the top of the stone frame.",
-            "reveal": "Exactly. This cellar has held the same cool 12 °C for over 270 years — the very thing that lets wine keep for decades."
+            "title": "The duke's village",
+            "story": "This village was not always called Hercegkút. In 1711 an Austrian nobleman, Duke Trautson, bought this land from the royal treasury and invited German families to clear the forest and plant vines. The settlers named their new village in their own language: they took the duke's name and added the German word for „village”.",
+            "question": "What was the village called in the duke's day?",
+            "hint": "The German for village is „dorf”. Put it straight after the duke's name.",
+            "reveal": "Exactly: Trautsondorf. That is the name on every old map, and the village only became Hercegkút in 1904."
           },
           "pl": {
-            "title": "Najstarsza piwnica",
-            "story": "Najstarsza z całego rzędu pochodzi z czasów ponownego zasiedlenia po epoce osmańskiej, gdy ludność okolicy niemal całkowicie się wymieniła. Gospodarz dumnie wyrył rok budowy nad kamienną framugą — stoi tak do dziś i wciąż utrzymuje te same 12 °C.",
-            "question": "Znajdź najstarszą piwnicę w rzędzie. Jaki rok jest wyryty na kamiennej framudze wejścia?",
-            "hint": "Na zachodnim krańcu rzędu, tuż przed zakrętem. Spójrz na górną część kamiennej framugi.",
-            "reveal": "Dokładnie. Ta piwnica utrzymuje te same chłodne 12 °C od ponad 270 lat — właśnie dzięki temu wino wytrzymuje dziesięciolecia."
+            "title": "Wieś księcia",
+            "story": "Ta wieś nie zawsze nazywała się Hercegkút. W 1711 roku austriacki możnowładca, książę Trautson, kupił tę ziemię od skarbu państwa i sprowadził niemieckie rodziny, by karczowały las i sadziły winorośl. Osadnicy nazwali nową wieś w swoim języku: wzięli nazwisko księcia i dodali niemieckie słowo oznaczające „wieś”.",
+            "question": "Jak nazywała się wieś za czasów księcia?",
+            "hint": "Po niemiecku wieś to „dorf”. Dopisz je zaraz po nazwisku księcia.",
+            "reveal": "Dokładnie: Trautsondorf. Tak figuruje na każdej starej mapie, a nazwę Hercegkút wieś przyjęła dopiero w 1904 roku."
           }
         }
       }
     },
     {
       "id": "st2",
+      "_verify": "Adults: 543 hold of cleared land. Documented on hercegkutipincek.com; check whether an information board on site states it, otherwise the question has nowhere to be read from.",
       "map": {
         "x": 24.8,
         "y": 87.2
@@ -96,62 +107,64 @@
       "tracks": {
         "kids": {
           "answers": [
-            "PLACEHOLDER-2-kids"
+            "Schwarzwald",
+            "Schwarz Wald"
           ],
           "input": "text",
           "hu": {
-            "title": "2. állomás címe (gyerek sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "Messziről jöttek",
+            "story": "A telepesek 1750 körül érkeztek, jó ezer kilométert gyalogolva és szekerezve. Németország délnyugati sarkából jöttek, egy sötét fenyvesekkel borított hegyvidékről, ahol a fák olyan sűrűn állnak, hogy délben is árnyék van alattuk.",
+            "question": "Hogy hívják németül azt az erdős hegyvidéket, ahonnan a telepesek jöttek? A neve annyit tesz: „fekete erdő”.",
+            "hint": "A „fekete” németül schwarz, az „erdő” pedig Wald. Írd egybe a kettőt!",
+            "reveal": "Így van: a Schwarzwaldból. Sváboknak hívják őket, és a nyelvüket meg a dalaikat máig őrzik itt a faluban."
           },
           "en": {
-            "title": "Station 2 title (kids track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "They came a long way",
+            "story": "The settlers arrived around 1750, after walking and carting a thousand kilometres. They came from the south-western corner of Germany, from a range of hills covered in dark pine forest, where the trees stand so close that it is shady under them even at noon.",
+            "question": "What is the German name of the forested hills the settlers came from? The name simply means „black forest”.",
+            "hint": "„Black” in German is schwarz, and „forest” is Wald. Join the two together!",
+            "reveal": "That's it: the Schwarzwald. They are called Swabians, and their language and their songs are still kept alive in this village."
           },
           "pl": {
-            "title": "Tytuł stacji 2 (dzieci)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Przyszli z daleka",
+            "story": "Osadnicy przybyli około 1750 roku, po tysiącu kilometrów marszu i jazdy wozem. Przyszli z południowo-zachodniego krańca Niemiec, z gór porośniętych ciemnym lasem świerkowym, gdzie drzewa stoją tak gęsto, że nawet w południe jest pod nimi cień.",
+            "question": "Jak brzmi niemiecka nazwa lesistych gór, z których przyszli osadnicy? Nazwa znaczy po prostu „czarny las”.",
+            "hint": "„Czarny” to po niemiecku schwarz, a „las” to Wald. Połącz oba słowa!",
+            "reveal": "Zgadza się: Schwarzwald. Nazywa się ich Szwabami, a ich język i pieśni są w tej wsi żywe do dziś."
           }
         },
         "adults": {
           "answers": [
-            "PLACEHOLDER-2-adults"
+            "543"
           ],
-          "input": "text",
+          "input": "number",
           "hu": {
-            "title": "2. állomás címe (felnőtt sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "Erdőből szántó",
+            "story": "A svábok 1750 körül érkeztek a Schwarzwald vidékéről, és nem kész falut kaptak, hanem erdőt. Fát vágtak, gyökeret irtottak, követ hordtak — és a letelepedés utáni fél évszázadban tekintélyes szántóterületet nyertek el az erdőtől.",
+            "question": "Hány hold szántóföldet hódítottak el az erdőtől a letelepedés utáni fél évszázadban?",
+            "hint": "Ötszáz fölött, de hatszáz alatt. Az utolsó két számjegy is páratlan szám.",
+            "reveal": "543 hold. Ennyit jelentett két emberöltő kézi munkája — és erre a földre került rá később a szőlő."
           },
           "en": {
-            "title": "Station 2 title (adults track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "Forest into farmland",
+            "story": "The Swabians arrived around 1750 from the Schwarzwald, and what they were given was not a village but a forest. They felled, grubbed out roots and carried stone — and within fifty years of settling they had won a considerable stretch of arable land from the trees.",
+            "question": "How many holds of arable land did they clear from the forest in the first fifty years?",
+            "hint": "Over five hundred, under six hundred. A hold is an old Hungarian land measure.",
+            "reveal": "543 holds. That is what two generations of hand labour amounted to — and it is this land the vines were later planted on."
           },
           "pl": {
-            "title": "Tytuł stacji 2 (dorośli)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Z lasu w pole",
+            "story": "Szwabowie przybyli około 1750 roku ze Schwarzwaldu i zastali nie gotową wieś, lecz las. Ścinali drzewa, karczowali korzenie, znosili kamienie — i w ciągu pięćdziesięciu lat od osiedlenia wydarli lasowi pokaźny obszar pól uprawnych.",
+            "question": "Ile holdów ziemi uprawnej wykarczowali z lasu w pierwszym półwieczu?",
+            "hint": "Ponad pięćset, poniżej sześciuset. Hold to dawna węgierska miara powierzchni.",
+            "reveal": "543 holdy. Tyle dała praca rąk dwóch pokoleń — i właśnie na tej ziemi posadzono później winorośl."
           }
         }
       }
     },
     {
       "id": "st3",
+      "_verify": "No on-site object needed, but the visitor is asked to touch a cellar wall.",
       "map": {
         "x": 37.5,
         "y": 77.4
@@ -160,62 +173,71 @@
       "tracks": {
         "kids": {
           "answers": [
-            "PLACEHOLDER-3-kids"
+            "tufa",
+            "riolittufa",
+            "riolit tufa",
+            "tuff",
+            "tufo"
           ],
           "input": "text",
           "hu": {
-            "title": "3. állomás címe (gyerek sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "A kő, ami puha",
+            "story": "Tedd a tenyered az egyik pince falára. Ez a kő nem olyan kemény, mint a folyóparti kavics — puha, könnyű, és szinte porzik. Régen tűzhányók szórták ide a hamut, az összeállt, és kővé keményedett. Éppen ezért lehetett kézi szerszámmal kivájni a hegyoldalt.",
+            "question": "Hogy hívják azt a kőzetet, ami vulkáni hamuból lett? A neve négy betű.",
+            "hint": "T-vel kezdődik, és a végén egy „a” van. Tu…",
+            "reveal": "Tufa! Pontosabban riolittufa. Ha kemény gránit lenne a hegy, egy pince sem lenne itt — ezt a követ viszont ásóval is bírni lehet."
           },
           "en": {
-            "title": "Station 3 title (kids track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "The stone that is soft",
+            "story": "Put your hand flat on one of the cellar walls. This stone is not hard like a river pebble — it is soft, light, and almost dusty. Long ago volcanoes threw ash over this land, the ash settled, and it hardened into rock. That is exactly why the hillside could be hollowed out with hand tools.",
+            "question": "What is the rock made of volcanic ash called? The name has four letters.",
+            "hint": "It starts with T. Tu…",
+            "reveal": "Tuff! Rhyolite tuff, to be exact. If this hill were hard granite there would not be a single cellar here — but this stone gives way to a spade."
           },
           "pl": {
-            "title": "Tytuł stacji 3 (dzieci)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Kamień, który jest miękki",
+            "story": "Połóż dłoń na ścianie jednej z piwnic. Ten kamień nie jest twardy jak otoczak z rzeki — jest miękki, lekki i niemal pyli. Dawno temu wulkany zasypały tę okolicę popiołem, popiół osiadł i stwardniał w skałę. Właśnie dlatego zbocze dało się wydrążyć ręcznymi narzędziami.",
+            "question": "Jak nazywa się skała powstała z wulkanicznego popiołu? Nazwa ma cztery litery.",
+            "hint": "Zaczyna się na T. Tu…",
+            "reveal": "Tuf! A dokładniej tuf ryolitowy. Gdyby to wzgórze było z twardego granitu, nie byłoby tu ani jednej piwnicy — a temu kamieniowi wystarczy szpadel."
           }
         },
         "adults": {
           "answers": [
-            "PLACEHOLDER-3-adults"
+            "riolittufa",
+            "riolit tufa",
+            "rhyolite tuff",
+            "tuf ryolitowy",
+            "riolit"
           ],
           "input": "text",
           "hu": {
-            "title": "3. állomás címe (felnőtt sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "Amiben a pince áll",
+            "story": "Tedd a tenyered a falra. Az egész Zempléni-hegység vulkáni eredetű: a kitörések összesült hamuja könnyű, jól faragható kőzetté állt össze. Ez a kőzet elég szilárd ahhoz, hogy megtartsa a boltozatot, és elég puha ahhoz, hogy csákánnyal haladni lehessen benne — a pincesor létezése ezen az egy tulajdonságon múlik.",
+            "question": "Mi a neve annak a vulkáni kőzetnek, amelybe a pincéket vájták?",
+            "hint": "Két szó összevonása: a savanyú kiömlési kőzet neve + a hamukő neve.",
+            "reveal": "Riolittufa. Ebben halad a pince 10–40 méter mélyen a hegy alá, és ez tartja odabent állandóan a 9–12 fokot."
           },
           "en": {
-            "title": "Station 3 title (adults track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "What the cellar stands in",
+            "story": "Put your hand on the wall. The whole Zemplén range is volcanic: the welded ash of the eruptions set into a light, workable rock. It is firm enough to hold a vault and soft enough to cut with a pick — the existence of this whole cellar row rests on that single property.",
+            "question": "What is the volcanic rock the cellars are cut into called?",
+            "hint": "Two words run together: the pale volcanic rock type, plus the word for ash-stone.",
+            "reveal": "Rhyolite tuff. The cellars run 10 to 40 metres into the hill through it, and it is what holds them at a steady 9–12 °C."
           },
           "pl": {
-            "title": "Tytuł stacji 3 (dorośli)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "W czym stoi piwnica",
+            "story": "Połóż dłoń na ścianie. Całe góry Zemplén są pochodzenia wulkanicznego: spieczony popiół z erupcji zastygł w lekką, łatwą w obróbce skałę. Jest dość mocna, by utrzymać sklepienie, i dość miękka, by dało się w niej pracować kilofem — istnienie całej tej piwnicznej uliczki zależy od tej jednej właściwości.",
+            "question": "Jak nazywa się skała wulkaniczna, w której wykuto piwnice?",
+            "hint": "Dwa słowa: nazwa jasnej skały wulkanicznej plus słowo oznaczające skałę z popiołu.",
+            "reveal": "Tuf ryolitowy. Piwnice wchodzą w nim na 10–40 metrów w głąb wzgórza, i to on utrzymuje w nich stałe 9–12 °C."
           }
         }
       }
     },
     {
       "id": "st4",
+      "_verify": "MUST BE WALKED. 1825 is the earliest year documented on a Kőporos portal. Find the cellar it is carved on, confirm the digits are legible, and put its location into the hint.",
       "map": {
         "x": 49.6,
         "y": 65.3
@@ -224,62 +246,63 @@
       "tracks": {
         "kids": {
           "answers": [
-            "PLACEHOLDER-4-kids"
+            "1825"
           ],
-          "input": "text",
+          "input": "number",
           "hu": {
-            "title": "4. állomás címe (gyerek sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "Az évszám a kapu fölött",
+            "story": "Aki pincét vájt, büszke volt rá — és a nevét vagy az évszámot belevéste a kapu fölötti kőbe. Ezek a számok kétszáz éve ott vannak, esőben, fagyban, háborúban is. A pincesor legrégebbi vésett évszáma még mindig kiolvasható.",
+            "question": "Járd végig a sort, és keresd meg a legrégebbi évszámot a pincekapuk fölött. Melyik év az?",
+            "hint": "1800 után, de 1830 előtt. Emeld fel a fejed: a szám a kőkeret tetején van, nem az ajtón.",
+            "reveal": "1825! Amikor ezt bevésték, még nem volt se villany, se autó — a pince viszont már készen állt, és azóta is áll."
           },
           "en": {
-            "title": "Station 4 title (kids track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "The year above the door",
+            "story": "Anyone who dug a cellar was proud of it — and carved his name or the year into the stone above the doorway. Those numbers have been there for two hundred years, through rain, frost and war. The oldest carved year on this row can still be read.",
+            "question": "Walk the row and find the oldest year carved above a cellar door. Which year is it?",
+            "hint": "After 1800 but before 1830. Look up: the number is on the top of the stone frame, not on the door.",
+            "reveal": "1825! When that was cut there was no electricity and no cars — but the cellar was already finished, and it is still standing."
           },
           "pl": {
-            "title": "Tytuł stacji 4 (dzieci)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Rok nad drzwiami",
+            "story": "Każdy, kto wykuł piwnicę, był z niej dumny — i wyrzeźbił swoje nazwisko albo rok w kamieniu nad wejściem. Te liczby są tam od dwustu lat, mimo deszczu, mrozu i wojny. Najstarszy wykuty rok na tej uliczce wciąż da się odczytać.",
+            "question": "Przejdź całą uliczkę i znajdź najstarszy rok wykuty nad drzwiami piwnicy. Który to rok?",
+            "hint": "Po 1800, ale przed 1830. Podnieś głowę: liczba jest na szczycie kamiennej ramy, nie na drzwiach.",
+            "reveal": "1825! Gdy to wykuwano, nie było ani prądu, ani samochodów — a piwnica już stała i stoi do dziś."
           }
         },
         "adults": {
           "answers": [
-            "PLACEHOLDER-4-adults"
+            "1825"
           ],
-          "input": "text",
+          "input": "number",
           "hu": {
-            "title": "4. állomás címe (felnőtt sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "A legkorábbi vésett évszám",
+            "story": "A kőporosi pincesor fiatalabb a gomboshegyinél: az 1782–85-ös katonai felmérés még nem jelöli, a harmadik felmérés viszont — 1869 és 1887 között — már igen. A kapuzatokba vésett évszámok ennél pontosabban beszélnek: a legkorábbi jóval megelőzi a térképeket.",
+            "question": "Keresd meg a pincesor legkorábbi vésett évszámát a kapuzatokon. Melyik év az?",
+            "hint": "A reformkor előtti évtized. 18-cal kezdődik, és a század első negyedének a vége felé jár.",
+            "reveal": "1825. Negyvennégy évvel azelőtt, hogy a pincesor egyáltalán felkerült volna egy katonai térképre — a kő pontosabban emlékezik, mint a hivatal."
           },
           "en": {
-            "title": "Station 4 title (adults track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "The earliest carved year",
+            "story": "The Kőporos row is younger than the one on Gomboshegy: the military survey of 1782–85 does not show it yet, while the third survey, between 1869 and 1887, does. The years carved into the portals speak more precisely than that — the earliest of them long predates the maps.",
+            "question": "Find the earliest year carved on the portals of this row. Which year is it?",
+            "hint": "It begins with 18 and falls towards the end of the century's first quarter.",
+            "reveal": "1825. Forty-four years before the row appeared on a military map at all — the stone remembers more accurately than the registry."
           },
           "pl": {
-            "title": "Tytuł stacji 4 (dorośli)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Najwcześniejszy wykuty rok",
+            "story": "Uliczka Kőporos jest młodsza od tej na Gomboshegy: zdjęcie wojskowe z lat 1782–85 jeszcze jej nie pokazuje, a trzecie, z lat 1869–1887, już tak. Lata wykute w portalach mówią jednak dokładniej — najwcześniejszy z nich znacznie wyprzedza mapy.",
+            "question": "Znajdź najwcześniejszy rok wykuty w portalach tej uliczki. Który to rok?",
+            "hint": "Zaczyna się na 18 i przypada pod koniec pierwszej ćwierci stulecia.",
+            "reveal": "1825. Czterdzieści cztery lata przed tym, nim uliczka w ogóle trafiła na mapę wojskową — kamień pamięta dokładniej niż urząd."
           }
         }
       }
     },
     {
       "id": "st5",
+      "_verify": "Adults: 87 cellars on the Kőporos row (documented). Worth counting once on site so the number is defensible if a visitor actually counts.",
       "map": {
         "x": 61.7,
         "y": 52.4
@@ -288,62 +311,67 @@
       "tracks": {
         "kids": {
           "answers": [
-            "PLACEHOLDER-5-kids"
+            "3",
+            "három",
+            "harom",
+            "three",
+            "trzy"
           ],
           "input": "text",
           "hu": {
-            "title": "5. állomás címe (gyerek sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "Egyforma háztetők",
+            "story": "Állj meg, és nézz végig a soron. A pincék homlokzata mind ugyanazt a formát rajzolja az égre — nem véletlenül: a telepesek egymástól tanulták a mesterséget, és mindenki ugyanúgy csinálta, mint a szomszédja. Nyolcvanhét pince, nyolcvanhét egyforma oromzat.",
+            "question": "Nézd meg egy pince homlokzatának a tetejét. Hány sarka van annak a formának?",
+            "hint": "Olyan alakú, mint egy sátor vagy egy hegycsúcs. Számold meg a csúcsait!",
+            "reveal": "Három — háromszög oromzat a neve. Ettől néz ki az egész sor úgy, mintha egyetlen kéz építette volna."
           },
           "en": {
-            "title": "Station 5 title (kids track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "Roofs that all match",
+            "story": "Stop and look down the row. Every cellar front draws the same shape against the sky — and not by chance: the settlers learned the craft from one another, and everyone built the way his neighbour did. Eighty-seven cellars, eighty-seven matching gables.",
+            "question": "Look at the top of a cellar front. How many corners does that shape have?",
+            "hint": "It is shaped like a tent, or a mountain peak. Count its points!",
+            "reveal": "Three — it is called a triangular gable. That is what makes the whole row look as though one pair of hands built it."
           },
           "pl": {
-            "title": "Tytuł stacji 5 (dzieci)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Dachy jak jeden",
+            "story": "Zatrzymaj się i spójrz wzdłuż uliczki. Każda fasada piwnicy rysuje na niebie ten sam kształt — i nie przypadkiem: osadnicy uczyli się rzemiosła jeden od drugiego i każdy budował tak jak sąsiad. Osiemdziesiąt siedem piwnic, osiemdziesiąt siedem takich samych szczytów.",
+            "question": "Popatrz na górę fasady piwnicy. Ile rogów ma ten kształt?",
+            "hint": "Ma kształt namiotu albo górskiego szczytu. Policz jego wierzchołki!",
+            "reveal": "Trzy — nazywa się to szczytem trójkątnym. To dzięki niemu cała uliczka wygląda, jakby zbudowała ją jedna para rąk."
           }
         },
         "adults": {
           "answers": [
-            "PLACEHOLDER-5-adults"
+            "87"
           ],
-          "input": "text",
+          "input": "number",
           "hu": {
-            "title": "5. állomás címe (felnőtt sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "Nyolcvanhét homlokzat",
+            "story": "A kőporosi sor a kanyargós, macskaköves utcáiról ismerhető meg: a pincék rövidebbek, mint a gomboshegyiek, a járatok pedig sokszor egymás alatt és fölött hatolnak a föld mélyébe. A homlokzatok viszont szinte teljesen egységesek — ez adja a sor arcát.",
+            "question": "Hány pince áll a kőporosi pincesorban?",
+            "hint": "Nyolcvan fölött, kilencven alatt. A két számjegy összege tizenöt.",
+            "reveal": "87. A két hercegkúti pincesorban együtt több mint 160 pince áll — és mindkettő külön nevesítve került fel a világörökségi listára."
           },
           "en": {
-            "title": "Station 5 title (adults track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "Eighty-seven fronts",
+            "story": "The Kőporos row is known by its winding cobbled lanes: the cellars are shorter than those on Gomboshegy, and the passages often run one above another into the depth of the hill. The fronts, though, are almost entirely uniform — that is what gives the row its face.",
+            "question": "How many cellars stand in the Kőporos row?",
+            "hint": "Over eighty, under ninety. The two digits add up to fifteen.",
+            "reveal": "87. The two Hercegkút rows together hold more than 160 cellars — and both were named individually on the World Heritage list."
           },
           "pl": {
-            "title": "Tytuł stacji 5 (dorośli)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Osiemdziesiąt siedem fasad",
+            "story": "Uliczkę Kőporos poznaje się po krętych, brukowanych zaułkach: piwnice są krótsze niż te na Gomboshegy, a korytarze często biegną jeden nad drugim w głąb wzgórza. Fasady są za to niemal całkowicie jednolite — i to one nadają uliczce twarz.",
+            "question": "Ile piwnic stoi w uliczce Kőporos?",
+            "hint": "Ponad osiemdziesiąt, poniżej dziewięćdziesięciu. Suma obu cyfr to piętnaście.",
+            "reveal": "87. Obie uliczki w Hercegkút liczą razem ponad 160 piwnic — i obie trafiły na listę światowego dziedzictwa z osobna wymienione."
           }
         }
       }
     },
     {
       "id": "st6",
+      "_verify": "2010 rain, 31 cellars collapsed, rebuilding from 2012. Documented. If a board on site gives a different count, that board wins.",
       "map": {
         "x": 76.2,
         "y": 38.1
@@ -352,62 +380,63 @@
       "tracks": {
         "kids": {
           "answers": [
-            "PLACEHOLDER-6-kids"
+            "2010"
           ],
-          "input": "text",
+          "input": "number",
           "hu": {
-            "title": "6. állomás címe (gyerek sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "Amikor beszakadt a hegy",
+            "story": "Nem is olyan régen egy tavasszal annyi eső esett, hogy a hegy átázott, és a puha tufa nem bírta tovább. Egyik pince a másik után szakadt be — harmincegy dőlt össze egyetlen év alatt. A falu nem hagyta veszni: két év múlva nekiálltak újjáépíteni, és amit most látsz, jórészt azóta készült.",
+            "question": "Melyik évben szakadtak be a pincék a nagy esőzés miatt?",
+            "hint": "A 2000-es években történt, a tizedik évében.",
+            "reveal": "2010-ben. Ha ma sétálsz itt, végig azon jársz, amit a falu a saját kezével hozott helyre."
           },
           "en": {
-            "title": "Station 6 title (kids track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "When the hill gave way",
+            "story": "Not so long ago, so much rain fell one spring that the hill soaked through and the soft tuff could take no more. One cellar collapsed after another — thirty-one of them in a single year. The village did not let them go: two years later they began rebuilding, and most of what you see now dates from then.",
+            "question": "In which year did the cellars collapse after the great rains?",
+            "hint": "It was in the 2000s, in the tenth year of them.",
+            "reveal": "In 2010. Everything you walk past today is what the village put back with its own hands."
           },
           "pl": {
-            "title": "Tytuł stacji 6 (dzieci)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Gdy wzgórze się zapadło",
+            "story": "Nie tak dawno pewnej wiosny spadło tyle deszczu, że wzgórze przesiąkło i miękki tuf nie wytrzymał. Piwnice zapadały się jedna po drugiej — trzydzieści jeden w ciągu jednego roku. Wieś nie dała za wygraną: dwa lata później zaczęto odbudowę i to, co widzisz dziś, powstało w większości wtedy.",
+            "question": "W którym roku piwnice zapadły się po wielkich deszczach?",
+            "hint": "To były lata dwutysięczne, ich dziesiąty rok.",
+            "reveal": "W 2010. Wszystko, obok czego dziś przechodzisz, wieś odbudowała własnymi rękami."
           }
         },
         "adults": {
           "answers": [
-            "PLACEHOLDER-6-adults"
+            "31"
           ],
-          "input": "text",
+          "input": "number",
           "hu": {
-            "title": "6. állomás címe (felnőtt sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "A 2010-es tavasz",
+            "story": "2010 tavaszán rendkívüli mennyiségű eső zúdult a hegyoldalra. A tufa átázott, a boltozatok megadták magukat, és a kőporosi sor jelentős része néhány hét alatt omlásba fordult. 2012-től kezdődött a helyreállítás: helyi összefogásból és európai forrásból, kőburkolattal, föld alá vitt légvezetékkel, 3D-s felméréssel.",
+            "question": "Hány pince omlott össze a 2010-es esőzések nyomán?",
+            "hint": "Harminc fölött, negyven alatt — és páratlan szám.",
+            "reveal": "31 pince. Az újjáépítés tizenkét évig tartott, és 2023-ban a sor északi végén megnyílt az Örökség Élményközpont."
           },
           "en": {
-            "title": "Station 6 title (adults track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "The spring of 2010",
+            "story": "In the spring of 2010 an extraordinary volume of rain came down on the hillside. The tuff soaked through, vaults gave way, and a large part of the Kőporos row fell in within weeks. Restoration began in 2012, funded locally and from European grants: stone paving, overhead cables taken underground, the whole row surveyed in 3D.",
+            "question": "How many cellars collapsed after the rains of 2010?",
+            "hint": "Over thirty, under forty — and an odd number.",
+            "reveal": "31 cellars. The rebuilding ran for twelve years, and in 2023 the Heritage Experience Centre opened at the north end of the row."
           },
           "pl": {
-            "title": "Tytuł stacji 6 (dorośli)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Wiosna 2010 roku",
+            "story": "Wiosną 2010 roku na zbocze spadła nadzwyczajna ilość deszczu. Tuf przesiąkł, sklepienia ustąpiły, a znaczna część uliczki Kőporos zawaliła się w ciągu kilku tygodni. Odbudowa ruszyła w 2012 roku, ze środków lokalnych i europejskich: kamienny bruk, linie napowietrzne schowane pod ziemię, pomiar całej uliczki w 3D.",
+            "question": "Ile piwnic zawaliło się po deszczach 2010 roku?",
+            "hint": "Ponad trzydzieści, poniżej czterdziestu — i liczba nieparzysta.",
+            "reveal": "31 piwnic. Odbudowa trwała dwanaście lat, a w 2023 roku na północnym krańcu uliczki otwarto Centrum Doświadczania Dziedzictwa."
           }
         }
       }
     },
     {
       "id": "st7",
+      "_verify": "2002 UNESCO listing of Tokaj-Hegyalja. Documented and uncontroversial.",
       "map": {
         "x": 92.0,
         "y": 26.0
@@ -416,56 +445,56 @@
       "tracks": {
         "kids": {
           "answers": [
-            "PLACEHOLDER-7-kids"
+            "2002"
           ],
-          "input": "text",
+          "input": "number",
           "hu": {
-            "title": "7. állomás címe (gyerek sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "A világ öröksége",
+            "story": "Van egy lista, amire a Föld legféltettebb helyei kerülnek fel — olyanok, mint az egyiptomi piramisok vagy a Nagy-korallzátony. Ezen a listán rajta van ez a domboldal is, és a két hercegkúti pincesort külön néven említik rajta. Nem csak a bor miatt: a pincék miatt is, amelyek mellett most állsz.",
+            "question": "Melyik évben került fel Tokaj-Hegyalja a világörökségi listára?",
+            "hint": "A 2000-es évek legelején. A szám elölről és hátulról is ugyanaz.",
+            "reveal": "2002. Ezzel a hét feladvánnyal végigjártad az egészet — mostantól te is tudod, mi ez a hely."
           },
           "en": {
-            "title": "Station 7 title (kids track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "The world's heritage",
+            "story": "There is a list that the most treasured places on Earth go on — places like the Egyptian pyramids or the Great Barrier Reef. This hillside is on that list, and the two Hercegkút cellar rows are named on it in their own right. Not only for the wine: for the cellars you are standing beside right now.",
+            "question": "In which year was Tokaj-Hegyalja added to the World Heritage list?",
+            "hint": "Right at the start of the 2000s. The number reads the same backwards.",
+            "reveal": "2002. With these seven riddles you have walked the whole of it — and now you know what this place is."
           },
           "pl": {
-            "title": "Tytuł stacji 7 (dzieci)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Dziedzictwo świata",
+            "story": "Istnieje lista, na którą trafiają najcenniejsze miejsca na Ziemi — takie jak piramidy egipskie czy Wielka Rafa Koralowa. To zbocze też jest na tej liście, a obie uliczki piwniczne w Hercegkút wymieniono na niej z nazwy. Nie tylko przez wino: także przez piwnice, obok których właśnie stoisz.",
+            "question": "W którym roku Tokaj-Hegyalja trafiła na listę światowego dziedzictwa?",
+            "hint": "Na samym początku lat dwutysięcznych. Liczba czyta się tak samo wspak.",
+            "reveal": "2002. Tymi siedmioma zagadkami przeszedłeś całą drogę — i teraz już wiesz, czym jest to miejsce."
           }
         },
         "adults": {
           "answers": [
-            "PLACEHOLDER-7-adults"
+            "2002"
           ],
-          "input": "text",
+          "input": "number",
           "hu": {
-            "title": "7. állomás címe (felnőtt sáv)",
-            "story": "Ide jön 2-4 mondat a helyszín történetéből. Ez az a rész, amitől a látogató megtudja, hol áll.",
-            "question": "Ide jön a kérdés.",
-            "hint": "Ide jön a segítség, ami 2 hibás tipp után jelenik meg.",
-            "reveal": "Ide jön a helyes válasz utáni kis extra információ."
+            "title": "Világörökség",
+            "story": "Hercegkút 1908-ban lett a zárt tokaj-hegyaljai borvidék része, és onnantól a falu sorsa a boré. A pincesorok azonban nem csak a borvidékkel együtt kaptak elismerést: amikor Tokaj-Hegyalja történelmi borvidéki kultúrtája felkerült az UNESCO világörökségi listájára, a két hercegkúti pincesor külön nevesítésre került.",
+            "question": "Melyik évben került Tokaj-Hegyalja az UNESCO világörökségi listájára?",
+            "hint": "A 2000-es évek eleje. Palindróm évszám.",
+            "reveal": "2002. Ezzel körbeértél: a herceg 1711-es vásárlásától a világörökségi címig — és mindazt, amit most már tudsz erről a helyről, senki nem veheti el tőled."
           },
           "en": {
-            "title": "Station 7 title (adults track)",
-            "story": "Two to four sentences of local history go here.",
-            "question": "The question goes here.",
-            "hint": "The hint, shown after two wrong guesses.",
-            "reveal": "A little extra fact revealed after the correct answer."
+            "title": "World heritage",
+            "story": "Hercegkút was admitted to the closed Tokaj-Hegyalja wine region in 1908, and from then on the village's fortunes were the wine's. But the cellar rows were not merely carried along with the region: when the Tokaj Wine Region Historic Cultural Landscape went onto the UNESCO World Heritage list, both Hercegkút rows were named in their own right.",
+            "question": "In which year did Tokaj-Hegyalja enter the UNESCO World Heritage list?",
+            "hint": "The early 2000s. A palindromic year.",
+            "reveal": "2002. That closes the circle: from the duke's purchase in 1711 to a World Heritage title — and everything you now know about this place is yours, and nobody can take it from you."
           },
           "pl": {
-            "title": "Tytuł stacji 7 (dorośli)",
-            "story": "Tutaj dwa do czterech zdań lokalnej historii.",
-            "question": "Tutaj pytanie.",
-            "hint": "Podpowiedź, pokazywana po dwóch błędnych próbach.",
-            "reveal": "Dodatkowa ciekawostka po poprawnej odpowiedzi."
+            "title": "Światowe dziedzictwo",
+            "story": "Hercegkút weszła do zamkniętego regionu winiarskiego Tokaj-Hegyalja w 1908 roku i od tej pory losy wsi to losy wina. Uliczki piwniczne nie zostały jednak tylko dołączone do regionu: gdy historyczny krajobraz kulturowy regionu Tokaj trafił na listę światowego dziedzictwa UNESCO, obie uliczki w Hercegkút wymieniono z osobna.",
+            "question": "W którym roku Tokaj-Hegyalja trafiła na listę światowego dziedzictwa UNESCO?",
+            "hint": "Początek lat dwutysięcznych. Rok będący palindromem.",
+            "reveal": "2002. Koło się zamyka: od zakupu przez księcia w 1711 roku po tytuł światowego dziedzictwa — a tego, co teraz wiesz o tym miejscu, nikt Ci już nie odbierze."
           }
         }
       }
