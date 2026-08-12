@@ -13,6 +13,45 @@
   <body>
     <div class="ambience" aria-hidden="true">
       <div class="ambience__glow"></div>
+
+      <!-- kids track only: an aged scroll with a faint treasure map drawn on it -->
+      <div class="ambience__parchment">
+        <svg class="ambience__map" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+          <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <!-- coastline running down the right of the sheet -->
+            <path d="M640 -20c20 80 60 130 50 190s30 90 70 105 50 55 20 95-45 80-30 130-40 90-80 110-60 70-50 120-40 100-90 130-60 90-50 160" />
+            <!-- second landmass, lower left -->
+            <path d="M-20 620c80-20 140 20 190 70 30 30 10 70-30 100s-50 80-20 110" />
+            <!-- an island offshore -->
+            <path d="M780 420c30-20 60 0 65 40s-25 70-50 55-35-75-15-95Z" />
+            <!-- the route to the treasure -->
+            <path class="ambience__route" d="M250 330c-70 70-60 190 30 240s220 30 260-50-20-170-110-190c-50-10-130-30-180 0Z" />
+          </g>
+
+          <!-- X marks the spot -->
+          <g class="ambience__cross" stroke-width="13" stroke-linecap="round">
+            <path d="M398 238 466 302" />
+            <path d="M466 238 398 302" />
+          </g>
+
+          <!-- compass rose; kept inside the strip that survives cropping on a phone -->
+          <g class="ambience__compass">
+            <circle cx="640" cy="800" r="84" fill="none" stroke="currentColor" stroke-width="3" />
+            <path
+              fill="currentColor"
+              d="M640 725 646.5 784.3 674.7 765.3 655.7 793.5 715 800 655.7 806.5 674.7 834.7 646.5 815.7 640 875 633.5 815.7 605.3 834.7 624.3 806.5 565 800 624.3 793.5 605.3 765.3 633.5 784.3Z"
+            />
+            <circle cx="640" cy="800" r="10" fill="none" stroke="currentColor" stroke-width="4" />
+            <g class="ambience__rose-label" fill="currentColor">
+              <text x="640" y="708" text-anchor="middle">N</text>
+              <text x="733" y="809" text-anchor="middle">E</text>
+              <text x="640" y="914" text-anchor="middle">S</text>
+              <text x="547" y="809" text-anchor="middle">W</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+
       <div class="ambience__grain"></div>
     </div>
 
