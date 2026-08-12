@@ -1,0 +1,9 @@
+# Every change to this repository needs a review from the owner.
+# Ownership is deliberately not split by directory: this is a small project
+# with one maintainer, and a narrower rule would only create paths that no
+# reviewer is assigned to.
+#
+# Later lines win, so if you ever do add per-directory owners, put them below
+# this catch-all rather than above it.
+
+* @Surmi64
