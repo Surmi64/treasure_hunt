@@ -63,6 +63,24 @@ export function finishScreen(navigate) {
       { type: 'button', onclick: () => resetAndRestart(navigate) },
       icon('rotate', 'btn__icon'),
       t('playAgain')
-    )
+    ),
+
+    // credits. Brand names are not translated, so the labels are the same in
+    // every language and need no ui.json entry.
+    (site.githubUrl || site.linkedinUrl) &&
+      h(
+        'nav.finish__links',
+        { 'aria-label': 'GitHub, LinkedIn' },
+        site.githubUrl && creditLink(site.githubUrl, 'github', 'GitHub'),
+        site.linkedinUrl && creditLink(site.linkedinUrl, 'linkedin', 'LinkedIn')
+      )
+  );
+}
+
+function creditLink(href, iconName, label) {
+  return h(
+    'a.iconbtn',
+    { href, target: '_blank', rel: 'noopener', 'aria-label': label, title: label },
+    icon(iconName)
   );
 }

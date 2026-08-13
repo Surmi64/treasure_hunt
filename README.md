@@ -116,9 +116,19 @@ satisfaction of being confirmed goes with it.
 Button labels, the intro screen, the finish screen. The program substitutes
 numbers for `{n}` and `{total}`.
 
-`site.mapsUrl` is the Google Maps link to our own cellar. While it is empty the
-finish screen shows no map button at all — the text still works, only the
-button is missing.
+The `site` block holds the language-independent links. Any of them left empty
+simply drops that link from the finish screen, so a fork with no cellar of its
+own still renders correctly:
+
+| key | where it shows |
+|---|---|
+| `mapsUrl` | the Google Maps link to our own cellar |
+| `githubUrl` | GitHub mark in the credits row at the bottom |
+| `linkedinUrl` | LinkedIn mark in the credits row at the bottom |
+
+The two brand marks are drawn in the same stroke family as the rest of the
+icons rather than as their official filled logos — a filled glyph next to these
+reads as a foreign object dropped onto the page.
 
 When it is set, the link stays **behind a tap**: the finish screen first points
 at the mark above the text and invites the visitor to spot it along the row,
@@ -290,6 +300,12 @@ Two things not to break in it:
 - the swing **stops at 70 degrees**. Past 90 the wing turns its blank back to
   the camera and disappears (`backface-visibility: hidden`), and around 84 it is
   already down to a 10-pixel sliver
+
+The overlay does **not** take itself down. `playDoorOpening()` returns
+`{ finished, dismiss }`: it resolves while still fully opaque and waits, so the
+caller routes to the finish screen first and dismisses second. Get that order
+wrong and the fade-out uncovers the station the visitor just left, which flashes
+back into view for a moment before the route changes.
 
 The timing is documented in a comment in `components.css`; if you change it,
 move `TOTAL_MS` in `doorburst.js` with it. Under `prefers-reduced-motion` the

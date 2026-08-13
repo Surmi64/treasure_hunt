@@ -256,8 +256,12 @@ export function taskScreen(navigate, index) {
       // the answer that completes the run earns the door, not a page swap
       if (isComplete()) {
         setTimeout(async () => {
-          await playDoorOpening();
+          const door = playDoorOpening();
+          await door.finished;
+          // route first, dismiss second: the overlay has to keep covering this
+          // station until the finish screen is on the page behind it
           navigate('#/done');
+          door.dismiss();
         }, 700);
         return;
       }

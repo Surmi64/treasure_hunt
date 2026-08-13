@@ -382,33 +382,32 @@
       "tracks": {
         "kids": {
           "answers": [
-            "3",
-            "három",
-            "harom",
-            "three",
-            "trzy"
+            "háromszög",
+            "triangle",
+            "trójkąt",
+            "triangular"
           ],
           "input": "text",
           "hu": {
             "title": "Egyforma háztetők",
             "story": "Állj meg, és nézz végig a soron. A pincék homlokzata mind ugyanazt a formát rajzolja az égre — nem véletlenül: a telepesek egymástól tanulták a mesterséget, és mindenki ugyanúgy csinálta, mint a szomszédja. Nyolcvanhét pince, nyolcvanhét egyforma oromzat.",
-            "question": "Nézd meg egy pince homlokzatának a tetejét. Hány sarka van annak a formának?",
-            "hint": "Olyan alakú, mint egy sátor vagy egy hegycsúcs. Számold meg a csúcsait!",
-            "reveal": "Három — háromszög oromzat a neve. Ettől néz ki az egész sor úgy, mintha egyetlen kéz építette volna."
+            "question": "Nézz rá egy pincére. Milyen formát mintáz az eleje?",
+            "hint": "Olyan, mint egy sátor teteje vagy egy hegycsúcs. Három oldala van.",
+            "reveal": "Háromszög — háromszög oromzatnak hívják. Ettől néz ki az egész sor úgy, mintha egyetlen kéz építette volna."
           },
           "en": {
             "title": "Roofs that all match",
             "story": "Stop and look down the row. Every cellar front draws the same shape against the sky — and not by chance: the settlers learned the craft from one another, and everyone built the way his neighbour did. Eighty-seven cellars, eighty-seven matching gables.",
-            "question": "Look at the top of a cellar front. How many corners does that shape have?",
-            "hint": "It is shaped like a tent, or a mountain peak. Count its points!",
-            "reveal": "Three — it is called a triangular gable. That is what makes the whole row look as though one pair of hands built it."
+            "question": "Look at one of the cellars. What shape does its front make?",
+            "hint": "Like the top of a tent, or a mountain peak. It has three sides.",
+            "reveal": "A triangle — it is called a triangular gable. That is what makes the whole row look as though one pair of hands built it."
           },
           "pl": {
             "title": "Dachy jak jeden",
             "story": "Zatrzymaj się i spójrz wzdłuż uliczki. Każda fasada piwnicy rysuje na niebie ten sam kształt — i nie przypadkiem: osadnicy uczyli się rzemiosła jeden od drugiego i każdy budował tak jak sąsiad. Osiemdziesiąt siedem piwnic, osiemdziesiąt siedem takich samych szczytów.",
-            "question": "Popatrz na górę fasady piwnicy. Ile rogów ma ten kształt?",
-            "hint": "Ma kształt namiotu albo górskiego szczytu. Policz jego wierzchołki!",
-            "reveal": "Trzy — nazywa się to szczytem trójkątnym. To dzięki niemu cała uliczka wygląda, jakby zbudowała ją jedna para rąk."
+            "question": "Spójrz na jedną z piwnic. Jaki kształt tworzy jej front?",
+            "hint": "Jak wierzchołek namiotu albo szczyt góry. Ma trzy boki.",
+            "reveal": "Trójkąt — nazywa się to szczytem trójkątnym. To dzięki niemu cała uliczka wygląda, jakby zbudowała ją jedna para rąk."
           }
         },
         "adults": {

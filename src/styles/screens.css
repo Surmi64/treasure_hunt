@@ -290,6 +290,22 @@
   margin-top: var(--s5);
 }
 
+/* the credits row: two brand marks, quiet enough not to compete with the
+   Play again button directly above them */
+.finish__links {
+  display: flex;
+  justify-content: center;
+  gap: var(--s2);
+}
+
+.finish__links .iconbtn {
+  color: var(--ink-muted);
+}
+
+.finish__links .iconbtn:hover {
+  color: var(--gold);
+}
+
 /* the line that has to land even when the cellar turns out to be shut */
 .finish__keep {
   max-width: 30rem;

@@ -435,8 +435,11 @@
      1150–2050 the camera goes through the doorway, fading out as it passes
      2000–2550 the mark comes up — it has to wait for the light wash to clear,
                because gold on that glow has no contrast to read against
-     2550–2900 hold on the mark
-     2900–3250 everything fades and the finish screen takes over           */
+     2550–2900 hold on the mark, and playDoorOpening() resolves
+
+   The fade-out is NOT on this timeline. The overlay holds until the caller
+   dismisses it, so the next screen can be rendered underneath first —
+   otherwise the fade uncovers the station the visitor just left.            */
 
 .doorburst {
   position: fixed;
@@ -446,9 +449,12 @@
   place-items: center;
   overflow: hidden;
   background: var(--bg-deep);
-  animation:
-    doorburst-in 300ms var(--ease-out) both,
-    doorburst-out 350ms var(--ease-in) 2900ms both;
+  animation: doorburst-in 300ms var(--ease-out) both;
+}
+
+/* added by dismiss(), once the screen underneath has been swapped */
+.doorburst--leaving {
+  animation: doorburst-out 350ms var(--ease-in) forwards;
 }
 
 /* the camera: everything inside shares one vanishing point */

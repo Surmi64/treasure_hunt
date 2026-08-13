@@ -102,9 +102,10 @@ export function contentPlugin() {
         ustrings[lang] = ui.data[lang];
       }
 
-      // language-independent settings; the finish screen hides its map button
-      // when mapsUrl is left empty
-      const site = { mapsUrl: '', ...(ui.data.site ?? {}) };
+      // language-independent settings; every one of these drops its link from
+      // the finish screen when left empty, so listing the defaults here is what
+      // guarantees the screen never renders an href of undefined
+      const site = { mapsUrl: '', githubUrl: '', linkedinUrl: '', ...(ui.data.site ?? {}) };
 
       return `export const LANGS = ${JSON.stringify(LANGS)};
 export const TRACKS = ${JSON.stringify(TRACKS)};

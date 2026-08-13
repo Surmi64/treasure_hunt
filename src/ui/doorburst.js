@@ -15,8 +15,12 @@ import { hajnalhozoMark } from './brand.js';
  * prefers-reduced-motion skips the whole thing.
  */
 
-/** Must match the tail of the timeline in components.css. */
-const TOTAL_MS = 3250;
+/** When the mark has settled and the overlay is just holding. Must match the
+ *  tail of the timeline in components.css. */
+const TOTAL_MS = 2900;
+
+/** How long the fade-out takes once dismiss() is called. */
+const LEAVE_MS = 350;
 
 /**
  * One wing: the full artwork at the frame's full width, shown through a
@@ -30,11 +34,18 @@ function wing(side) {
 /**
  * Plays the animation over the whole screen.
  *
- * @returns {Promise<void>} resolves when it is done (or was skipped)
+ * The overlay does NOT take itself down. It resolves while still fully opaque
+ * and waits to be dismissed, so the caller can put the next screen underneath
+ * first — otherwise the fade-out uncovers the station the visitor just left and
+ * it flashes back into view for a moment before the route changes.
+ *
+ * @returns {{ finished: Promise<void>, dismiss: () => void }}
+ *   `finished` resolves once the mark has settled (or on a tap to skip);
+ *   `dismiss` fades the overlay out and removes it.
  */
 export function playDoorOpening() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) return Promise.resolve();
+  if (reduced) return { finished: Promise.resolve(), dismiss: () => {} };
 
   const overlay = h(
     'div.doorburst',
@@ -54,21 +65,35 @@ export function playDoorOpening() {
 
   document.body.append(overlay);
 
-  return new Promise((resolve) => {
-    let done = false;
+  let settled = false;
+  let timer;
+
+  const finished = new Promise((resolve) => {
     const finish = () => {
-      if (done) return;
-      done = true;
+      if (settled) return;
+      settled = true;
       clearTimeout(timer);
       overlay.removeEventListener('pointerdown', finish);
       window.removeEventListener('keydown', finish);
-      overlay.remove();
       resolve();
     };
 
-    const timer = setTimeout(finish, TOTAL_MS);
+    timer = setTimeout(finish, TOTAL_MS);
     // impatience is a feature, not a bug — any tap or key ends it
     overlay.addEventListener('pointerdown', finish);
     window.addEventListener('keydown', finish);
   });
+
+  let dismissed = false;
+  function dismiss() {
+    if (dismissed) return;
+    dismissed = true;
+    // the fade also buys the time the router needs: changing the hash renders
+    // the next screen in a later task, and by the time this is transparent it
+    // is already on the page
+    overlay.classList.add('doorburst--leaving');
+    setTimeout(() => overlay.remove(), LEAVE_MS);
+  }
+
+  return { finished, dismiss };
 }

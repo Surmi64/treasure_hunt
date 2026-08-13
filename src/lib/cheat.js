@@ -53,7 +53,8 @@ export function cheatRedirect(hash) {
     // the finish screen renders underneath while the overlay plays over it,
     // which is exactly what the seventh answer produces
     solveFirst(stations.length);
-    playDoorOpening();
+    const door = playDoorOpening();
+    door.finished.then(door.dismiss);
     return '#/done';
   }
 
